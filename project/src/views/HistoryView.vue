@@ -7,11 +7,11 @@
 
 <script>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { store } from "vuex";
 
 export default {
 	setup() {
-		const store = useStore();
+		
 
 		const searchName = computed(() => store.state.searchName);
 		const summonerData = computed(() => store.state.summonerData);

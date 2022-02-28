@@ -15,6 +15,30 @@ export default {
 
 		const searchName = computed(() => store.state.searchName);
 		const summonerData = computed(() => store.state.summonerData);
+		console.log(summonerData)
+
+		const apiAccount = store.dispatch("getData", 5);
+
+		apiAccount.then(api => api.json());
+					
+		async function getMatches(){
+			try{
+				let apiMatches = [];
+					for (const matchID of apiAccount) {
+						const apiMatch = await fetch(
+							`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-9cf9768b-d71a-4de2-9214-9fcde75d8a4f`
+						).then(api => api.json());
+						apiMatches.push(apiMatch);
+    console.log(apiMatch);
+							}
+							return apiMatches;
+			}
+			catch(error){
+				console.log(error)
+			}
+		}
+
+		getMatches();
 
 		return { searchName, summonerData };
 	},

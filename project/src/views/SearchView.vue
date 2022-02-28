@@ -32,7 +32,7 @@ export default {
 		const handleSubmit = () => {
 			console.log(summoner.value);
 			store.commit("updateSummoner", summoner.value);
-			store.dispatch("getData", summoner.value);
+			store.dispatch("getData", 5);
 		};
 
 		return { handleSubmit, summoner, searchName };

@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
 	state: {
+		user: null,
 		searchName: "",
 		summonerData: [],
 		puuid: 0,
@@ -11,6 +12,11 @@ export default createStore({
 		updateSummoner(state, name) {
 			state.searchName = name;
 		},
+		setUser(state, payload){
+			state.user = payload
+			console.log("user state changed:", state.user);
+			
+		}
 	},
 	actions: {
 		getData(state, count) {

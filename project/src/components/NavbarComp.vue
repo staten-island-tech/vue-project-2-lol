@@ -14,7 +14,6 @@
 				<router-link to="signup">Sign Up</router-link> |
 				<router-link to="login">Login</router-link>
 			</div>
-			<button @click="handleClick">Logout</button>
 		</template>
 	</nav>
 </template>

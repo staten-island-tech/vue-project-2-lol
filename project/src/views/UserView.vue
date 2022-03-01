@@ -1,4 +1,3 @@
 <template>
-  <div class="user">
-  </div>
+	<div class="user"></div>
 </template>

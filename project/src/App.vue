@@ -1,10 +1,17 @@
 <template>
 	<nav>
-		<router-link to="/">Home</router-link> | <router-link to="/user">User</router-link> |
-		<router-link to="/search">Search</router-link> | <router-link to="/history">History</router-link>
+		<NavbarComp />
 		<router-view />
 	</nav>
 </template>
+
+<script>
+import NavbarComp from "./components/NavbarComp.vue";
+
+export default {
+	components: { NavbarComp },
+};
+</script>
 
 <style>
 #app {
@@ -22,7 +29,7 @@ nav {
 nav a {
 	font-weight: bold;
 	color: #2c3e50;
-  font-size: 10em;
+	font-size: 10em;
 }
 
 nav a.router-link-exact-active {

@@ -96,14 +96,13 @@ const store = createStore({
             } catch (error) {
               console.log(error);
             }
-            getPuuid().then(function (result) {
-              return result;
-            });
           }
+          getAccount()
         } catch (error) {
           console.log(error);
         }
       }
+      getPuuid()
     },
   },
 });

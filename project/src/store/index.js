@@ -9,10 +9,15 @@ const store = createStore({
 		searchName: "",
 		summonerData: [],
 		puuid: 0,
+		summonerIcon: "",
+		summonerLevel: 0,
+		summonerName: "",
+		numberOfMatches: 0,
 	},
 	mutations: {
 		updateSummoner(state, name) {
 			state.searchName = name;
+			console.log(name);
 		},
 		setUser(state, payload) {
 			state.user = payload;
@@ -43,20 +48,30 @@ const store = createStore({
 			await signOut(auth);
 			context.commit("setUser", null);
 		},
-		getData(state, count) {
+		getData() {
 			async function getPuuid() {
 				try {
+					console.log(store.state);
+
 					const apiPuuid = await fetch(
-						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 					).then(api => api.json());
+
 					const puuid = Object.values(apiPuuid)[2];
-					state.puuid = puuid;
+					const icon = Object.values(apiPuuid)[4];
+					const level = Object.values(apiPuuid)[6];
+					const name = Object.values(apiPuuid)[3];
+
+					store.state.puuid = puuid;
+					store.state.summonerIcon = icon;
+					store.state.summonerLevel = level;
+					store.state.summonerName = name;
 
 					// eslint-disable-next-line no-inner-declarations
 					async function getAccount() {
 						try {
 							const apiAccount = await fetch(
-								`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${count}&api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+								`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${store.state.numberOfMatches}&api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 							).then(api => api.json());
 
 							let apiMatches = [];
@@ -69,7 +84,7 @@ const store = createStore({
 							}
 
 							await console.log(apiMatches);
-							
+
 							store.state.summonerData = apiMatches;
 
 							return apiMatches;

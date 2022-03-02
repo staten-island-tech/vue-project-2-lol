@@ -29,10 +29,8 @@ export default {
 
 		const searchName = computed(() => store.state.searchName);
 
-		const handleSubmit = () => {
-			console.log(summoner.value);
+		const handleSubmit = async () => {
 			store.commit("updateSummoner", summoner.value);
-			store.dispatch("getData", 5);
 		};
 
 		return { handleSubmit, summoner, searchName };

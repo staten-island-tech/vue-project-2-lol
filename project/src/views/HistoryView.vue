@@ -1,7 +1,12 @@
 <template>
 	<div class="history">
-		<h1>{{ searchName }}</h1>
-		<h1>{{ summonerData }}</h1>
+		<h1>{{ name }}</h1>
+		<h1>{{ level }}</h1>
+		<h1>{{ puuid }}</h1>
+		<img :src="icon">
+		<div v-for="match in summonerData" :key="match">
+			{{ match.metadata.matchId }}
+		</div>
 	</div>
 </template>
 
@@ -13,39 +18,25 @@ export default {
 	setup() {
 		const store = useStore();
 
-		const searchName = computed(() => store.state.searchName);
+		const name = computed(() => store.state.summonerName);
 		const summonerData = computed(() => store.state.summonerData);
-		console.log(summonerData);
+		const icon = `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${computed(() => store.state.summonerIcon)}.png`
+		const level = computed(() => store.state.summonerLevel);
+		const puuid = computed(() => store.state.puuid);
 
-		const apiAccount = store.dispatch("getData", 5)
+		const apiMatches = store.dispatch("getData");
+		store.state.numberOfMatches = 10;
 
-		console.log(apiAccount)
-		apiAccount.then(function(result){
-			console.log(result)
-				async function getMatches(){
-				try{
-					let apiMatches = [];
-						for (const matchID of result) {
-							const apiMatch = await fetch(
-								`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-9cf9768b-d71a-4de2-9214-9fcde75d8a4f`
-							).then(api => api.json());
-							apiMatches.push(apiMatch);
-		console.log(apiMatch);
-								}
-								return apiMatches;
-				}
-				catch(error){
-					console.log(error)
-				}
-			}
-
-			getMatches();
-		})
-
-					
-		
-
-		return { searchName, summonerData };
+		return { icon, name, summonerData, apiMatches, level, puuid };
 	},
 };
 </script>
+
+
+<style>
+
+.history{
+	font-size: 20em;
+}
+
+</style>

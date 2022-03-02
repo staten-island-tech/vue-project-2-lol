@@ -10,7 +10,6 @@ const store = createStore({
 		summonerData: [],
 		puuid: 0,
 	},
-	getters: {},
 	mutations: {
 		updateSummoner(state, name) {
 			state.searchName = name;
@@ -48,20 +47,32 @@ const store = createStore({
 			async function getPuuid() {
 				try {
 					const apiPuuid = await fetch(
-						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${state.searchName}?api_key=RGAPI-441d0efb-2665-4289-8531-b137b7983d30`
+						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 					).then(api => api.json());
 					const puuid = Object.values(apiPuuid)[2];
-					console.log(puuid);
 					state.puuid = puuid;
 
 					// eslint-disable-next-line no-inner-declarations
 					async function getAccount() {
 						try {
 							const apiAccount = await fetch(
-								`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${count}&api_key=RGAPI-441d0efb-2665-4289-8531-b137b7983d30`
-							);
+								`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${count}&api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+							).then(api => api.json());
 
-							return apiAccount;
+							let apiMatches = [];
+
+							for (const matchID of apiAccount) {
+								const apiMatch = await fetch(
+									`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+								).then(api => api.json());
+								apiMatches.push(apiMatch);
+							}
+
+							await console.log(apiMatches);
+							
+							store.state.summonerData = apiMatches;
+
+							return apiMatches;
 						} catch (error) {
 							console.log(error);
 						}

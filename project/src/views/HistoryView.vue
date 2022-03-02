@@ -3,7 +3,6 @@
 		<h1>{{ name }}</h1>
 		<h1>{{ level }}</h1>
 		<h1>{{ puuid }}</h1>
-		<img :src="icon">
 		<div v-for="match in summonerData" :key="match">
 			{{ match.metadata.matchId }}
 		</div>

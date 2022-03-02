@@ -26,7 +26,7 @@ export default {
 				let apiMatches = [];
 				for (const matchID of apiAccount) {
 					const apiMatch = await fetch(
-						`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-9cf9768b-d71a-4de2-9214-9fcde75d8a4f`
+						`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 					).then(api => api.json());
 					apiMatches.push(apiMatch);
 					console.log(apiMatch);

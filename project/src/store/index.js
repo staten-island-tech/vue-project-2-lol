@@ -65,15 +65,18 @@ const store = createStore({
 						} catch (error) {
 							console.log(error);
 						}
-					}
-					getAccount();
-				} catch (error) {
-					console.log(error);
-				}
+						getPuuid().then(function(result){
+							return result
+						})
 			}
-			getPuuid();
-		},
-	},
+			
+		}
+		catch(error){
+				console.log(error)
+			}
+	}
+}
+	}
 });
 
 const unsub = onAuthStateChanged(auth, user => {

@@ -3,6 +3,7 @@
 		<h1>{{ name }}</h1>
 		<h1>{{ level }}</h1>
 		<h1>{{ puuid }}</h1>
+		<img :src="iconURL()">
 		<div v-for="match in summonerData" :key="match">
 			{{ match.metadata.matchId }}
 		</div>
@@ -17,16 +18,17 @@ export default {
 	setup() {
 		const store = useStore();
 
+		
 		const name = computed(() => store.state.summonerName);
 		const summonerData = computed(() => store.state.summonerData);
-		const icon = `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${computed(() => store.state.summonerIcon)}.png`
+		const icon = computed(() => store.state.summonerIcon);
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
-
+		const iconURL = (() => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`)
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
-
-		return { icon, name, summonerData, apiMatches, level, puuid };
+ 
+		return { icon, name, summonerData, apiMatches, level, puuid, iconURL };
 	},
 };
 </script>

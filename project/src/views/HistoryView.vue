@@ -5,8 +5,9 @@
 		<h1>{{ puuid }}</h1>
 		<img :src="iconURL()">
 		<div v-for="match in summonerData" :key="match">
-			{{match.info.participants.metaData.championName}}
+			{{champName}}
 		</div>
+		
 	</div>
 </template>
 
@@ -25,10 +26,10 @@ export default {
 		const iconURL = (() => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`)
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
-			
-		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData};
-
+		const champName = summonerData.value.forEach(function (item) { item.info.participants.filter(summoner => summoner.summonerName.value === name.value)[0]});
+		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, champName};
 	},
+
 };
 </script>
 

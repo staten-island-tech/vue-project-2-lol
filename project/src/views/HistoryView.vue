@@ -17,11 +17,6 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const store = useStore();
-
- 		const metaData = summonerData.forEach(i => info.participants.championName == name{
-			filter(
-    (summoner) => summoner.summonerName === name
-  		)[0];
 		const name = computed(() => store.state.summonerName);
 		const summonerData = computed(() => store.state.summonerData);
 		const icon = computed(() => store.state.summonerIcon);

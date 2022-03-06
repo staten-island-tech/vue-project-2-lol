@@ -1,10 +1,10 @@
 <template>
 	<div class="signup">
-		<form @submit.prevent="handleSubmit">
-			<h1>Sign up</h1>
-			<input type="email" name="email" v-model="email" required />
-			<input type="password" name="password" v-model="password" required />
-			<button>Sign up</button>
+		<form class="signup-form" @submit.prevent="handleSubmit">
+			<h1 class="signup-item header-signup">Sign up</h1>
+			<input class="signup-item email" type="email" name="email" id="email" v-model="email" required />
+			<input class="signup-item password" type="password" name="password" id="password" v-model="password" required />
+			<button class="signup-item signup-button">Sign up</button>
 			<div v-if="error">{{ error }}</div>
 		</form>
 	</div>
@@ -37,3 +37,39 @@ export default {
 	},
 };
 </script>
+
+<style>
+	
+
+	.signup-form{
+		font-size: 5rem;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		margin: 10rem 50rem;
+		justify-content: center;
+	}
+	
+	.header-signup{
+		font-size: 10rem;
+	}
+	.signup-item{
+		margin: 3rem;
+	}
+
+	.email, .password{
+		padding: 1rem;
+	}
+
+	.signup-button{
+		width: 20rem;
+		margin: auto;
+		padding: 1rem;
+		border: none;
+		background-color: black;
+		color: white;
+		border-radius: 1rem;
+		margin-top: 1rem;
+	}
+
+</style>

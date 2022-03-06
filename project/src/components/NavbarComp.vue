@@ -11,7 +11,7 @@
 				</div>
 				<div v-if="user" class="right">
 					<router-link to="user">User</router-link> | 
-					<span>Logged in as {{ user.email }}</span> | 
+					<span class="loggedinas">Logged in as {{ user.email }}</span> | 
 					<button @click="handleClick">Logout</button>
 				</div>
 				<div v-if="!user" class="right">
@@ -46,13 +46,7 @@ export default {
 };
 </script>
 <style scoped>
-	#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-}
+
 
 
 .navbar{
@@ -87,5 +81,10 @@ nav a:hover {
 nav a.router-link-exact-active {
 	color: #FFD700;
 	text-decoration-color: #FFD700;
+}
+
+.loggedinas{
+	color: white;
+	font-size: 2rem;
 }
 </style>

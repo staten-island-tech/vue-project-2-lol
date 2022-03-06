@@ -85,7 +85,106 @@ const store = createStore({
                 const apiMatch = await fetch(
                   `https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
                 ).then((api) => api.json());
-                apiMatches.push(apiMatch);
+                const summonerInfo = apiMatch.info.participants.filter(
+                    (summoner) => summoner.summonerName === name
+                )[0]
+                // eslint-disable-next-line no-inner-declarations
+                  async function getItems() {
+                    let results = [];
+
+                    const spell1 = await fetch(
+                    "https://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/summoner.json"
+                    )
+                    .then((response) => response.json())
+                    .then((spell) => Object.values(spell.data))
+                    .then((spell) =>
+                      spell.filter((spell) => spell.key == summonerInfo.summoner1Id)
+                    )
+                    .then((spell) => spell[0].id);
+                    results.splice(0, 0, spell1);
+                    
+                    const spell2 = await fetch(
+                    "https://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/summoner.json"
+                    )
+                    .then((response) => response.json())
+                    .then((spell) => Object.values(spell.data))
+                    .then((spell) =>
+                      spell.filter((spell) => spell.key == summonerInfo.summoner2Id)
+                    )
+                    .then((spell) => spell[0].id);
+                    results.splice(1, 0, spell2);
+                    
+                    const rune1 = await fetch(
+                    "https://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/runesReforged.json"
+                    )
+                    .then((response) => response.json())
+                    .then(
+                      (rune) =>
+                      rune.filter((rune) => rune.id == summonerInfo.perks.styles[0].style)[0]
+                    )
+                    .then((rune) => rune.slots[0].runes)
+                    .then(
+                      (rune) =>
+                      rune.filter(
+                        (rune) => rune.id == summonerInfo.perks.styles[0].selections[0].perk
+                      )[0].icon
+                    );
+                    results.splice(2, 0, rune1);
+                      
+                    const rune2 = await fetch(
+                    "https://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/runesReforged.json"
+                    )
+                    .then((response) => response.json())
+                    .then(
+                      (rune) =>
+                      rune.filter((rune) => rune.id == summonerInfo.perks.styles[1].style)[0]
+                    )
+                    .then((rune) => rune.icon);
+                    results.splice(3, 0, rune2);
+                    
+                    return results;
+                  }
+                    const possible = [
+                      summonerInfo.item0,
+                      summonerInfo.item1,
+                      summonerInfo.item2,
+                      summonerInfo.item3,
+                      summonerInfo.item4,
+                      summonerInfo.item5,
+                    ]
+                    const items = []
+                    for(let i = 0; i < 6; i++){
+                      if(possible[i] != 0){
+                        items.push(possible[i])
+                      }
+                    }
+                    const combos = []
+                    const pos = [
+                      summonerInfo.doubleKills,
+                      summonerInfo.tripleKills,
+                      summonerInfo.quadraKills,
+                      summonerInfo.pentaKills,
+                    ]
+                    if (pos[3] != 0) {
+                      combos.push("Pentakill")
+                    } else if (pos[2] != 0) {
+                      combos.push("Quadrakill")
+                    } else if (pos[1] != 0) {
+                      combos.push("Triplekill")
+                    } else if (pos[0] != 0) {
+                      combos.push("Doublekill")
+                    }
+                    getItems().then(function(results){
+                        apiMatches.push({
+                        info: apiMatch.info,
+                        metadata: apiMatch.metadata,
+                        summonerInfo: summonerInfo,
+                        runesSpells: results,
+                        items: items,
+                        combos:  combos
+                      })
+                    })
+                
               }
 
               await console.log(apiMatches);

@@ -46,6 +46,7 @@
 					<div class="matchHistoryDataSetMidInv">
 						<div class="matchHistoryDataSetMidItems">
 							<img class="items" v-for="item in match.items" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${ item }.png`" alt="item" :key="item"/>
+							<img class="items" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${metaData.item6}.png`" alt="item">
 						</div>
 					</div>
 				</div>
@@ -78,7 +79,7 @@ export default {
 		let metaData = null
 		
 		const apiMatches = store.dispatch("getData");
-		store.state.numberOfMatches = 10;
+		store.state.numberOfMatches = 25;
 
 		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData };
 	},
@@ -335,7 +336,7 @@ img.profile {
   display: flex;
   column-gap: 1rem;
   font-size: 5rem;
-  justify-content: space-around;
+  justify-content: center;
   margin: 2rem;
   margin-top: 1rem;
   font-weight: 400;
@@ -346,6 +347,7 @@ img.profile {
   flex-direction: row;
   column-gap: 1rem;
   font-weight: 500;
+  margin: 0 10rem;
 }
 
 .matchHistoryDataSetBotCombosKillsType {
@@ -354,6 +356,7 @@ img.profile {
   padding: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-right: 0 10rem;
 }
 
 .timeSpentDead {

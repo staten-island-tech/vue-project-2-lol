@@ -97,12 +97,12 @@ const store = createStore({
               console.log(error);
             }
           }
-          getAccount()
+          getAccount();
         } catch (error) {
           console.log(error);
         }
       }
-      getPuuid()
+      getPuuid();
     },
   },
 });

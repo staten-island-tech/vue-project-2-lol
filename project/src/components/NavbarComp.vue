@@ -6,6 +6,7 @@
 				<div class="left">
 					<router-link to="/">Home</router-link> | 
 					<router-link to="search">Search</router-link>
+					<router-link to="Champions">Champions</router-link>
 					
 			
 				</div>

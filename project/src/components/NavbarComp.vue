@@ -12,7 +12,8 @@
 				<div v-if="user" class="right">
 					<router-link to="user">User</router-link> | 
 					<span class="loggedinas">Logged in as {{ user.email }}</span> | 
-					<button @click="handleClick">Logout</button>
+					<button class="logout" @click="handleClick">Logout</button>
+					
 				</div>
 				<div v-if="!user" class="right">
 					<router-link to="signup">Sign Up</router-link> |
@@ -86,5 +87,27 @@ nav a.router-link-exact-active {
 .loggedinas{
 	color: white;
 	font-size: 2rem;
+	padding: 0rem 3rem;
+	font-weight: bold;
 }
+.logout{
+	
+	font-weight: bold;
+	color: #FFF;
+	font-size: 2rem;
+	background-color: transparent;
+	border: none;
+	transition: 500ms;
+	text-decoration: underline ;
+	text-decoration-color: transparent;
+	padding-left: 3rem;
+
+}
+
+.logout:hover{
+	color: #FFD700;
+	text-decoration-color: #FFD700;
+	
+}
+
 </style>

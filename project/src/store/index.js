@@ -11,6 +11,7 @@ const store = createStore({
   state: {
     user: null,
     authIsReady: false,
+    isLoading: false,
     searchName: "",
     summonerData: [],
     puuid: 0,
@@ -54,6 +55,10 @@ const store = createStore({
       context.commit("setUser", null);
     },
     getData() {
+      store.state.isLoading = true;
+      console.log(store.state.isLoading);
+      
+
       async function getPuuid() {
         try {
           console.log(store.state);
@@ -202,6 +207,9 @@ const store = createStore({
         }
       }
       getPuuid()
+      store.state.isLoading = false
+      console.log(store.state.isLoading);
+      
     },
   },
 });

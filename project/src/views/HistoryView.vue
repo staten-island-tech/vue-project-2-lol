@@ -118,7 +118,19 @@ export default {
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
 
-		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData };
+		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData, store };
+	},
+	beforeMount: function() {
+		this.$nextTick(function(){
+			console.log("test");
+			
+		})
+	},
+	mounted: function() {
+		this.$nextTick(function(){
+			console.log("test 2");
+			
+		})
 	},
 	methods: {
 		fancyTimeFormat: function (duration) {

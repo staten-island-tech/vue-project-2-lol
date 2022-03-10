@@ -5,12 +5,10 @@
         
         <div v-for="champion in DataList" :key="champion.name" class="container">
             <ChampCard 
-                :ChampName="champion.name"
-               :ImgSource= {{getIMG(champion.name)}}
-                
-             
-            />
-
+                :ChampName="champion.name" 
+                   
+                />
+          
         </div>
     </div>
 </template>
@@ -26,23 +24,22 @@ import ChampCard from "../components/ChampCard.vue"
 
             const handleClicked =  function(){
                 console.log("Hello")}
-        
+         
             const DataList = ChampData.data
+             
             return{
                 users: ChampData,
                 handleClicked,
-                store,DataList
+                store,DataList,
             }
-        
+            
         },
-        components:{ChampCard},
-        computed:{
-            getIMG: function(champ){
-                return `../ddragon/img/champion/${champ}.png`
-
-            }
-        }
-
+        components:{
+            ChampCard,
+        },
+        
+         
+         
         
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="asdf">
-        <img class='img' :src={ImgSource} alt=""/>
         <h2 class="name">{{ChampName}}</h2>
+        <img class='img'  :src="getimg" alt="picture"/>
     </div>
 </template>
 
@@ -9,13 +9,26 @@
 export default {
     name: "ChampCard",
     props:{
-        ImgSource:String,
+        ChampIMG:String,
         ChampName:String,
+    },
+    computed:{
+        getimg: function(){
+            return "../ddragon/img/champion/" + this.ChampName + ".png"
+        }
     }
+    
+    
+    
 }
 </script>
 <style scoped>
     .asdf{
         background-color: yellow;
+    }
+    .img{
+        background-color: aqua;
+        height: 30rem;
+        width: 30rem;
     }
 </style>

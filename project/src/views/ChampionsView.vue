@@ -2,14 +2,14 @@
     <div >
         This is a test
         <button @click="handleClicked">Test</button>
-        
-        <div v-for="champion in DataList" :key="champion.name" class="container">
-            <ChampCard 
-                :ChampName="champion.name" 
-                   
-                />
-          
+        <div class="container">
+
+            <div v-for="champion in DataList" :key="champion.name">
+                <ChampCard class="card" :ChampName="champion.name" :champid="champion.id"/>
+            
+            </div>
         </div>
+        
     </div>
 </template>
 
@@ -50,6 +50,14 @@ import ChampCard from "../components/ChampCard.vue"
         font-size: 3rem;
         color: blue;
     
+    }
+    .container{
+        width: 80%;
+        background-color: rosybrown;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: auto;
     }
     
 </style>

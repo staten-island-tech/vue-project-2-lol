@@ -14,7 +14,7 @@ export default {
     },
     computed:{
         getimg: function(){
-            return "../ddragon/img/champion/" + this.ChampName + ".png"
+            return "https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/" + this.ChampName.replace(/\s+/g, '') + ".png"
         }
     }
     

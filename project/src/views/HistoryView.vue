@@ -1,7 +1,9 @@
 <template>
-	<div class="history">
-		<div v-if="isLoading">LOADING SCREEN</div>
-		<div v-if="!isLoading">
+	<div class=main>
+		<div class="spinner-wrapper">
+			<div class="spinner"></div>
+		</div>
+		<div class="history" v-on:load ="onLoad()">
 			<h1 class="header">Match History</h1>
 			<div class="summonerInfo">
 				<h1 class="profile">{{ name }}</h1>
@@ -92,12 +94,12 @@
 						</div>
 						<div class="timeSpentDead">
 							<p>Time Dead: {{ fancyTimeFormat(metaData.totalTimeSpentDead) }}</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </template>
 
 <script>
@@ -105,6 +107,9 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
+	create(){
+		window.addEventliastener("load", this.onWindowLoad);	
+	},
 	setup() {
 		const store = useStore();
 		const name = computed(() => store.state.summonerName);
@@ -115,22 +120,11 @@ export default {
 		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
 		let metaData = null;
 
+
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
 
-		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData, store };
-	},
-	beforeMount: function() {
-		this.$nextTick(function(){
-			console.log("test");
-			
-		})
-	},
-	mounted: function() {
-		this.$nextTick(function(){
-			console.log("test 2");
-			
-		})
+		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData, store};
 	},
 	methods: {
 		fancyTimeFormat: function (duration) {
@@ -154,7 +148,12 @@ export default {
 
 			return ret;
 		},
-
+		onLoad: function(){
+			let spinnerWrapper = document.querySelector('.spinner-wrapper');
+			onWindowLoad(
+				spinnerWrapper.parentElement.removeChild(spinnerWrapper)
+			);
+		},
 		getTime: function (stamp) {
 			const time = new Date(stamp).toLocaleTimeString("en-US");
 			const hourMin = time.slice(-0, -6);
@@ -178,6 +177,62 @@ export default {
 </script>
 
 <style scoped>
+.spinner-wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: #151515;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+.spinner::before,
+.spinner:after{
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.spinner:before {
+    width: 100%;
+    height: 100%;
+    background-image:linear-gradient(90deg, #ff00cc 0%,#333399 100% );
+    animation: spin .5s infinite linear;
+}
+.spinner:after {
+    width: 90%;
+    height: 90%;
+    background-color: #151515;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/*Simulate page content*/
+.main-content{
+    width: 100%;
+    height: 100vh;
+    background: url("https://source.unsplash.com/random/4000x4000") center no-repeat;
+    background-size: cover;
+}
 .header {
 	display: block;
 	width: 100vw;

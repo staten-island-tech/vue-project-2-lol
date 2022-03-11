@@ -1,10 +1,13 @@
 <template>
     <div >
-        This is a test
-        <button @click="handleClicked">Test</button>
-        <div class="container">
+         
+        <form class='form' action="submit" v-on:submit.prevent="onSubmit" >
+            <input type="text" placeholder="Enter Champion Name " >
+        </form>
+        
+        <div class="container" id="container">
 
-            <div v-for="champion in DataList" :key="champion.name">
+            <div  class="thediv"  v-for="champion in DataList" :key="champion.name">
                 <ChampCard class="card" :ChampName="champion.name" :champid="champion.id"/>
             
             </div>
@@ -26,7 +29,8 @@ import ChampCard from "../components/ChampCard.vue"
                 console.log("Hello")}
          
             const DataList = ChampData.data
-             
+            console.log(DataList)
+
             return{
                 users: ChampData,
                 handleClicked,
@@ -37,6 +41,17 @@ import ChampCard from "../components/ChampCard.vue"
         components:{
             ChampCard,
         },
+        methods:{
+            submitted: function(event){
+                event.preventDefault();
+                const divs = document.getElementsByClassName("thediv")
+                const dived = divs.length
+                for(let i = 0; i < dived; i = i+1) {
+                    const parent = document.getElementbyID('container')
+                    parent.removeChild(parent.firstChild)
+                }
+            }
+        }
         
          
          

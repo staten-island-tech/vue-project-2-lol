@@ -1,5 +1,5 @@
 <template>
-    <div class="asdf">
+    <div v-bind:class="getname">
         <h2 class="name">{{ChampName}}</h2>
         <div class="hide">{{champid}}</div>
         <img class='img'  :src="getimg" alt="picture"/>
@@ -17,6 +17,9 @@ export default {
     computed:{
         getimg: function(){
             return "https://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/" + this.champid.replace(/\s+/g, '') + ".png"
+        },
+        getname: function(){
+            return this.ChampName
         }
     }
     

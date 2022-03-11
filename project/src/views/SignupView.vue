@@ -1,10 +1,10 @@
 <template>
-	<div class="signup">
-		<form class="signup-form" @submit.prevent="handleSubmit">
-			<h1 class="signup-item header-signup">Sign up</h1>
-			<input class="signup-item email" type="email" name="email" id="email" v-model="email" required />
-			<input class="signup-item password" type="password" name="password" id="password" v-model="password" required />
-			<button class="signup-item signup-button">Sign up</button>
+	<div>
+		<form class="form" @submit.prevent="handleSubmit">
+			<h1 class="form-item">Sign up</h1>
+			<input class="form-item email" type="email" name="email" id="email" v-model="email" required />
+			<input class="form-item password" type="password" name="password" id="password" v-model="password" required />
+			<button class="form-item signup-button">Sign up</button>
 			<div v-if="error">{{ error }}</div>
 		</form>
 	</div>
@@ -39,31 +39,26 @@ export default {
 </script>
 
 <style>
-	
-
-	.signup-form{
+	.form{
 		font-size: 5rem;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
 		margin: 10rem 50rem;
 		justify-content: center;
-	}
-	
-	.header-signup{
-		font-size: 10rem;
-	}
-	.signup-item{
-		margin: 3rem;
+		align-items: center;
 	}
 
 	.email, .password{
 		padding: 1rem;
+		width: 50rem;
+		padding: 1.5rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 
-	.signup-button{
+	.form-button{
 		width: 20rem;
-		margin: auto;
 		padding: 1rem;
 		border: none;
 		background-color: black;

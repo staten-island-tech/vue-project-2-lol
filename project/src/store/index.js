@@ -6,6 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { vuexfireMutations, firestoreAction } from 'vuexfire'
+import { db } from '../firebase/db'
 
 const store = createStore({
   state: {
@@ -33,6 +35,8 @@ const store = createStore({
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
     },
+    vuexfireMutations,
+
   },
   actions: {
     async signup(context, { email, password }) {

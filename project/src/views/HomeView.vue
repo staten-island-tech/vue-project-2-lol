@@ -5,6 +5,7 @@
 <script>
 // @ is an alias to /src
 import { useStore } from "vuex";
+import{ getDatabase } from "firebase/database"
 
 export default {
 	name: "HomeView",
@@ -12,6 +13,7 @@ export default {
 		const store = useStore();
 
 		console.log(store.state.user);
+		console.log(getDatabase())
 	},
 };
 </script>

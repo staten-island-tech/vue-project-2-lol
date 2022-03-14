@@ -53,7 +53,7 @@ body,
 }
 
 :root {
-	--main-bg-color: rgba(249, 251, 255, 01);
+	--main-bg-color: rgb(224, 238, 247, 10);
 	--search-box-color: #e3e5e9;
 	--error-message-color: #ff5148;
 }

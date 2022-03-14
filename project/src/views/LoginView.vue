@@ -1,13 +1,21 @@
 <template>
-	<div>
-		<form class="form" @submit.prevent="handleSubmit">
+	<form @submit.prevent="handleSubmit">
+		<div class="form">
 			<h1 class="form-header">Login</h1>
 			<input class="email" type="email" name="email" id="email" v-model="email" placeholder="Email" required />
-			<input class="password" type="password" name="password" id="password" v-model="password" placeholder="Password" required />
+			<input
+				class="password"
+				type="password"
+				name="password"
+				id="password"
+				v-model="password"
+				placeholder="Password"
+				required
+			/>
 			<button class="form-button">Login</button>
 			<div v-if="error">{{ error }}</div>
-		</form>
-	</div>
+		</div>
+	</form>
 </template>
 
 <script>
@@ -37,4 +45,3 @@ export default {
 	},
 };
 </script>
-

@@ -24,11 +24,8 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const summoner = ref("");
-
 		const store = useStore();
-
 		const searchName = computed(() => store.state.searchName);
-
 		const handleSubmit = async () => {
 			store.commit("updateSummoner", summoner.value);
 		};

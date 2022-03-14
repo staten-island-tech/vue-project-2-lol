@@ -1,9 +1,9 @@
 <template>
 	<div class=main>
-		<div class="spinner-wrapper">
-			<div class="spinner"></div>
+		<div class="spinner-wrapper" v-if="load === true" >
+			<div class="spinner" ></div>
 		</div>
-		<div class="history" v-on:load ="onLoad()">
+		<div class="history">
 			<h1 class="header">Match History</h1>
 			<div class="summonerInfo">
 				<h1 class="profile">{{ name }}</h1>
@@ -99,6 +99,7 @@
 					</div>
 				</div>
 			</div>
+		<div v-on:load= ></div>
 		</div>
 </template>
 
@@ -117,6 +118,7 @@ export default {
 		const icon = computed(() => store.state.summonerIcon);
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
+		const load = computed(() => store.state.load);
 		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
 		let metaData = null;
 
@@ -124,7 +126,7 @@ export default {
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
 
-		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData, store};
+		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData, store, load};
 	},
 	methods: {
 		fancyTimeFormat: function (duration) {
@@ -145,14 +147,14 @@ export default {
 			} else {
 				ret += "" + secs + "sec";
 			}
-
-			return ret;
+			return {ret};
 		},
 		onLoad: function(){
 			let spinnerWrapper = document.querySelector('.spinner-wrapper');
-			onWindowLoad(
+			const onWindowLoad = onWindowLoad(
 				spinnerWrapper.parentElement.removeChild(spinnerWrapper)
 			);
+			onWindowLoad();
 		},
 		getTime: function (stamp) {
 			const time = new Date(stamp).toLocaleTimeString("en-US");
@@ -172,7 +174,7 @@ export default {
 		championName() {
 			return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${this.metaData.championName}.png`;
 		},
-	},
+	}
 };
 </script>
 

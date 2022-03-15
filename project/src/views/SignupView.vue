@@ -56,30 +56,57 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+html,
+body,
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 62.5%;
+	font-family: "Roboto", sans-serif;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh
+}
 .form {
 	font-size: 5rem;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	margin: 10rem 50rem;
 	justify-content: center;
+	row-gap: 3rem;
 	align-items: center;
 	border-radius: 2rem;
-	background-color:  linear-gradient(145deg, #f0f0f0, #cacaca);
-	box-shadow: 10px 10px 60px #b1b1b1,
-             -10px -10px 60px #ffffff;
+	background: #ecf0f3;
+	box-shadow: 15px 15px 15px #cbced1, -15px -15px 15px #ffffff;
 	padding: 4rem;
-	width: 50vw;
+	width: 60vw;
+	height: 60vh;
+}
+
+.form-header {
+	font-weight: bold;
+	font-size: 5rem;
 }
 
 .email,
 .password {
 	padding: 1rem;
-	width: 50rem;
+	width: 70rem;
 	padding: 1.5rem;
-	padding-left: 2rem;
-	padding-right: 2rem;
+	padding-left: 4rem;
+	padding-right: 4rem;
+	border: none;
+	outline: none;
+	background: none;
+	color: #555;
+	border-radius: 2rem;
+	box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
 }
 
 .form-button {

@@ -45,3 +45,67 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+
+html, body, * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-size: 62.5%;
+font-family: "Roboto", sans-serif;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.form {
+	font-size: 5rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	row-gap: 3rem;
+	align-items: center;
+	border-radius: 2rem;
+	background: #ecf0f3;
+	box-shadow: 15px 15px 15px #cbced1, -15px -15px 15px #ffffff;
+	padding: 4rem;
+	width: 60vw;
+	height: 60vh;
+}
+
+.form-header{
+	font-weight: bold;
+	font-size: 5rem;
+}
+
+.email,
+.password {
+	padding: 1rem;
+	width: 70rem;
+	padding: 1.5rem;
+	padding-left: 4rem;
+	padding-right: 4rem;
+	border: none;
+	outline: none;
+	background: none;
+	color: #555;
+	border-radius: 2rem;
+	box-shadow: inset 8px 8px 8px #cbced1,
+				inset -8px -8px 8px #ffffff;
+}
+
+.form-button {
+	width: 20rem;
+	padding: 1rem;
+	border: none;
+	background-color: black;
+	color: white;
+	border-radius: 1rem;
+	margin-top: 1rem;
+}
+</style>

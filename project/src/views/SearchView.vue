@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@700&display=swap");
 
 html,
@@ -53,7 +53,7 @@ body,
 }
 
 :root {
-	--main-bg-color: rgb(224, 238, 247, 10);
+	--main-bg-color: #ecf0f3;
 	--search-box-color: #e3e5e9;
 	--error-message-color: #ff5148;
 }
@@ -69,7 +69,7 @@ body {
 	row-gap: 4rem;
 	font-size: 10rem;
 	justify-content: center;
-	height: 80vh;
+	
 }
 
 .header {
@@ -85,7 +85,7 @@ body {
 	text-align: center;
 	outline: none;
 	padding: 3.5rem;
-	width: 130rem;
+	width: 100rem;
 	border: none;
 	border-radius: 1rem;
 	background-color: var(--search-box-color);

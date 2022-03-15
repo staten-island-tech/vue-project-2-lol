@@ -33,7 +33,6 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const store = useStore();
-
 		const handleClick = () => {
 			store.dispatch("logout");
 		};
@@ -41,7 +40,7 @@ export default {
 		return {
 			handleClick,
 			user: computed(() => store.state.user),
-			authIsReady: computed(() => store.state.authIsReady),
+			authIsReady: computed(() => store.state.authIsReady)
 		};
 	},
 };

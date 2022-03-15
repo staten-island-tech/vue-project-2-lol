@@ -1,7 +1,7 @@
 <template>
 	<div class=main>
-		<div class="spinner-wrapper" v-if="load === true" >
-			<div class="spinner" ></div>
+		<div class="spinner-wrapper" v-if="load === false">
+			<div class="spinner"></div>
 		</div>
 		<div class="history">
 			<h1 class="header">Match History</h1>
@@ -99,7 +99,6 @@
 					</div>
 				</div>
 			</div>
-		<div v-on:load= ></div>
 		</div>
 </template>
 
@@ -108,9 +107,6 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-	create(){
-		window.addEventliastener("load", this.onWindowLoad);	
-	},
 	setup() {
 		const store = useStore();
 		const name = computed(() => store.state.summonerName);
@@ -118,10 +114,9 @@ export default {
 		const icon = computed(() => store.state.summonerIcon);
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
-		const load = computed(() => store.state.load);
 		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
 		let metaData = null;
-
+		const load = computed(() => store.state.isLoading);
 
 		const apiMatches = store.dispatch("getData");
 		store.state.numberOfMatches = 10;
@@ -147,15 +142,10 @@ export default {
 			} else {
 				ret += "" + secs + "sec";
 			}
-			return {ret};
+
+			return ret;
 		},
-		onLoad: function(){
-			let spinnerWrapper = document.querySelector('.spinner-wrapper');
-			const onWindowLoad = onWindowLoad(
-				spinnerWrapper.parentElement.removeChild(spinnerWrapper)
-			);
-			onWindowLoad();
-		},
+
 		getTime: function (stamp) {
 			const time = new Date(stamp).toLocaleTimeString("en-US");
 			const hourMin = time.slice(-0, -6);
@@ -174,7 +164,7 @@ export default {
 		championName() {
 			return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${this.metaData.championName}.png`;
 		},
-	}
+	},
 };
 </script>
 

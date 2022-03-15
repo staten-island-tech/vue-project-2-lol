@@ -10,7 +10,8 @@ import {
 const store = createStore({
   state: {
     user: null,
-    authIsReady: true,
+    authIsReady: false,
+    isLoading: false,
     searchName: "",
     summonerData: [],
     puuid: 0,
@@ -18,7 +19,6 @@ const store = createStore({
     summonerLevel: 0,
     summonerName: "",
     numberOfMatches: 0,
-    load: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -57,8 +57,6 @@ const store = createStore({
     getData() {
       async function getPuuid() {
         try {
-          store.state.load = true;
-          console.log(store.state.load);
           const apiPuuid = await fetch(
             `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
           ).then((api) => api.json());
@@ -214,6 +212,7 @@ const store = createStore({
         }
       }
       getPuuid();
+      store.state.isLoading = true;
     },
   },
 });

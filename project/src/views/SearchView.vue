@@ -24,13 +24,16 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const summoner = ref("");
+
 		const store = useStore();
+
 		const searchName = computed(() => store.state.searchName);
 		const handleSubmit = async () => {
+			store.state.isLoading = false;
 			store.commit("updateSummoner", summoner.value);
 		};
 
-		return { handleSubmit, summoner, searchName };
+		return { handleSubmit, summoner, searchName};
 	},
 };
 </script>

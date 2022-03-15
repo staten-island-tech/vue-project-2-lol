@@ -1,9 +1,12 @@
 <template>
-	<div class="search"></div>
+	<div class="search">
+		<p>{{ uid }}</p>
+	</div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { computed } from "vue";
 import { useStore } from "vuex";
 import{ getDatabase } from "firebase/database"
 
@@ -12,8 +15,10 @@ export default {
 	setup() {
 		const store = useStore();
 
-		console.log(store.state.user);
+		const uid = computed(() => store.state.user.uid)
 		console.log(getDatabase())
+
+		return { uid }
 	},
 };
 </script>

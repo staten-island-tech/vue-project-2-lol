@@ -6,8 +6,9 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { vuexfireMutations, firestoreAction } from 'vuexfire'
-import { db } from '../firebase/db'
+import{
+  getDatabase
+} from "firebase/database"
 
 const store = createStore({
   state: {
@@ -21,28 +22,27 @@ const store = createStore({
     summonerName: "",
     numberOfMatches: 0,
     userData: null,
+    db: getDatabase()
   },
   mutations: {
     updateSummoner(state, name) {
       state.searchName = name;
       console.log(name);
     },
-    setUser(state, payload, load) {
+    setUser(state, payload) {
       state.user = payload;
       console.log("user state changed:", state.user);
-      state.userData = load
     },
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
     },
-    vuexfireMutations,
 
   },
   actions: {
     async signup(context, { email, password }) {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       if (res) {
-        context.commit("setUser", res.user, res);
+        context.commit("setUser", res.user);
       } else {
         throw new Error("unable to sign up");
       }
@@ -50,8 +50,7 @@ const store = createStore({
     async login(context, { email, password }) {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res) {
-        context.commit("setUser", res.user, res);
-        console.log(res)
+        context.commit("setUser", res.uid, res);
       } else {
         throw new Error("unable to login");
       }

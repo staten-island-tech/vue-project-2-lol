@@ -74,7 +74,7 @@ form {
 	background: #ecf0f3;
 	box-shadow: 15px 15px 15px #cbced1, -15px -15px 15px #ffffff;
 	padding: 4rem;
-	width: 60vw;
+	width: 40vw;
 	height: 60vh;
 }
 
@@ -86,7 +86,7 @@ form {
 .email,
 .password {
 	padding: 1rem;
-	width: 70rem;
+	width: 35vw;
 	padding: 1.5rem;
 	padding-left: 4rem;
 	padding-right: 4rem;

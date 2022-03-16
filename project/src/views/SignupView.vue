@@ -65,6 +65,7 @@ body,
 	box-sizing: border-box;
 	font-size: 62.5%;
 	font-family: "Roboto", sans-serif;
+	background: #ecf0f3
 }
 
 form {
@@ -118,4 +119,10 @@ form {
 	border-radius: 1rem;
 	margin-top: 1rem;
 }
+
+.form-button:active {
+	transform: scale(0.95);
+	transition-duration: .1s;
+} 
+
 </style>

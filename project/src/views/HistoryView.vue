@@ -1,8 +1,8 @@
 <template>
 	<div class=main>
-		<div class="spinner-wrapper" v-if="load === false">
+		<LoadingScreen v-if="isLoading">
 			<div class="spinner"></div>
-		</div>
+		</LoadingScreen>
 		<div class="history">
 			<h1 class="header">Match History</h1>
 			<div class="summonerInfo">
@@ -105,8 +105,12 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import LoadingScreen from "./LoadingScreen.vue";
 
-export default {
+export default{
+  components: { LoadingScreen }, 
+  
+	
 	setup() {
 		const store = useStore();
 		const name = computed(() => store.state.summonerName);
@@ -165,7 +169,9 @@ export default {
 			return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${this.metaData.championName}.png`;
 		},
 	},
+
 };
+
 </script>
 
 <style scoped>

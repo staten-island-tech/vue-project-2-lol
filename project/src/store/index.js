@@ -11,7 +11,6 @@ const store = createStore({
   state: {
     user: null,
     authIsReady: false,
-    isLoading: false,
     searchName: "",
     summonerData: [],
     puuid: 0,

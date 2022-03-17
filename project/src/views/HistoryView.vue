@@ -1,66 +1,120 @@
 <template>
-	<div class="history">
-		<h1 class="header">Match History</h1>
-		<div class="summonerInfo">
-			<h1 class="profile">{{ name }}</h1>
-			<h1 class="profile">Level {{ level }}</h1>
-			<img class="profile" :src="iconURL()">
-		</div>
-		<div class="matchHistory" >
-			<div  v-for="match in summonerData" :class="`matchHistory-data ` + match.info.participants.filter(
-			(summoner) => summoner.summonerName === name
-			)[0].win" :key="match">
-				{{ getGameData(match, name) }}
-				<div class="matchHistoryDataSetTop">
-					<p>{{ match.info.gameMode }}</p>
-					<p>{{ fancyTimeFormat(match.info.gameDuration) }}</p>
-					<p id="date">{{ getDate(match.info.gameEndTimestamp) }}</p>
-					<p id="time">{{ getTime(match.info.gameEndTimestamp) }}</p>
-				</div>
-				<div class="matchHistoryDataSetMid">
-					<div class="matchHistoryDataSetMidChamp">
-						<div class="matchHistoryDataSetMidChampImg">
-							<img class="champIcon" :src="championName()" alt="champIcon" :key="metaData"/>
-							<div class="matchHistoryDataSetMidChampImgSpells">
-								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${ match.runesSpells[0] }.png`" alt="spell Image 1" />
-								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${ match.runesSpells[1] }.png`" alt="spells Image 2"/>
-							</div>
-							<div class="matchHistoryDataSetMidChampImgRunes">
-								<img class="runesImg" :src="`https://ddragon.canisback.com/img/${ match.runesSpells[2] }`" alt="runes 1" />
-								<img class="runesImg rune2" :src="`https://ddragon.canisback.com/img/${ match.runesSpells[3] }`" alt="runes 2"/>
-							</div>
-						</div>
-						<p>Level {{ metaData.champLevel }}</p>
-					</div>
-					<div class="matchHistoryDataSetMidStats">
-						<div>
-							<p>{{metaData.kills}}/{{metaData.deaths}}/{{metaData.assists}}</p>
-						</div>
-						<div>
-							<div class="matchHistoryDataSetMidStatsCs">
-								<p>{{metaData.totalMinionsKilled}} cs</p>
-								<p>{{ (metaData.totalMinionsKilled / (match.info.gameDuration / 60)).toFixed(1) }} cs/min</p>
-							</div>
-						</div>
-					</div>
-					<div class="matchHistoryDataSetMidInv">
-						<div class="matchHistoryDataSetMidItems">
-							<img class="items" v-for="item in match.items" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${ item }.png`" alt="item" :key="item"/>
-							<img class="items" :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${metaData.item6}.png`" alt="item">
-						</div>
-					</div>
-				</div>
-				<div class="matchHistoryDataSetBotCombos">
-					<div  class="matchHistoryDataSetBotCombosKills">
-						<p v-for="combo in match.combos" :key="combo">{{ combo }}</p>
-					</div>
-					<div class="timeSpentDead">
-						<p>Time Dead: {{ fancyTimeFormat(metaData.totalTimeSpentDead) }} </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="history">
+    <h1 class="header">Match History</h1>
+    <div class="summonerInfo">
+      <h1 class="profile">{{ name }}</h1>
+      <h1 class="profile">Level {{ level }}</h1>
+      <img class="profile" :src="iconURL()" />
+      <button v-on:click="writeData" class="favorite-button">
+        <span class="empty-star">&#9734;</span>
+        <span class="filled-star">&#9733;</span>
+      </button>
+    </div>
+    <div class="matchHistory">
+      <div
+        v-for="match in summonerData"
+        :class="
+          `matchHistory-data ` +
+          match.info.participants.filter(
+            (summoner) => summoner.summonerName === name
+          )[0].win
+        "
+        :key="match"
+      >
+        {{ getGameData(match, name) }}
+        <div class="matchHistoryDataSetTop">
+          <p>{{ match.info.gameMode }}</p>
+          <p>{{ fancyTimeFormat(match.info.gameDuration) }}</p>
+          <p id="date">{{ getDate(match.info.gameEndTimestamp) }}</p>
+          <p id="time">{{ getTime(match.info.gameEndTimestamp) }}</p>
+        </div>
+        <div class="matchHistoryDataSetMid">
+          <div class="matchHistoryDataSetMidChamp">
+            <div class="matchHistoryDataSetMidChampImg">
+              <img
+                class="champIcon"
+                :src="championName()"
+                alt="champIcon"
+                :key="metaData"
+              />
+              <div class="matchHistoryDataSetMidChampImgSpells">
+                <img
+                  class="spellsImg"
+                  :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${match.runesSpells[0]}.png`"
+                  alt="spell Image 1"
+                />
+                <img
+                  class="spellsImg"
+                  :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${match.runesSpells[1]}.png`"
+                  alt="spells Image 2"
+                />
+              </div>
+              <div class="matchHistoryDataSetMidChampImgRunes">
+                <img
+                  class="runesImg"
+                  :src="`https://ddragon.canisback.com/img/${match.runesSpells[2]}`"
+                  alt="runes 1"
+                />
+                <img
+                  class="runesImg rune2"
+                  :src="`https://ddragon.canisback.com/img/${match.runesSpells[3]}`"
+                  alt="runes 2"
+                />
+              </div>
+            </div>
+            <p>Level {{ metaData.champLevel }}</p>
+          </div>
+          <div class="matchHistoryDataSetMidStats">
+            <div>
+              <p>
+                {{ metaData.kills }}/{{ metaData.deaths }}/{{
+                  metaData.assists
+                }}
+              </p>
+            </div>
+            <div>
+              <div class="matchHistoryDataSetMidStatsCs">
+                <p>{{ metaData.totalMinionsKilled }} cs</p>
+                <p>
+                  {{
+                    (
+                      metaData.totalMinionsKilled /
+                      (match.info.gameDuration / 60)
+                    ).toFixed(1)
+                  }}
+                  cs/min
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="matchHistoryDataSetMidInv">
+            <div class="matchHistoryDataSetMidItems">
+              <img
+                class="items"
+                v-for="item in match.items"
+                :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${item}.png`"
+                alt="item"
+                :key="item"
+              />
+              <img
+                class="items"
+                :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${metaData.item6}.png`"
+                alt="item"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="matchHistoryDataSetBotCombos">
+          <div class="matchHistoryDataSetBotCombosKills">
+            <p v-for="combo in match.combos" :key="combo">{{ combo }}</p>
+          </div>
+          <div class="timeSpentDead">
+            <p>Time Dead: {{ fancyTimeFormat(metaData.totalTimeSpentDead) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -68,74 +122,104 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-	setup() {
-		const store = useStore();
-		const name = computed(() => store.state.summonerName);
-		const summonerData = computed(() => store.state.summonerData);
-		const icon = computed(() => store.state.summonerIcon);
-		const level = computed(() => store.state.summonerLevel);
-		const puuid = computed(() => store.state.puuid);
-		const iconURL = (() => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`)
-		let metaData = null
-		
-		const apiMatches = store.dispatch("getData");
-		store.state.numberOfMatches = 10;
+  setup() {
+    const store = useStore();
+    const name = computed(() => store.state.summonerName);
+    const summonerData = computed(() => store.state.summonerData);
+    const icon = computed(() => store.state.summonerIcon);
+    const level = computed(() => store.state.summonerLevel);
+    const puuid = computed(() => store.state.puuid);
+    const iconURL = () =>
+      `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
+    let metaData = null;
 
-		return { icon, name, summonerData, apiMatches, level, puuid, iconURL, metaData };
-	},
-	methods: {
-		fancyTimeFormat: function (duration) {
-			// Hours, minutes and seconds
-			var hrs = ~~(duration / 3600);
-			var mins = ~~((duration % 3600) / 60);
-			var secs = ~~duration % 60;
+    const apiMatches = store.dispatch("getData");
+    store.state.numberOfMatches = 10;
 
-			// Output like "1:01" or "4:03:59" or "123:03:59"
-			var ret = "";
+    return {
+      icon,
+      name,
+      summonerData,
+      apiMatches,
+      level,
+      puuid,
+      iconURL,
+      metaData,
+      store,
+    };
+  },
+  methods: {
+    fancyTimeFormat: function (duration) {
+      // Hours, minutes and seconds
+      var hrs = ~~(duration / 3600);
+      var mins = ~~((duration % 3600) / 60);
+      var secs = ~~duration % 60;
 
-			if (hrs > 0) {
-				ret += "" + hrs + "hr " + (mins < 10 ? "0" : "");
-			}
-			if (mins > 0) {
-				ret += "" + mins + "min " + (secs < 10 ? "0" : "");
-				ret += "" + secs + "sec";
-			} else {
-				ret += "" + secs + "sec";
-			}
+      // Output like "1:01" or "4:03:59" or "123:03:59"
+      var ret = "";
 
-			return ret;
-		},
+      if (hrs > 0) {
+        ret += "" + hrs + "hr " + (mins < 10 ? "0" : "");
+      }
+      if (mins > 0) {
+        ret += "" + mins + "min " + (secs < 10 ? "0" : "");
+        ret += "" + secs + "sec";
+      } else {
+        ret += "" + secs + "sec";
+      }
 
-		getTime: function(stamp){
-			const time = new Date(stamp).toLocaleTimeString("en-US");
-			const hourMin = time.slice(-0, -6);
-			const suffix = time.slice(-2);
-			const betterTime = `${hourMin} ${suffix}`;
+      return ret;
+    },
 
-			return betterTime
-		},
-		getDate: function(date){
-			return new Date(date).toLocaleDateString("en-US");
-		},
-		getGameData(match, name){
-			const metaData = match.info.participants.filter(
-			(summoner) => summoner.summonerName === name
-			)[0];
-			this.metaData = metaData
-		},
-			championName(){
-				return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${
-					this.metaData.championName
-			}.png`
-		},
-		
-	}
+    getTime: function (stamp) {
+      const time = new Date(stamp).toLocaleTimeString("en-US");
+      const hourMin = time.slice(-0, -6);
+      const suffix = time.slice(-2);
+      const betterTime = `${hourMin} ${suffix}`;
+
+      return betterTime;
+    },
+    getDate: function (date) {
+      return new Date(date).toLocaleDateString("en-US");
+    },
+    getGameData(match, name) {
+      const metaData = match.info.participants.filter(
+        (summoner) => summoner.summonerName === name
+      )[0];
+      this.metaData = metaData;
+    },
+    championName() {
+      return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${this.metaData.championName}.png`;
+    },
+    writeData() {
+      this.store.commit("writeUserData");
+    },
+  },
 };
 </script>
 
-
 <style scoped>
+.favorite-button {
+  font-size: 5rem;
+  background-color: transparent;
+  border: none;
+}
 
+.favorite-button:hover {
+  color: #f1c40f;
+}
+
+button .filled-star {
+  display: none;
+}
+
+button:hover .empty-star {
+  display: none;
+}
+
+button:hover .filled-star {
+  display: inline;
+}
 .header {
   display: block;
   width: 100vw;

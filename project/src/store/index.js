@@ -34,11 +34,9 @@ const store = createStore({
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
     },
-    writeUserData(state, userId, name, email, account) {
-      set(ref(state.db, "users/" + userId), {
-        username: name,
-        email: email,
-        accounts: [account],
+    writeUserData(state) {
+      set(ref(state.db, "users/" + state.user.uid), {
+        accounts: [state.summonerName],
       });
     },
   },
@@ -54,7 +52,7 @@ const store = createStore({
     async login(context, { email, password }) {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res) {
-        context.commit("setUser", res.uid, res);
+        context.commit("setUser", res);
       } else {
         throw new Error("unable to login");
       }

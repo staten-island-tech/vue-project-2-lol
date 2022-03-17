@@ -1,15 +1,12 @@
 <template>
-    
-<div class="spinner-wrapper">
-			
-		</div>
+  <div class="spinner-wrapper"></div>
 </template>
 
 <script>
     export default {
         
     }
-    new Vue({
+    new({
   el: '#HistoryView',
   data: {
     isLoading: true

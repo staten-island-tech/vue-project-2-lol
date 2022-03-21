@@ -40,12 +40,12 @@
               <div class="matchHistoryDataSetMidChampImgSpells">
                 <img
                   class="spellsImg"
-                  :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${match.runesSpells[0]}.png`"
+                  :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${match.runesSpells[0]}.png`"
                   alt="spell Image 1"
                 />
                 <img
                   class="spellsImg"
-                  :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/spell/${match.runesSpells[1]}.png`"
+                  :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${match.runesSpells[1]}.png`"
                   alt="spells Image 2"
                 />
               </div>
@@ -92,13 +92,13 @@
               <img
                 class="items"
                 v-for="item in match.items"
-                :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${item}.png`"
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${item}.png`"
                 alt="item"
                 :key="item"
               />
               <img
                 class="items"
-                :src="`https://ddragon.leagueoflegends.com/cdn/11.24.1/img/item/${metaData.item6}.png`"
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${metaData.item6}.png`"
                 alt="item"
               />
             </div>
@@ -189,7 +189,7 @@ export default {
       this.metaData = metaData;
     },
     championName() {
-      return `https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${this.metaData.championName}.png`;
+      return `https://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${this.metaData.championName}.png`;
     },
     writeData() {
       this.store.commit("writeUserData");

@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const store = createStore({
   state: {
@@ -21,6 +21,7 @@ const store = createStore({
     numberOfMatches: 0,
     userData: null,
     db: getDatabase(),
+    accounts: null,
   },
   mutations: {
     updateSummoner(state, name) {
@@ -35,8 +36,17 @@ const store = createStore({
       state.authIsReady = payload;
     },
     writeUserData(state) {
+      console.log("write");
       set(ref(state.db, "users/" + state.user.uid), {
         accounts: [state.summonerName],
+      });
+    },
+    readUserData(state) {
+      console.log("read");
+      const userRef = ref(state.db, "users/" + state.user.uid);
+      onValue(userRef, (accounts) => {
+        const data = accounts.val();
+        state.accounts = data;
       });
     },
   },

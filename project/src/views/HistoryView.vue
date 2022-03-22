@@ -193,6 +193,7 @@ export default {
     },
     writeData() {
       this.store.commit("writeUserData");
+      this.store.commit("readUserData");
     },
   },
 };

@@ -1,8 +1,6 @@
 <template>
 	<div class=main>
-		<LoadingScreen v-if="isLoading">
-			<div class="spinner"></div>
-		</LoadingScreen>
+		
 		<div class="history">
 			<h1 class="header">Match History</h1>
 			<div class="summonerInfo">
@@ -105,10 +103,9 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import LoadingScreen from "./LoadingScreen.vue";
 
-export default{
-  components: { LoadingScreen }, 
+
+export default{ 
   
 	
 	setup() {

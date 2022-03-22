@@ -9,7 +9,7 @@
     new({
   el: '#HistoryView',
   data: {
-    isLoading: true
+    isLoading: false
   },
   mounted () {
     setTimeout(() => {

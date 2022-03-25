@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-	button{
-		cursor: pointer;
-	}
+button {
+	cursor: pointer;
+}
 </style>

@@ -36,7 +36,7 @@ const store = createStore({
       state.authIsReady = payload;
     },
     writeUserData(state) {
-      console.log("write");
+      console.log(state.db);
       set(ref(state.db, "users/" + state.user.uid), {
         accounts: [state.summonerName],
       });
@@ -47,6 +47,7 @@ const store = createStore({
       onValue(userRef, (accounts) => {
         const data = accounts.val();
         state.accounts = data;
+        console.log(data);
       });
     },
   },

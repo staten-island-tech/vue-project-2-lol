@@ -114,7 +114,7 @@ export default {
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
 		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
-		store.state.numberOfMatches = 30;
+		store.state.numberOfMatches = 3;
 
 		onMounted(() => getData(store));
 
@@ -167,7 +167,9 @@ export default {
 function getData(store) {
 	async function getPuuid() {
 		try {
-			
+			store.state.isLoading = true;
+			console.log(store.state.isLoading);
+
 			const apiPuuid = await fetch(
 				`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 			).then(api => api.json());
@@ -301,7 +303,6 @@ function getData(store) {
 		}
 	}
 	getPuuid();
-	store.state.isLoading = true;
 }
 </script>
 

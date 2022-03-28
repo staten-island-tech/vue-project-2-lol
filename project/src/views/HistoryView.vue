@@ -1,28 +1,23 @@
 <template>
-	<Suspense>
-		<template>
-			<MatchComp />
-		</template>
-		<template>
-			<img
-				class="loadingimg"
-				src="https://media.istockphoto.com/vectors/activity-download-or-load-process-sign-data-loading-bar-froze-or-vector-id1203769610?k=20&m=1203769610&s=170667a&w=0&h=sh3F71aAr18McMQjyKthnYIjgYNPJdhGb4zM6ZOkzMc="
-			/>
-		</template>
-	</Suspense>
+	<div v-if="!loaded">
+		<MatchComp />
+	</div>
+	<div v-else>LOADING...</div>
 </template>
 
 <script>
 import MatchComp from "../components/MatchComp.vue";
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
 	components: { MatchComp },
 	setup() {
 		const store = useStore();
+		const loaded = computed(() => store.state.isLoaded);
 		let metaData = null;
 
-		return { metaData, store };
+		return { metaData, store, loaded };
 	},
 };
 </script>

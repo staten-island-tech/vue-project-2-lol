@@ -1,11 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA3cjv15n0IaoVQD-QTufHxdN2muHDkAmU",
   authDomain: "vue-lol.firebaseapp.com",
-  databaseURL: "https://vue-lol-default-rtdb.firebaseio.com/",
+  databaseURL: "https://vue-lol-default-rtdb.firebaseio.com",
   projectId: "vue-lol",
   storageBucket: "vue-lol.appspot.com",
   messagingSenderId: "256172203978",
@@ -16,6 +15,5 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
-const database = getDatabase();
 
-export { auth, database };
+export { auth };

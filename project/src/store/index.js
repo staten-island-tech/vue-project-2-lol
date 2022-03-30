@@ -20,7 +20,6 @@ const store = createStore({
     summonerName: "",
     numberOfMatches: 0,
     userData: null,
-    db: getDatabase(),
     accounts: null,
   },
   mutations: {
@@ -36,14 +35,15 @@ const store = createStore({
       state.authIsReady = payload;
     },
     writeUserData(state) {
-      console.log(state.db);
-      set(ref(state.db, "users/" + state.user.uid), {
+      const db = getDatabase();
+      console.log(ref(db, "users/"));
+      set(ref(db, "users/" + state.user.uid), {
         accounts: [state.summonerName],
       });
     },
     readUserData(state) {
       console.log("read");
-      const userRef = ref(state.db, "users/" + state.user.uid);
+      const userRef = ref(state.db, "users/");
       onValue(userRef, (accounts) => {
         const data = accounts.val();
         state.accounts = data;

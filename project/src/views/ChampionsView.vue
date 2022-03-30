@@ -1,17 +1,18 @@
 <template>
     <div >
-         
+        <h2>{{this.$route.params.name}}</h2>
         <form class='form' action="submit" v-on:submit.prevent="onSubmit" >
             <input type="text" placeholder="Enter Champion Name " >
         </form>
         
         <div class="container" id="container">
-
+ 
             <div  class="thediv"  v-for="champion in DataList" :key="champion.name">
                 <ChampCard class="card" :ChampName="champion.name" :champid="champion.id"/>
-            
+                
             </div>
         </div>
+
         
     </div>
 </template>

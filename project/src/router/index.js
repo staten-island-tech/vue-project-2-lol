@@ -5,6 +5,7 @@ import HistoryView from "../views/HistoryView.vue";
 import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import ChampionsView from "../views/ChampionsView.vue";
+import ChampParams from "../views/ChampParams.vue";
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
     path: "/Champions",
     name: "Chammpions",
     component: ChampionsView,
+  },
+  {
+    path: "/Champions/:name",
+    name: "ChampParams",
+    component: ChampParams,
   },
 ];
 

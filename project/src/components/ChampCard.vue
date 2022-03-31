@@ -3,7 +3,6 @@
         <h2 class="name">{{ChampName}}</h2>
         <div class="hide">{{champid}}</div>
         <img class='img'  :src="getimg" alt="picture"/>
-        <router-link > This is a test</router-link>
     </div>
 </template>
 

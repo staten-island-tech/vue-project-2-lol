@@ -1,6 +1,8 @@
 <template>
   <div class="user">
-    {{ accounts }}
+    <div v-for="account in accounts" class="accounts" :key="account">
+      {{ account }}
+    </div>
   </div>
 </template>
 

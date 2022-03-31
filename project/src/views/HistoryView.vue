@@ -97,6 +97,7 @@
                 :key="item"
               />
               <img
+                v-if="metaData.item6 != 0"
                 class="items"
                 :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${metaData.item6}.png`"
                 alt="item"
@@ -194,6 +195,7 @@ export default {
     writeData() {
       this.store.commit("writeUserData");
       this.store.commit("readUserData");
+      document.que;
     },
   },
 };

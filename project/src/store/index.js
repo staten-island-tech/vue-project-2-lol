@@ -43,9 +43,10 @@ const store = createStore({
     },
     readUserData(state) {
       console.log("read");
-      const userRef = ref(state.db, "users/");
+      const db = getDatabase();
+      const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {
-        const data = accounts.val();
+        const data = accounts.val().accounts;
         state.accounts = data;
         console.log(data);
       });

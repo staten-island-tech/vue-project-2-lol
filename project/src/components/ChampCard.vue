@@ -1,13 +1,15 @@
 <template>
-    <div v-bind:class="getname">
-        <h2 class="name">{{ChampName}}</h2>
-        <div class="hide">{{champid}}</div>
-        <img class='img'  :src="getimg" alt="picture"/>
-        <div>
+    <router-link :to="'/Champions/' + this.ChampName"  >
+        <div v-bind:class="getname">
+            <h2 class="name">{{ChampName}}</h2>
+            <div class="hide">{{champid}}</div>
+            <img class='img'  :src="getimg" alt="picture"/>
+            <div>
 
-            <router-link :to="'/Champions/' + this.ChampName"  >{{ChampName}}</router-link>
+                
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>

@@ -37,12 +37,24 @@ const store = createStore({
     writeUserData(state) {
       const db = getDatabase();
       console.log(ref(db, "users/"));
-      set(ref(db, "users/" + state.user.uid), {
-        accounts: [state.summonerName],
-      });
+      let accounts = state.accounts;
+      if (accounts === null) {
+        set(ref(db, "users/" + state.user.uid), {
+          accounts: [state.summonerName],
+        });
+      } else {
+        accounts.push(state.summonerName);
+        set(ref(db, "users/" + state.user.uid), {
+          accounts: accounts,
+        });
+      }
     },
     readUserData(state) {
       console.log("read");
+      console.log(state.user.uid);
+      if (state.user.uid === undefined) {
+        location.reload();
+      }
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {

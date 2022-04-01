@@ -24,7 +24,7 @@ import ChampCard from "../components/ChampCard.vue"
     export default {
         setup(){
             const store = useStore()
-
+         
             const handleClicked =  function(){
                 console.log("Hello")}
          
@@ -34,7 +34,7 @@ import ChampCard from "../components/ChampCard.vue"
             return{
                 users: ChampData,
                 handleClicked,
-                store,DataList,
+                store,DataList
             }
             
         },
@@ -51,7 +51,7 @@ import ChampCard from "../components/ChampCard.vue"
                     parent.removeChild(parent.firstChild)
                 }
             }
-        }
+        },
         
          
          

@@ -1,17 +1,24 @@
 <template>
     <div class="page" >
-        <h2 class="name">{{this.Results.title}}</h2>
-        <h2 class="name">{{this.Results.name}}</h2>
-        <div class="BG">
-            <img class="splashImg" :src="getSplash" alt="">
-            <img class="blurBG" :src="getSplash" alt="">
+
+        <div class="Title">
+            
+            <h2 class="name">{{this.Results.title}}</h2>
+            <h2 class="name">{{this.Results.name}}</h2>
+            <div class="BG">
+                <img class="splashImg" :src="getSplash" alt="">
+            </div>
+            
+        </div>    
+    
+        <div class="body1">
+            {{this.Spells}}
         </div>
        
      
         <h2 class="title">{{this.Results.lore}}</h2>
         <h2 class="title">{{this.Results.allytips}}</h2>
         <h2 class="title">{{this.Results.enemytips}}</h2>
-        <h2 class="title" style="font-size:2rem">{{this.Results}}</h2>
  
     </div>
 </template>
@@ -21,8 +28,9 @@
     export default {
         data(){
             const Results = []
+            const Spells = []
             return{
-                Results
+                Results, Spells
             }
             
 
@@ -41,7 +49,8 @@
             this.Results = Object.values(this.Results)[0];
             this.Results.title = this.Results.title.toUpperCase();
             this.Results.name = this.Results.name.toUpperCase();
-     
+            this.Spells = this.Results.spells
+            console.log(this.Spells)
 
         }
      
@@ -55,6 +64,7 @@
     .page{
         background-color: rgb(0, 9, 19);
         color: #FFFF;
+        z-index: 2;
 
     }
     .name{
@@ -62,26 +72,30 @@
         font-size: 8rem;
         font-family: "BeaufortforLOL-Bold";
         color: #FFFF;
-     
+        z-index: 2;
   
     }
-    .blurBG{
-        filter: blur(8px);
-       
-        z-index: 0;
-        margin: auto;
-        
-    }
-    .BG{
-        height: 100%;
-    }
     .splashImg{
-    
-        position:absolute;
-        margin: auto;
+        margin:auto;
+        display: block;
         z-index: 1;
-        width: 90%;
-      
+        
         
     }
+   .blurBG{
+       filter: blur(8px);
+        margin: auto;
+        display: block;
+        width: 100%;
+        position: relative;
+        z-index: 0;
+   }
+   .Title{
+    position: relative;
+    z-index: 2;
+    margin-top: 2rem;
+   }
+   .body1{
+       font-size: 2rem;
+   }
 </style>+

@@ -40,10 +40,22 @@ const store = createStore({
       let accounts = state.accounts;
       if (accounts === null) {
         set(ref(db, "users/" + state.user.uid), {
-          accounts: [state.summonerName],
+          accounts: [
+            {
+              name: state.summonerName,
+              icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${state.summonerIcon}.png`,
+              level: state.summonerLevel,
+              puuid: state.puuid,
+            },
+          ],
         });
       } else {
-        accounts.push(state.summonerName);
+        accounts.push({
+          name: state.summonerName,
+          icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${state.summonerIcon}.png`,
+          level: state.summonerLevel,
+          puuid: state.puuid,
+        });
         set(ref(db, "users/" + state.user.uid), {
           accounts: accounts,
         });

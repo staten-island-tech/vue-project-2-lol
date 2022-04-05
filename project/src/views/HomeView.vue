@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <p>{{ uid }}</p>
+    <p>{{ accounts }}</p>
   </div>
 </template>
 
@@ -8,18 +8,19 @@
 // @ is an alias to /src
 /* import { computed } from "vue";
 import { useStore } from "vuex";
-import{ getDatabase } from "firebase/database"
 
 export default {
-	name: "HomeView",
-	setup() {
-		const store = useStore();
+  name: "HomeView",
+  setup() {
+    const store = useStore();
 
-		const uid = computed(() => store.state.user.uid)
-		console.log(getDatabase())
+    const accounts = computed(() => store.state.accounts);
+    location.ready(function () {
+      store.commit("readUserData");
+    });
 
-		return { uid }
-	},
+    return { accounts };
+  },
 }; */
 </script>
 

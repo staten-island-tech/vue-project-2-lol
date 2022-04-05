@@ -74,7 +74,13 @@
             </div>
             <div>
               <div class="matchHistoryDataSetMidStatsCs">
-                <p>{{ metaData.totalMinionsKilled }} cs</p>
+                <p>
+                  {{
+                    metaData.totalMinionsKilled +
+                    Math.round(metaData.challenges.alliedJungleMonsterKills)
+                  }}
+                  cs
+                </p>
                 <p>
                   {{
                     (
@@ -135,7 +141,7 @@ export default {
     let metaData = null;
 
     const apiMatches = store.dispatch("getData");
-    store.state.numberOfMatches = 10;
+    store.state.numberOfMatches = 7;
 
     return {
       icon,
@@ -195,7 +201,6 @@ export default {
     writeData() {
       this.store.commit("writeUserData");
       this.store.commit("readUserData");
-      document.que;
     },
   },
 };

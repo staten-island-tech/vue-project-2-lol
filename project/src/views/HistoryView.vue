@@ -74,10 +74,16 @@
             </div>
             <div>
               <div class="matchHistoryDataSetMidStatsCs">
-                <p>
+                <p v-if="metaData.challenges === undefined">
+                  {{ metaData.totalMinionsKilled }}
+                  cs
+                </p>
+                <p v-else>
                   {{
                     metaData.totalMinionsKilled +
-                    Math.round(metaData.challenges.alliedJungleMonsterKills)
+                    Math.round(metaData.challenges.alliedJungleMonsterKills) +
+                    Math.round(metaData.challenges.enemyJungleMonsterKills) +
+                    metaData.challenges.wardTakedowns
                   }}
                   cs
                 </p>
@@ -141,7 +147,7 @@ export default {
     let metaData = null;
 
     const apiMatches = store.dispatch("getData");
-    store.state.numberOfMatches = 7;
+    store.state.numberOfMatches = 10;
 
     return {
       icon,

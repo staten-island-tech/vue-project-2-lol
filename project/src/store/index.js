@@ -40,30 +40,18 @@ const store = createStore({
       let accounts = state.accounts;
       if (accounts === null) {
         set(ref(db, "users/" + state.user.uid), {
-          accounts: [
-            {
-              name: state.summonerName,
-              icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${state.summonerIcon}.png`,
-              level: state.summonerLevel,
-              puuid: state.puuid,
-            },
-          ],
+          accounts: [state.summonerName],
         });
       } else {
-        accounts.push({
-          name: state.summonerName,
-          icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${state.summonerIcon}.png`,
-          level: state.summonerLevel,
-          puuid: state.puuid,
-        });
-        set(ref(db, "users/" + state.user.uid), {
-          accounts: accounts,
-        });
+        if (!accounts.includes(state.summonerName)) {
+          accounts.push(state.summonerName);
+          set(ref(db, "users/" + state.user.uid), {
+            accounts: accounts,
+          });
+        }
       }
     },
     readUserData(state) {
-      console.log("read");
-      console.log(state.user.uid);
       if (state.user.uid === undefined) {
         location.reload();
       }
@@ -96,6 +84,28 @@ const store = createStore({
     async logout(context) {
       await signOut(auth);
       context.commit("setUser", null, null);
+    },
+    async getPuuid() {
+      try {
+        console.log(store.state);
+
+        const apiPuuid = await fetch(
+          `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+        ).then((api) => api.json());
+
+        const puuid = Object.values(apiPuuid)[2];
+        const icon = Object.values(apiPuuid)[4];
+        const level = Object.values(apiPuuid)[6];
+        const name = Object.values(apiPuuid)[3];
+        return {
+          puuid: puuid,
+          icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon}.png`,
+          level: level,
+          name: name,
+        };
+      } catch (error) {
+        console.log(error);
+      }
     },
     getData() {
       async function getPuuid() {

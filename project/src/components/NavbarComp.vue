@@ -34,6 +34,7 @@ export default {
 
     const readUsers = () => {
       store.commit("readUserData");
+      store.dispatch("getPuuid");
     };
 
     return {

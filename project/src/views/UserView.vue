@@ -13,9 +13,10 @@ import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
-    const accounts = computed(() => store.state.accounts);
-
+    const accounts = computed(() => store.state.accountData);
+    store.state.dispatch("getPuuid");
     return {
+      store,
       accounts,
     };
   },

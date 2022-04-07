@@ -18,23 +18,24 @@
 
 <script>
 import {useStore } from "vuex";
-import ChampData from "../ddragon/en_US/championFull.json"
+
 import ChampCard from "../components/ChampCard.vue"
 
     export default {
         setup(){
             const store = useStore()
-         
+            const Champions = store.dispatch("getChamps")
+            console.log(store.state.ChampList)
             const handleClicked =  function(){
                 console.log("Hello")}
          
-            const DataList = ChampData.data
-            console.log(DataList)
+            const DataList = store.state.ChampList
+         
 
             return{
-                users: ChampData,
+                users:
                 handleClicked,
-                store,DataList
+                store,DataList, Champions
             }
             
         },

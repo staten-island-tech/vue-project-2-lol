@@ -11,8 +11,8 @@
             
         </div>    
     
-        <div class="body1">
-            {{this.Spells}}
+        <div class="body1" v-for="spell in this.Spells" :key="spell.id" >   
+            <SpellDiv :ablName="spell.id" :ablDes="spell.description" />
         </div>
        
      
@@ -24,21 +24,29 @@
 </template>
 
 <script>
+import SpellDiv from '../components/SpellDiv.vue'
 
     export default {
         data(){
+         
             const Results = []
             const Spells = []
             return{
-                Results, Spells
+                Results, Spells,
             }
             
 
+        },
+        components:{
+            SpellDiv,
         },
         computed:{
             getSplash: function() {
                 return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`
               
+            },
+            getAbility: function(){
+                return `https://ddragon.leagueoflegends.com/cdn/12.6.1/img/spell/AlistarE.png`
             }
         },
         

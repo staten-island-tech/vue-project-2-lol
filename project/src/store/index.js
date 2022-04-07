@@ -18,6 +18,7 @@ const store = createStore({
     summonerLevel: 0,
     summonerName: "",
     numberOfMatches: 0,
+    ChampList: [],
   },
   mutations: {
     updateSummoner(state, name) {
@@ -30,6 +31,9 @@ const store = createStore({
     },
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
+    },
+    setChampions(state, Champ) {
+      state.ChampList = Champ;
     },
   },
   actions: {
@@ -52,6 +56,19 @@ const store = createStore({
     async logout(context) {
       await signOut(auth);
       context.commit("setUser", null);
+    },
+    getChamps() {
+      async function getChar() {
+        try {
+          const Characters = await fetch(
+            "http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json"
+          ).then((res) => res.json());
+          store.commit("setChampions", Characters.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      getChar();
     },
     getData() {
       async function getPuuid() {

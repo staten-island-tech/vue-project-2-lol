@@ -10,9 +10,11 @@
             </div>
             
         </div>    
-    
-        <div class="body1" v-for="spell in this.Spells" :key="spell.id" >   
-            <SpellDiv :ablName="spell.id" :ablDes="spell.description" />
+        <div class="abilities">
+            <SpellDiv :ablName="this.Results.passive"  />
+            <div class="body1" v-for="spell in this.Spells" :key="spell.id" >
+                <SpellDiv :ablName="spell.name" :ablDes="spell.description" :ablID="spell.id" />
+            </div>
         </div>
        
      
@@ -53,7 +55,7 @@ import SpellDiv from '../components/SpellDiv.vue'
 
         async mounted(){
             await fetch(`http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/${this.$route.params.name}.json`).then((res) => res.json()).then(data => this.Results = data.data)
-
+            
             this.Results = Object.values(this.Results)[0];
             this.Results.title = this.Results.title.toUpperCase();
             this.Results.name = this.Results.name.toUpperCase();
@@ -105,5 +107,14 @@ import SpellDiv from '../components/SpellDiv.vue'
    }
    .body1{
        font-size: 2rem;
+   }
+   .abilities{
+       margin: auto;
+       width: 60%;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-around;
+       background-color: grey;
+ 
    }
 </style>+

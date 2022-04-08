@@ -34,7 +34,7 @@ export default {
 
     const readUsers = () => {
       store.commit("readUserData");
-      store.dispatch("getPuuid");
+      if (store.state.accounts.length > 0) store.dispatch("getPuuid");
     };
 
     return {

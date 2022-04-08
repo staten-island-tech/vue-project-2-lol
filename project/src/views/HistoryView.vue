@@ -108,12 +108,6 @@
                 alt="item"
                 :key="item"
               />
-              <img
-                v-if="metaData.item6 != 0"
-                class="items"
-                :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${metaData.item6}.png`"
-                alt="item"
-              />
             </div>
           </div>
         </div>
@@ -205,6 +199,7 @@ export default {
       return `https://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${this.metaData.championName}.png`;
     },
     writeData() {
+      this.store.commit("readUserData");
       this.store.commit("writeUserData");
       this.store.commit("readUserData");
     },

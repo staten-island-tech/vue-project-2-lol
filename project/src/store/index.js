@@ -20,7 +20,7 @@ const store = createStore({
     summonerName: "",
     numberOfMatches: 0,
     userData: null,
-    accounts: null,
+    accounts: [],
     accountData: [],
   },
   mutations: {
@@ -37,20 +37,24 @@ const store = createStore({
     },
     writeUserData(state) {
       const db = getDatabase();
-      console.log(ref(db, "users/"));
-      let accounts = state.accounts;
-      if (accounts === null) {
-        set(ref(db, "users/" + state.user.uid), {
-          accounts: [state.summonerName],
-        });
-      } else {
-        if (!accounts.includes(state.summonerName)) {
-          accounts.push(state.summonerName);
+      const userRef = ref(db, "users/" + state.user.uid);
+      onValue(userRef, (accounts) => {
+        const data = accounts.val().accounts;
+        state.accounts = data;
+        console.log(data);
+        if (data === null) {
           set(ref(db, "users/" + state.user.uid), {
-            accounts: accounts,
+            accounts: [state.summonerName],
           });
+        } else {
+          if (!data.includes(state.summonerName)) {
+            data.push(state.summonerName);
+            set(ref(db, "users/" + state.user.uid), {
+              accounts: data,
+            });
+          }
         }
-      }
+      });
     },
     readUserData(state) {
       if (state.user.uid === undefined) {
@@ -86,28 +90,34 @@ const store = createStore({
       await signOut(auth);
       context.commit("setUser", null, null);
     },
-    async getPuuid() {
+    getPuuid(state) {
+      console.log(state);
+      console.log(state.accounts);
       state.accounts.forEach(function (account) {
-        try {
-          console.log(store.state);
+        console.log(store.state);
 
-          const apiPuuid = await fetch(
-            `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
-          ).then((api) => api.json());
+        async function storeData() {
+          try {
+            const apiPuuid = await fetch(
+              `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${account}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
+            ).then((api) => api.json());
 
-          const puuid = Object.values(apiPuuid)[2];
-          const icon = Object.values(apiPuuid)[4];
-          const level = Object.values(apiPuuid)[6];
-          const name = Object.values(apiPuuid)[3];
-          store.state.accountData.push({
-            puuid: puuid,
-            icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon}.png`,
-            level: level,
-            name: name,
-          });
-        } catch (error) {
-          console.log(error);
+            const puuid = Object.values(apiPuuid)[2];
+            const icon = Object.values(apiPuuid)[4];
+            const level = Object.values(apiPuuid)[6];
+            const name = Object.values(apiPuuid)[3];
+            state.accountData.push({
+              puuid: puuid,
+              icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon}.png`,
+              level: level,
+              name: name,
+            });
+            console.log(state.accountData);
+          } catch (error) {
+            console.log(error);
+          }
         }
+        storeData();
       });
     },
     getData() {

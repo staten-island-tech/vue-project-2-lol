@@ -11,7 +11,8 @@
             
         </div>    
         <div class="abilities">
-            <SpellDiv :ablName="this.Results.passive"  />
+            <PassiveDiv class="PassiveDiv" :ablName="this.Passive.name" :ablDes="this.Passive.description" :ablID="this.PassIMG" />
+
             <div class="body1" v-for="spell in this.Spells" :key="spell.id" >
                 <SpellDiv :ablName="spell.name" :ablDes="spell.description" :ablID="spell.id" />
             </div>
@@ -27,29 +28,29 @@
 
 <script>
 import SpellDiv from '../components/SpellDiv.vue'
+import PassiveDiv from '../components/PassiveDiv.vue'
 
     export default {
         data(){
          
             const Results = []
             const Spells = []
+            const Passive = []
+            const PassIMG = []
             return{
-                Results, Spells,
+                Results, Spells,Passive, PassIMG
             }
             
 
         },
         components:{
-            SpellDiv,
+            SpellDiv, PassiveDiv
         },
         computed:{
             getSplash: function() {
                 return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`
               
             },
-            getAbility: function(){
-                return `https://ddragon.leagueoflegends.com/cdn/12.6.1/img/spell/AlistarE.png`
-            }
         },
         
 
@@ -60,7 +61,9 @@ import SpellDiv from '../components/SpellDiv.vue'
             this.Results.title = this.Results.title.toUpperCase();
             this.Results.name = this.Results.name.toUpperCase();
             this.Spells = this.Results.spells
-            console.log(this.Spells)
+            this.Passive = this.Results.passive
+            this.PassIMG = this.Passive.image.full
+            console.log(this.Passive)
 
         }
      
@@ -117,4 +120,12 @@ import SpellDiv from '../components/SpellDiv.vue'
        background-color: grey;
  
    }
-</style>+
+   .passive{
+       font-size: 2rem;
+   }
+   .PassiveDiv{
+       margin: 0;
+       padding: 0;
+   }
+  
+</style>

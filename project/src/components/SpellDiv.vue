@@ -17,9 +17,7 @@
         },
         computed:{
             getAbil: function(){
-                return `http://ddragon.leagueoflegends.com/cdn/12.6.1/img/spell/${this.ablID}.png
-
-`
+                return `http://ddragon.leagueoflegends.com/cdn/12.6.1/img/spell/${this.ablID}.png`
             }
         }
         

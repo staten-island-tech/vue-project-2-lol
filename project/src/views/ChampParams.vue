@@ -37,8 +37,9 @@ import PassiveDiv from '../components/PassiveDiv.vue'
             const Spells = []
             const Passive = []
             const PassIMG = []
+            
             return{
-                Results, Spells,Passive, PassIMG
+                Results, Spells,Passive, PassIMG, 
             }
             
 
@@ -49,14 +50,13 @@ import PassiveDiv from '../components/PassiveDiv.vue'
         computed:{
             getSplash: function() {
                 return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`
-              
             },
-        },
         
+        },
 
         async mounted(){
             await fetch(`http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/${this.$route.params.name}.json`).then((res) => res.json()).then(data => this.Results = data.data)
-            
+            const b = ['<physicalDamage>physical damage</physicalDamage>'];
             this.Results = Object.values(this.Results)[0];
             this.Results.title = this.Results.title.toUpperCase();
             this.Results.name = this.Results.name.toUpperCase();
@@ -64,6 +64,11 @@ import PassiveDiv from '../components/PassiveDiv.vue'
             this.Passive = this.Results.passive
             this.PassIMG = this.Passive.image.full
             console.log(this.Passive)
+            this.PassFixed = b.forEach(word => {
+                    this.Passive.description = this.Passive.description.replace(word, 'damage')
+                    
+                });
+        
 
         }
      

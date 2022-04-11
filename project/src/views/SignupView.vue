@@ -3,24 +3,8 @@
 		<form @submit.prevent="handleSubmit">
 			<div class="form">
 				<h1 class="form-header">Signup</h1>
-				<input
-					class="email"
-					type="email"
-					name="email"
-					id="email"
-					v-model="email"
-					placeholder="Email"
-					required
-				/>
-				<input
-					class="password"
-					type="password"
-					name="password"
-					id="password"
-					v-model="password"
-					placeholder="Password"
-					required
-				/>
+				<input class="email" type="email" name="email" id="email" v-model="email" placeholder="Email" required />
+				<input class="password" type="password" name="password" id="password" v-model="password" placeholder="Password" required />
 				<button class="form-button">Sign up</button>
 				<div v-if="error">{{ error }}</div>
 			</div>
@@ -57,22 +41,15 @@ export default {
 </script>
 
 <style scoped>
-html,
-body,
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-size: 62.5%;
-	font-family: "Roboto", sans-serif;
-	background: #ecf0f3
+body {
+	background: #ecf0f3;
 }
 
 form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 90vh
+	height: 90vh;
 }
 .form {
 	font-size: 5rem;
@@ -122,7 +99,6 @@ form {
 
 .form-button:active {
 	transform: scale(0.95);
-	transition-duration: .1s;
-} 
-
+	transition-duration: 0.1s;
+}
 </style>

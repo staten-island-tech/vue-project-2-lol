@@ -56,7 +56,7 @@ import PassiveDiv from '../components/PassiveDiv.vue'
 
         async mounted(){
             await fetch(`http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/${this.$route.params.name}.json`).then((res) => res.json()).then(data => this.Results = data.data)
-            const b = ['<physicalDamage>physical damage</physicalDamage>'];
+            const b = ['<physicalDamage>physical damage</physicalDamage>', '<magicDamage>magic damage</magicDamage>.<br><br>'];
             this.Results = Object.values(this.Results)[0];
             this.Results.title = this.Results.title.toUpperCase();
             this.Results.name = this.Results.name.toUpperCase();
@@ -65,7 +65,7 @@ import PassiveDiv from '../components/PassiveDiv.vue'
             this.PassIMG = this.Passive.image.full
             console.log(this.Passive)
             this.PassFixed = b.forEach(word => {
-                    this.Passive.description = this.Passive.description.replace(word, 'damage')
+                    this.Passive.description = this.Passive.description.replace(word, 'damage ')
                     
                 });
         

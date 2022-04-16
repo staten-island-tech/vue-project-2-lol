@@ -1,9 +1,10 @@
 <template>
     <div >
          
-        <form class='form' action="submit" v-on:submit.prevent="onSubmit" >
-            <input type="text" placeholder="Enter Champion Name " >
+        <form class='form' action="submit" @submit="submitted" v-on:submit.prevent="onSubmit" >
+            <input placeholder="Champion Name"  @input="updateSearchValue"  >
         </form>
+        <h1>You searched for: {{this.store.state.searchValue}}</h1>
         
         <div class="container" id="container">
 
@@ -43,15 +44,19 @@ import ChampCard from "../components/ChampCard.vue"
             ChampCard,
         },
         methods:{
-            submitted: function(event){
-                event.preventDefault();
-                const divs = document.getElementsByClassName("thediv")
-                const dived = divs.length
-                for(let i = 0; i < dived; i = i+1) {
-                    const parent = document.getElementbyID('container')
-                    parent.removeChild(parent.firstChild)
-                }
-            }
+            submitted: function(){
+                console.log("submitted :)")
+            },
+            updateSearchValue (value){
+                this.store.commit('searchedChamp', value.target.value);
+                const keys = Object.keys(this.DataList)
+                const searchTerms = []
+                keys.forEach((key) => {
+                    searchTerms.push(this.DataList[key].name)
+                    searchTerms.push(this.DataList[key].id)
+                })
+                console.log(searchTerms)
+            }   
         },
         
          

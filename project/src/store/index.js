@@ -19,6 +19,7 @@ const store = createStore({
     summonerName: "",
     numberOfMatches: 0,
     ChampList: [],
+    searchValue: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -34,6 +35,9 @@ const store = createStore({
     },
     setChampions(state, Champ) {
       state.ChampList = Champ;
+    },
+    searchedChamp(state, inputValue) {
+      state.searchValue = inputValue;
     },
   },
   actions: {
@@ -120,6 +124,9 @@ const store = createStore({
         }
       }
       getPuuid();
+    },
+    updateSearch(name) {
+      store.commit("searchedChamp", name);
     },
   },
 });

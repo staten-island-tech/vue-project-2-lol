@@ -24,8 +24,8 @@
 						<div class="matchHistoryDataSetMidChampImg">
 							<img class="champIcon" :src="championName()" alt="champIcon" :key="metaData" />
 							<div class="matchHistoryDataSetMidChampImgSpells">
-								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${match.runesSpells[0]}.png`" alt="spell Image 1" />
-								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${match.runesSpells[1]}.png`" alt="spells Image 2" />
+								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${match.runesSpells[0]}.png`" alt="spell Image 1" />
+								<img class="spellsImg" :src="`https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${match.runesSpells[1]}.png`" alt="spells Image 2" />
 							</div>
 							<div class="matchHistoryDataSetMidChampImgRunes">
 								<img class="runesImg" :src="`https://ddragon.canisback.com/img/${match.runesSpells[2]}`" alt="runes 1" />
@@ -62,7 +62,7 @@
 					</div>
 					<div class="matchHistoryDataSetMidInv">
 						<div class="matchHistoryDataSetMidItems">
-							<img class="items" v-for="item in match.items" :src="`https://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${item}.png`" alt="item" :key="item" />
+							<img class="items" v-for="item in match.items" :src="`https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/${item}.png`" alt="item" :key="item" />
 						</div>
 					</div>
 				</div>
@@ -92,7 +92,7 @@ export default {
 		const icon = computed(() => store.state.summonerIcon);
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
-		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon.value}.png`;
+		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${icon.value}.png`;
 		let metaData = null;
 
 		const apiMatches = store.dispatch("getData");
@@ -150,16 +150,13 @@ export default {
 			this.metaData = metaData;
 		},
 		championName() {
-			return `https://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${this.metaData.championName}.png`;
+			return `https://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${this.metaData.championName}.png`;
 		},
 		writeData() {
 			this.store.commit("readUserData");
 			this.store.commit("writeUserData");
 			this.store.commit("readUserData");
 		},
-	},
-	beforeMount() {
-		this.store.commit("readUserData");
 	},
 };
 </script>

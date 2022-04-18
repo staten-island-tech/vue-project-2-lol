@@ -61,7 +61,6 @@ const store = createStore({
 			onValue(userRef, accounts => {
 				const data = accounts.val().accounts;
 				state.accounts = data;
-				return data;
 			});
 		},
 	},
@@ -86,28 +85,24 @@ const store = createStore({
 			await signOut(auth);
 			context.commit("setUser", null, null);
 		},
-		getPuuid(state) {
-			console.log(state);
-			state.accounts.forEach(function (account) {
-				console.log(store.state);
-
+		logAccountData(store) {
+			store.state.accountData = [];
+			store.state.accounts.forEach(function (account) {
 				async function storeData() {
 					try {
 						const apiPuuid = await fetch(
 							`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${account}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 						).then(api => api.json());
 
-						const puuid = Object.values(apiPuuid)[2];
 						const icon = Object.values(apiPuuid)[4];
 						const level = Object.values(apiPuuid)[6];
 						const name = Object.values(apiPuuid)[3];
-						state.accountData.push({
-							puuid: puuid,
-							icon: `http://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${icon}.png`,
+
+						store.state.accountData.push({
+							icon: icon,
 							level: level,
 							name: name,
 						});
-						console.log(state.accountData);
 					} catch (error) {
 						console.log(error);
 					}
@@ -152,28 +147,28 @@ const store = createStore({
 								async function getItems() {
 									let results = [];
 
-									const spell1 = await fetch("https://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/summoner.json")
+									const spell1 = await fetch("https://ddragon.leagueoflegends.com/cdn/12.7.1/data/en_US/summoner.json")
 										.then(response => response.json())
 										.then(spell => Object.values(spell.data))
 										.then(spell => spell.filter(spell => spell.key == summonerInfo.summoner1Id))
 										.then(spell => spell[0].id);
 									results.splice(0, 0, spell1);
 
-									const spell2 = await fetch("https://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/summoner.json")
+									const spell2 = await fetch("https://ddragon.leagueoflegends.com/cdn/12.7.1/data/en_US/summoner.json")
 										.then(response => response.json())
 										.then(spell => Object.values(spell.data))
 										.then(spell => spell.filter(spell => spell.key == summonerInfo.summoner2Id))
 										.then(spell => spell[0].id);
 									results.splice(1, 0, spell2);
 
-									const rune1 = await fetch("https://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/runesReforged.json")
+									const rune1 = await fetch("https://ddragon.leagueoflegends.com/cdn/12.7.1/data/en_US/runesReforged.json")
 										.then(response => response.json())
 										.then(rune => rune.filter(rune => rune.id == summonerInfo.perks.styles[0].style)[0])
 										.then(rune => rune.slots[0].runes)
 										.then(rune => rune.filter(rune => rune.id == summonerInfo.perks.styles[0].selections[0].perk)[0].icon);
 									results.splice(2, 0, rune1);
 
-									const rune2 = await fetch("https://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/runesReforged.json")
+									const rune2 = await fetch("https://ddragon.leagueoflegends.com/cdn/12.7.1/data/en_US/runesReforged.json")
 										.then(response => response.json())
 										.then(rune => rune.filter(rune => rune.id == summonerInfo.perks.styles[1].style)[0])
 										.then(rune => rune.icon);
@@ -181,9 +176,17 @@ const store = createStore({
 
 									return results;
 								}
-								const possible = [summonerInfo.item0, summonerInfo.item1, summonerInfo.item2, summonerInfo.item3, summonerInfo.item4, summonerInfo.item5];
+								const possible = [
+									summonerInfo.item0,
+									summonerInfo.item1,
+									summonerInfo.item2,
+									summonerInfo.item3,
+									summonerInfo.item4,
+									summonerInfo.item5,
+									summonerInfo.item6,
+								];
 								const items = [];
-								for (let i = 0; i < 6; i++) {
+								for (let i = 0; i < 7; i++) {
 									if (possible[i] != 0) {
 										items.push(possible[i]);
 									}

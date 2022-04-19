@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <p>{{ accounts }}</p>
+    <!-- <p>{{ accounts }}</p> -->
   </div>
 </template>
 

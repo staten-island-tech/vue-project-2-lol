@@ -14,7 +14,7 @@
 					<img :src="`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${icon}.png`" />
 				</div>
 				<div class="account-level">
-					<span>{{ level }}</span>
+					<span>Level {{ level }}</span>
 				</div>
 			</div>
 		</button>
@@ -33,8 +33,8 @@ export default {
 		const accountData2 = store.dispatch("logAccountData");
 
 		console.log(accountData);
+
 		const handleSubmit = async name => {
-			store.state.searchName = name;
 			store.commit("updateSummoner", name);
 		};
 

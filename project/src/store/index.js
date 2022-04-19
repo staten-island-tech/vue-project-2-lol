@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { auth } from "../firebase/config";
+import { computed, toRaw } from "vue";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 
@@ -17,6 +18,7 @@ const store = createStore({
 		userData: null,
 		accounts: [],
 		accountData: [],
+		accountInDatabase: false,
 	},
 	mutations: {
 		updateSummoner(state, name) {
@@ -65,6 +67,20 @@ const store = createStore({
 		},
 	},
 	actions: {
+		logData() {
+			store.state.accountInDatabase = false;
+			const accounts = toRaw(store.state.accounts);
+			const summonerName = computed(() => store.state.summonerName);
+			console.log(accounts);
+			console.log(summonerName);
+
+			for (let i = 0; i < accounts.length; i++) {
+				if (accounts[i] === store.state.summonerName) {
+					console.log("found");
+					store.state.accountInDatabase = true;
+				}
+			}
+		},
 		async signup(context, { email, password }) {
 			const res = await createUserWithEmailAndPassword(auth, email, password);
 			if (res) {
@@ -113,8 +129,6 @@ const store = createStore({
 		getData() {
 			async function getPuuid() {
 				try {
-					console.log(store.state);
-
 					const apiPuuid = await fetch(
 						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 					).then(api => api.json());

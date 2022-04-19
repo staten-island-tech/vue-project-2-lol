@@ -5,10 +5,12 @@
 			<h1 class="profile">{{ name }}</h1>
 			<h1 class="profile">Level {{ level }}</h1>
 			<img class="profile" :src="iconURL()" />
-			<button v-if="user" v-on:click="writeData" class="favorite-button">
-				<span class="empty-star">&#9734;</span>
+			<button v-if="user" v-on:click="writeData()" class="favorite-button">
 				<span class="filled-star">&#9733;</span>
+				<span class="empty-star">&#9734;</span>
 			</button>
+			<p v-if="found">Found</p>
+			<p v-else>Not found</p>
 		</div>
 		<div class="matchHistory">
 			<div v-for="match in summonerData" :class="`matchHistory-data ` + match.info.participants.filter(summoner => summoner.summonerName === name)[0].win" :key="match">
@@ -92,14 +94,21 @@ export default {
 		const icon = computed(() => store.state.summonerIcon);
 		const level = computed(() => store.state.summonerLevel);
 		const puuid = computed(() => store.state.puuid);
+		const found = computed(() => store.state.accountInDatabase);
 		const iconURL = () => `http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${icon.value}.png`;
 		let metaData = null;
 
 		const apiMatches = store.dispatch("getData");
+		const readData = store.commit("readUserData");
+		const checkAcc = store.dispatch("logData");
+
 		store.state.numberOfMatches = 10;
 
 		return {
 			icon,
+			checkAcc,
+			readData,
+			found,
 			name,
 			summonerData,
 			apiMatches,

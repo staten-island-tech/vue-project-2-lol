@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import { auth } from "../firebase/config";
-import { computed, toRaw } from "vue";
+import {} from "vue";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 
@@ -67,20 +67,6 @@ const store = createStore({
 		},
 	},
 	actions: {
-		logData() {
-			store.state.accountInDatabase = false;
-			const accounts = toRaw(store.state.accounts);
-			const summonerName = computed(() => store.state.summonerName);
-			console.log(accounts);
-			console.log(summonerName);
-
-			for (let i = 0; i < accounts.length; i++) {
-				if (accounts[i] === store.state.summonerName) {
-					console.log("found");
-					store.state.accountInDatabase = true;
-				}
-			}
-		},
 		async signup(context, { email, password }) {
 			const res = await createUserWithEmailAndPassword(auth, email, password);
 			if (res) {
@@ -142,6 +128,18 @@ const store = createStore({
 					store.state.summonerIcon = icon;
 					store.state.summonerLevel = level;
 					store.state.summonerName = name;
+					console.log(store.state.summonerName);
+					store.state.accountInDatabase = false;
+
+					const accounts = store.state.accounts;
+					console.log(accounts);
+
+					for (let i = 0; i < accounts.length; i++) {
+						if (accounts[i] === name) {
+							console.log("found");
+							store.state.accountInDatabase = true;
+						}
+					}
 
 					// eslint-disable-next-line no-inner-declarations
 					async function getAccount() {

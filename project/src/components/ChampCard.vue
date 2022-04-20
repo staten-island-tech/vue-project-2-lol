@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="'/Champions/' + this.ChampName"  >
+    <router-link :to="'/Champions/' + this.champid"  >
         <div v-bind:class="getname">
             <h2 class="name">{{ChampName}}</h2>
             <img class='img'  :src="getimg" alt="picture"/>

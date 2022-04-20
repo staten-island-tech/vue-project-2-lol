@@ -33,9 +33,7 @@ const store = createStore({
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
     },
-    setChampions(state, Champ) {
-      state.ChampList = Champ;
-    },
+
     searchedChamp(state, inputValue) {
       state.searchValue = inputValue;
     },
@@ -67,7 +65,10 @@ const store = createStore({
           const Characters = await fetch(
             "http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json"
           ).then((res) => res.json());
-          store.commit("setChampions", Characters.data);
+          console.log(Characters.data);
+          for (const Champ in Characters.data) {
+            store.state.ChampList.push(Characters.data[Champ]);
+          }
         } catch (error) {
           console.log(error);
         }

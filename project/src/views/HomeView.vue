@@ -10,11 +10,9 @@ export default {
 	name: "HomeView",
 	setup() {
 		const store = useStore();
-		const Champion = store.dispatch("getChamps");
+ 
 		console.log(store.state.user);
-		return{
-			Champion
-		}
+		return{store}
 	},
 };
 </script>

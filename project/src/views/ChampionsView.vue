@@ -24,14 +24,8 @@ import ChampCard from "../components/ChampCard.vue"
 
     export default {
         setup(){
-            const store = useStore()
-            
-
-     
-           
+            const store = useStore();
             const DataList = store.state.ChampList
-          
-
             return{
            
                 store,DataList,

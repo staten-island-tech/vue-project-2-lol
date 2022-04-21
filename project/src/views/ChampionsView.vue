@@ -1,9 +1,15 @@
 <template>
     <div >
-         
-        
-        <input placeholder="Champion Name"  v-model="search" @input="updateSearchValue"  >
 
+      
+        <form action="" class="searchForm">
+            <input placeholder="Search Bar" type="text" class="searchBar" @input="updateSearchValue">
+            <a href="https://www.youtube.com/watch?v=ek-672uRnhQ"><img src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png" alt="LOL Icon"></a>
+        </form>
+
+
+         
+    
  
         
         <div class="container" id="container">
@@ -29,7 +35,7 @@ import ChampCard from "../components/ChampCard.vue"
             return{
            
                 store,DataList,
-                search:" ",  
+                  
             }
             
         },
@@ -45,6 +51,7 @@ import ChampCard from "../components/ChampCard.vue"
                 this.store.commit('searchedChamp', value.target.value.replace(/\s/g, ''));
              
             },
+            
          
         },
         computed:{
@@ -65,12 +72,15 @@ import ChampCard from "../components/ChampCard.vue"
 </script>
 
 <style scoped>
-    div{
-        
-        font-size: 3rem;
-        color: blue;
-    
+@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+    * {
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "BeaufortforLOL-Bold";
     }
+     
     .container{
         width: 80%;
         background-color: rosybrown;
@@ -80,5 +90,34 @@ import ChampCard from "../components/ChampCard.vue"
         margin: auto;
  
     }
+    .searchForm{
+        height: 10rem;
+        width: 100%;
+        max-width: 1000px;
+        border-radius: 7rem;
+        background-color: #abc;
+        margin: 3rem auto;
+        display: flex;
+        
+        }
+    .searchForm input{
+        padding-left: 3rem;
+        font-size: 3rem;
+        height: 5rem;
+        width: 80%;
+        margin: auto;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    .searchForm a{
+        background-color: transparent;
+        margin: auto;
+    }
+    .searchForm img{
+        height: 8rem;
+        width: 8rem;
+    }
+     
     
 </style>

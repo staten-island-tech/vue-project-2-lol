@@ -1,6 +1,5 @@
 import { createStore } from "vuex";
 import { auth } from "../firebase/config";
-import {} from "vue";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 
@@ -87,7 +86,7 @@ const store = createStore({
 			await signOut(auth);
 			context.commit("setUser", null, null);
 		},
-		logAccountData(store) {
+		async logAccountData(store) {
 			store.state.accountData = [];
 			store.state.accounts.forEach(function (account) {
 				async function storeData() {

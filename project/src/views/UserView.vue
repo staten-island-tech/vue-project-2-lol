@@ -28,6 +28,7 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const store = useStore();
+		const readData = store.commit("readUserData");
 		const accounts = computed(() => store.state.accounts);
 		const accountData = toRaw(store.state.accountData);
 		const accountData2 = store.dispatch("logAccountData");
@@ -40,6 +41,7 @@ export default {
 
 		return {
 			store,
+			readData,
 			accounts,
 			accountData,
 			accountData2,

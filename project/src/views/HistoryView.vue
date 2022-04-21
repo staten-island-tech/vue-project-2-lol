@@ -5,10 +5,21 @@
 			<h1 class="profile">{{ name }}</h1>
 			<h1 class="profile">Level {{ level }}</h1>
 			<img class="profile" :src="iconURL()" />
-			<button v-if="user" v-on:click="writeData()" class="favorite-button">
-				<span v-if="found" class="filled-star">&#9733;</span>
-				<span v-else class="empty-star">&#9734;</span>
-			</button>
+			<div>
+				<button
+					v-if="user"
+					@click="
+						toggleButton();
+						writeData();
+					"
+					class="favorite-button"
+				>
+					<span v-if="found" :class="[isActive ? 'found-disabled-empty' : 'found-active']">&#9734;</span>
+					<span v-if="found" :class="[isActive ? 'found-active' : 'found-disabled']">&#9733;</span>
+					<span v-if="!found" :class="[isActive ? 'nfound-active' : 'nfound-disabled']">&#9734;</span
+					><span v-if="!found" :class="[isActive ? 'nfound-disabled-full' : 'nfound-active']">&#9733;</span>
+				</button>
+			</div>
 			<p v-if="found">Found</p>
 			<p v-else>Not found</p>
 		</div>
@@ -86,6 +97,11 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
+	data() {
+		return {
+			isActive: false,
+		};
+	},
 	setup() {
 		const store = useStore();
 		const user = computed(() => store.state.user);
@@ -100,13 +116,12 @@ export default {
 
 		const readData = store.commit("readUserData");
 		const apiMatches = store.dispatch("getData");
-		const checkAcc = store.dispatch("logData");
+		console.log(found.value);
 
-		store.state.numberOfMatches = 10;
+		store.state.numberOfMatches = 1;
 
 		return {
 			icon,
-			checkAcc,
 			readData,
 			found,
 			name,
@@ -142,7 +157,6 @@ export default {
 
 			return ret;
 		},
-
 		getTime: function (stamp) {
 			const time = new Date(stamp).toLocaleTimeString("en-US");
 			const hourMin = time.slice(-0, -6);
@@ -166,6 +180,9 @@ export default {
 			this.store.commit("writeUserData");
 			this.store.commit("readUserData");
 		},
+		toggleButton() {
+			this.isActive = !this.isActive;
+		},
 	},
 };
 </script>
@@ -175,28 +192,35 @@ export default {
 	font-size: 5rem;
 	background-color: transparent;
 	border: none;
+	color: #ffd752;
 }
 
-.favorite-button:hover {
-	color: #f1c40f;
+.found-active {
+	display: none;
 }
 
-button .filled-star {
-	display: inline;
-	color: #f1c40f;
-}
-
-button .empty-star {
+.found-disabled {
 	display: inline;
 }
 
-button:hover .empty-star {
+.found-disabled-empty {
+	color: black;
 	display: inline;
 }
 
-button:hover .filled-star {
+.nfound-active {
+	display: none;
+}
+
+.nfound-disabled {
+	display: inline;
+	color: black;
+}
+
+.nfound-disabled-full {
 	display: inline;
 }
+
 .header {
 	display: block;
 	width: 100vw;
@@ -206,6 +230,7 @@ button:hover .filled-star {
 	margin-top: 5rem;
 	margin-bottom: 5rem;
 }
+
 .summonerInfo {
 	display: flex;
 	flex-direction: row;

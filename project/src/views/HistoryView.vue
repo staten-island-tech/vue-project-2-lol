@@ -5,23 +5,19 @@
 			<h1 class="profile">{{ name }}</h1>
 			<h1 class="profile">Level {{ level }}</h1>
 			<img class="profile" :src="iconURL()" />
-			<div>
-				<button
-					v-if="user"
-					@click="
-						toggleButton();
-						writeData();
-					"
-					class="favorite-button"
-				>
-					<span v-if="found" :class="[isActive ? 'found-disabled-empty' : 'found-active']">&#9734;</span>
-					<span v-if="found" :class="[isActive ? 'found-active' : 'found-disabled']">&#9733;</span>
-					<span v-if="!found" :class="[isActive ? 'nfound-active' : 'nfound-disabled']">&#9734;</span
-					><span v-if="!found" :class="[isActive ? 'nfound-disabled-full' : 'nfound-active']">&#9733;</span>
-				</button>
-			</div>
-			<p v-if="found">Found</p>
-			<p v-else>Not found</p>
+			<button
+				v-if="user"
+				@click="
+					toggleButton();
+					writeData();
+				"
+				class="favorite-button"
+			>
+				<span v-if="found" :class="[isActive ? 'found-disabled-empty' : 'found-active']">&#9734;</span>
+				<span v-if="found" :class="[isActive ? 'found-active' : 'found-disabled']">&#9733;</span>
+				<span v-if="!found" :class="[isActive ? 'nfound-active' : 'nfound-disabled']">&#9734;</span
+				><span v-if="!found" :class="[isActive ? 'nfound-disabled-full' : 'nfound-active']">&#9733;</span>
+			</button>
 		</div>
 		<div class="matchHistory">
 			<div v-for="match in summonerData" :class="`matchHistory-data ` + match.info.participants.filter(summoner => summoner.summonerName === name)[0].win" :key="match">

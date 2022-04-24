@@ -7,6 +7,7 @@
 				handleSubmit(name);
 				toHistory();
 			"
+			class="user-button"
 		>
 			<div>
 				<div>{{ name }}</div>
@@ -28,10 +29,10 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const store = useStore();
-		const readData = store.commit("readUserData");
+		store.commit("readUserData");
 		const accounts = computed(() => store.state.accounts);
 		const accountData = toRaw(store.state.accountData);
-		const accountData2 = store.dispatch("logAccountData");
+		store.dispatch("logAccountData");
 
 		console.log(accountData);
 
@@ -41,10 +42,8 @@ export default {
 
 		return {
 			store,
-			readData,
 			accounts,
 			accountData,
-			accountData2,
 			handleSubmit,
 		};
 	},
@@ -55,3 +54,30 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.user {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 5rem;
+}
+
+.user-button {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 22rem;
+	height: 22rem;
+	margin: 2rem;
+}
+
+img {
+	width: 15rem;
+	height: 15rem;
+	border-radius: 10rem;
+	margin: 1rem;
+}
+</style>

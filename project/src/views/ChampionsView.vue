@@ -15,7 +15,7 @@
         <div class="container" id="container">
 
             <div  class="thediv"  v-for="champion in searchFilter" :key="champion.name">
-                <ChampCard class="card" :ChampName="champion.name" :champid="champion.id"/>
+                <ChampCard class="card"   :champid="champion.id"/>
             
             </div>
         </div>
@@ -82,12 +82,16 @@ import ChampCard from "../components/ChampCard.vue"
     }
      
     .container{
-        width: 80%;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        margin: auto;
+           
+        width: 50%;
         background-color: rosybrown;
+        min-height: 70rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
-        margin: auto;
+        justify-content: space-evenly;
  
     }
     .searchForm{
@@ -118,6 +122,7 @@ import ChampCard from "../components/ChampCard.vue"
         height: 8rem;
         width: 8rem;
     }
-     
-    
+   .card{
+       position: relative;
+   }
 </style>

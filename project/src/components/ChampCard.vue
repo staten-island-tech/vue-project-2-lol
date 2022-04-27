@@ -1,11 +1,10 @@
 <template>
     <router-link :to="'/Champions/' + this.champid"  >
-        <div v-bind:class="getname">
-            <div class="asdf">
-                <img class='img'  :src="getimg" alt="picture"/>
-            </div>    
+ 
             
-        </div>
+                <img class='img'  :src="getimg" alt="picture"/>
+           
+ 
     </router-link>
 </template>
 
@@ -34,18 +33,20 @@ export default {
 <style scoped>
     
     .img{
-       clip-path: inset(5% 10% 5% 10%);
+  
+     
         background-color: transparent;
-       height: 32rem;
-       width: 18rem;
+       height: 100%;
+       width: 100%;
+        clip-path: inset(10% 10% 10% 10%);
        
         border-top: 5px transparent solid;
         transition: 0.5s;
          
     }
-    .img:hover{
+    /* .img:hover{
         clip-path: inset(5% 5% 5% 5%);
-    }
+    } */
     .hide{
         height: 0px;
     }
@@ -54,6 +55,10 @@ export default {
         font-size: 10px;
     }
     .img:hover{
+      transform: scale3d(.95, .95, 1);
+        clip-path: inset(5% 5% 5% 5%);
+ 
+     
         border-top:5px solid red;
     }
 </style>

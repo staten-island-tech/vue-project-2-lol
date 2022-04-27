@@ -91,8 +91,12 @@ import ChampCard from "../components/ChampCard.vue"
         min-height: 70rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: space-around;
+       
  
+    }
+    .card:hover{
+        border: black solid 0px;
     }
     .searchForm{
         height: 10rem;
@@ -122,7 +126,9 @@ import ChampCard from "../components/ChampCard.vue"
         height: 8rem;
         width: 8rem;
     }
-   .card{
-       position: relative;
-   }
+    .thediv{
+        width: 25%;
+    }
+    
+ 
 </style>

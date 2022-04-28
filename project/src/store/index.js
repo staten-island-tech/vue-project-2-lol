@@ -53,10 +53,6 @@ const store = createStore({
 			});
 		},
 		readUserData(state) {
-			if (state.user.uid === undefined) {
-				location.reload();
-				console.log("user.uid is undefined");
-			}
 			const db = getDatabase();
 			const userRef = ref(db, "users/" + state.user.uid);
 			onValue(userRef, accounts => {
@@ -86,18 +82,18 @@ const store = createStore({
 			await signOut(auth);
 			context.commit("setUser", null, null);
 		},
-		async logAccountData(store) {
+		logAccountData(store) {
 			store.state.accountData = [];
 			store.state.accounts.forEach(function (account) {
 				async function storeData() {
 					try {
-						const apiPuuid = await fetch(
+						const puuid = await fetch(
 							`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${account}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
 						).then(api => api.json());
 
-						const icon = Object.values(apiPuuid)[4];
-						const level = Object.values(apiPuuid)[6];
-						const name = Object.values(apiPuuid)[3];
+						const icon = Object.values(puuid)[4];
+						const level = Object.values(puuid)[6];
+						const name = Object.values(puuid)[3];
 
 						store.state.accountData.push({
 							icon: icon,
@@ -112,7 +108,7 @@ const store = createStore({
 			});
 		},
 		getData() {
-			async function getPuuid() {
+			async function getPuuid2() {
 				try {
 					const apiPuuid = await fetch(
 						`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${store.state.searchName}?api_key=RGAPI-e3586229-1e3c-4aa3-93d5-db15c2359cf3`
@@ -239,7 +235,7 @@ const store = createStore({
 					console.log(error);
 				}
 			}
-			getPuuid();
+			getPuuid2();
 		},
 	},
 });

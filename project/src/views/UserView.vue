@@ -23,17 +23,15 @@
 </template>
 
 <script>
-import { computed, toRaw } from "vue";
+import { toRaw } from "vue";
 import { useStore } from "vuex";
 
 export default {
 	setup() {
 		const store = useStore();
-		store.commit("readUserData");
-		const accounts = computed(() => store.state.accounts);
+		
 		const accountData = toRaw(store.state.accountData);
 		store.dispatch("logAccountData");
-
 		console.log(accountData);
 
 		const handleSubmit = async name => {
@@ -42,7 +40,6 @@ export default {
 
 		return {
 			store,
-			accounts,
 			accountData,
 			handleSubmit,
 		};

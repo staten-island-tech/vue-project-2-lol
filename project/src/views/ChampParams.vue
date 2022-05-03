@@ -10,14 +10,41 @@
             </div>
             
         </div>    
-        <div class="abilities">
+
+        <div class="buttons">
+            <button class="abilBTN" @click="toggleAbil" >Abilities</button>
+            <button class="loreBTN" @click="toggleLore" >Lore</button>
+            
+        </div>
+
+        <div v-if="this.Ability == true" class="abilities">
             <PassiveDiv class="PassiveDiv" :ablName="this.Passive.name" :ablDes="this.Passive.description" :ablID="this.PassIMG" />
 
             <div class="body1" v-for="spell in this.Spells" :key="spell.id" >
                 <SpellDiv :ablName="spell.name" :ablDes="spell.description" :ablID="spell.id" />
             </div>
         </div>
-       
+       <div v-if="this.Lore == true" class="font2">
+           
+           {{this.Results.lore}}
+       </div>
+
+
+       <div v-if="this.Lore == true" class="tipsContain">
+           <div class="container">
+
+              <div class="tipsLeft">
+
+            <ul   v-for="tip in this.Results.allytips" :key="tip">{{tip}} </ul>
+
+            </div>
+            <div class="tipsRight">
+                <ul   v-for="tip in this.Results.enemytips" :key="tip">{{tip}} </ul>   
+            </div>   
+           </div>
+          
+           
+       </div>
      
         <h2 class="title">{{this.Results.lore}}</h2>
         <h2 class="title">{{this.Results.allytips}}</h2>
@@ -37,9 +64,11 @@ import PassiveDiv from '../components/PassiveDiv.vue'
             const Spells = []
             const Passive = []
             const PassIMG = []
+            const Lore = true
+            const Ability = false
             
             return{
-                Results, Spells,Passive, PassIMG, 
+                Results, Spells,Passive, PassIMG, Lore, Ability
             }
             
 
@@ -52,6 +81,16 @@ import PassiveDiv from '../components/PassiveDiv.vue'
                 return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`
             },
         
+        },
+        methods:{
+            toggleAbil: function(){
+                this.Ability = true
+                this.Lore = false
+            },
+            toggleLore: function(){
+                this.Ability = false
+                this.Lore = true
+            },
         },
 
         async mounted(){
@@ -78,7 +117,29 @@ import PassiveDiv from '../components/PassiveDiv.vue'
 
 <style  scoped>
 @import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
- 
+    .font2{
+        font-size: 2rem;
+        width: 60%;
+        margin: auto;
+        text-align: center;
+    }
+    .tipsContain{
+        font-size: 6rem;
+        margin: auto;
+        width: 60%;
+       
+    }
+    .container{
+        display: flex;
+        width: 100%;
+    }
+    .tips-Left{
+        text-align: center;
+
+    }
+    .tips-Right{
+        text-align: center;
+    }
     .page{
         background-color: rgb(0, 9, 19);
         color: #FFFF;

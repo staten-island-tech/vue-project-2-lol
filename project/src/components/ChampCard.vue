@@ -36,7 +36,7 @@ export default {
   
      
         background-color: transparent;
-       height: 100%;
+       height:425px;
        width: 100%;
         clip-path: inset(10% 10% 10% 10%);
        

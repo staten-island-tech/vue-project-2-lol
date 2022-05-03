@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1 class="Intro">Welcome to Better.GG!</h1>
-    <h2 class="Intro_sub">YOUR HUB TO IMPROVE YOUR LEAGUE GAME</h2>
+  <div class="home">
+    <h1 class="intro">Welcome to Better.GG!</h1>
+    <h2 class="intro_sub">YOUR HUB TO IMPROVE YOUR LEAGUE PLAY</h2>
   </div>
 </template>
 
@@ -20,23 +20,28 @@ export default {
 };
 </script>
 <style>
-
-.Intro {
+@import url(../root.css);
+.home{
+  background: var(--Background-light
+  );
+}
+.intro {
   display: block;
   width: 100vw;
   font-size: 15rem;
   text-align: center;
   font-weight: 900;
   margin-bottom: 3rem;
-color: #A38036;
-  -webkit-text-stroke: 0.3rem #D0AA62;
+  color: var(--header);
+  -webkit-text-stroke: 0.3rem var(--supporting-text);
 }
-.Intro_sub {
+.intro_sub {
   display: block;
   width: 100vw;
-  font-size: 5rem;
+  font-size: 4rem;
   text-align: center;
   font-weight: 900;
   margin-bottom: 10rem;
+  color: var(--supporting-text);
 }
 </style>

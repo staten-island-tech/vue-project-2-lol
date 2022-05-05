@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="page">
 
       
         <form action="" class="searchForm">
@@ -80,6 +80,7 @@ import ChampCard from "../components/ChampCard.vue"
         padding: 0;
         font-family: "BeaufortforLOL-Bold";
     }
+  
      
     .container{
         padding-top: 0.5rem;
@@ -87,7 +88,7 @@ import ChampCard from "../components/ChampCard.vue"
         margin: auto;
            
         width: 50%;
-        background-color: rosybrown;
+   
         min-height: 70rem;
         display: flex;
         flex-wrap: wrap;

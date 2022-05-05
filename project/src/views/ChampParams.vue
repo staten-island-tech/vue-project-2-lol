@@ -45,10 +45,7 @@
           
            
        </div>
-     
-        <h2 class="title">{{this.Results.lore}}</h2>
-        <h2 class="title">{{this.Results.allytips}}</h2>
-        <h2 class="title">{{this.Results.enemytips}}</h2>
+      
  
     </div>
 </template>
@@ -129,9 +126,41 @@ import PassiveDiv from '../components/PassiveDiv.vue'
         width: 60%;
        
     }
+    button{
+        background-color: transparent;
+        height: 4rem;
+        font-family: "BeaufortforLOL-Bold";
+        border: none;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        font-size: 3rem;
+        color: white;
+        
+    }
+    .buttons{
+       
+        text-align: center;
+        margin: auto;
+        margin-bottom: 1rem;
+    }
+    .abilBTN{
+        border-bottom: 0.25rem transparent solid;
+        transition: 0.25s; 
+    }
+    .abilBTN:hover{
+        border-bottom: .25rem orange solid;
+    }
+    .loreBTN{
+        border-bottom: 0.25rem transparent solid;
+        transition: 0.1s; 
+    }
+    .loreBTN:hover{
+        border-bottom: .25rem orange solid;
+    }
     .container{
         display: flex;
         width: 100%;
+        
     }
     .tips-Left{
         text-align: center;
@@ -193,5 +222,5 @@ import PassiveDiv from '../components/PassiveDiv.vue'
        margin: 0;
        padding: 0;
    }
-  
+ 
 </style>

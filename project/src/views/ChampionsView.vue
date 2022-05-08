@@ -9,8 +9,12 @@
         </form>
         <div class="filter">
 
+            <button class="filterB" @click="filterNone" >All</button>
             <button class="filterB" @click="filterTank" >Tank</button>
             <button class="filterB" @click="filterMage" >Mage</button>
+            <button class="filterB" @click="filterSup" >Support</button>
+            <button class="filterB" @click="filterMks" >Marksmen</button>
+            <button class="filterB" @click="filterFig" >Fighters</button>
             <button class="filterB" @click="filterAss" >Assassin</button>
         </div>
         
@@ -58,7 +62,16 @@ import ChampCard from "../components/ChampCard.vue"
                  
              
             },
-             
+            filterNone: function(){
+                this.DataList = this.store.state.ChampList
+                 
+                if(this.store.state.searchValue.includes(" ")){
+                    this.store.state.searchValue = this.store.state.searchValue.trim()
+                }
+                    this.store.state.searchValue = this.store.state.searchValue + " "
+              
+                
+            },             
 
 
             filterTank: function(){
@@ -83,6 +96,35 @@ import ChampCard from "../components/ChampCard.vue"
             filterAss: function(){
                 this.DataList = this.store.state.ChampList
                 this.DataList = this.DataList.filter((champ) => champ.tags.includes("Assassin")  )
+                if(this.store.state.searchValue.includes(" ")){
+                    this.store.state.searchValue = this.store.state.searchValue.trim()
+                }
+                    this.store.state.searchValue = this.store.state.searchValue + " "
+              
+                
+            },
+            filterSup: function(){
+                this.DataList = this.store.state.ChampList
+                this.DataList = this.DataList.filter((champ) => champ.tags.includes("Support")  )
+                if(this.store.state.searchValue.includes(" ")){
+                    this.store.state.searchValue = this.store.state.searchValue.trim()
+                }
+                    this.store.state.searchValue = this.store.state.searchValue + " "
+              
+                
+            },filterMks: function(){
+                this.DataList = this.store.state.ChampList
+                this.DataList = this.DataList.filter((champ) => champ.tags.includes("Marksman")  )
+                if(this.store.state.searchValue.includes(" ")){
+                    this.store.state.searchValue = this.store.state.searchValue.trim()
+                }
+                    this.store.state.searchValue = this.store.state.searchValue + " "
+              
+                
+            },
+            filterFig: function(){
+                this.DataList = this.store.state.ChampList
+                this.DataList = this.DataList.filter((champ) => champ.tags.includes("Fighter")  )
                 if(this.store.state.searchValue.includes(" ")){
                     this.store.state.searchValue = this.store.state.searchValue.trim()
                 }
@@ -183,7 +225,7 @@ import ChampCard from "../components/ChampCard.vue"
         width: 80%;
         margin: auto;
         text-align: center;
-
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
       
     .filterB{
@@ -195,6 +237,7 @@ import ChampCard from "../components/ChampCard.vue"
         padding-right: 1rem;
         border-top: 0.5rem red solid;
         border-bottom: 0.5rem red solid;
+        transition: 0.4s;
     }
     .filterB:hover{
         border-top: 0.5rem blue solid;

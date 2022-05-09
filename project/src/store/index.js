@@ -25,6 +25,7 @@ const store = createStore({
     accountInDatabase: false,
     ChampList: [],
     searchValue: "",
+    userChampion: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -37,6 +38,15 @@ const store = createStore({
     },
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
+    },
+    updateChampName(state, name) {
+      state.userChampion = name;
+    },
+    createChamp(state) {
+      const db = getDatabase();
+      set(ref(db, "userChamps/" + state.userChampion), {
+        champName: state.userChampion,
+      });
     },
     writeUserData(state) {
       const db = getDatabase();

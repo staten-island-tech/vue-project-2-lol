@@ -7,6 +7,7 @@
 
             <a href="https://www.youtube.com/watch?v=ek-672uRnhQ"><img src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png" alt="LOL Icon"></a>
         </form>
+        <button class="filterB" @click="createChampion">Test</button>
         <div class="filter">
 
             <button class="filterB" @click="filterNone" >All</button>
@@ -62,6 +63,12 @@ import ChampCard from "../components/ChampCard.vue"
                  
              
             },
+
+            createChampion: function(){
+                this.store.commit("updateChampName", "Yasuo")
+                this.store.commit("createChamp")
+            },
+
             filterNone: function(){
                 this.DataList = this.store.state.ChampList
                  

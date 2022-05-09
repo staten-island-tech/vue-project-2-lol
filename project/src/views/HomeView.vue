@@ -33,6 +33,7 @@ export default {
 .home {
   height: 500vw;
   width: 100vw;
+  overflow: hidden;
 }
 
 .my-atropos {

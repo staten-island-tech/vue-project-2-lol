@@ -1,27 +1,48 @@
 <template>
-	<div class="search">
-		<!-- <p>{{ accounts }}</p> -->
+	<div class="home">
+		<video class="home-display" autoplay loop muted playsinline src="./displays/animated-season-2015.webm" />
+		<atropos class="my-atropos">
+			<img src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png" />
+		</atropos>
 	</div>
+	<kinesis-container event="scroll">
+		<kinesis-element tag="img" :strength="100" type="translate" axis="x" />
+	</kinesis-container>
 </template>
-
 <script>
-// @ is an alias to /src
-/* import { computed } from "vue";
-import { useStore } from "vuex";
+import Atropos from "atropos/vue";
 
 export default {
-  name: "HomeView",
-  setup() {
-    const store = useStore();
-
-    const accounts = computed(() => store.state.accounts);
-    location.ready(function () {
-      store.commit("readUserData");
-    });
-
-    return { accounts };
-  },
-}; */
+	components: {
+		Atropos,
+	},
+	setup() {},
+};
 </script>
 
-<style></style>
+<style scoped>
+.home {
+	height: 500vw;
+	width: 100vw;
+}
+
+.my-atropos {
+	position: absolute;
+	width: 100vw;
+	top: 20rem;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-display {
+	top: 0;
+	width: 100%;
+}
+
+.waku {
+	position: absolute;
+	top: 100rem;
+}
+</style>

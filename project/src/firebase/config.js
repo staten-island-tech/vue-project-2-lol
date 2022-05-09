@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyA3cjv15n0IaoVQD-QTufHxdN2muHDkAmU",
 	authDomain: "vue-lol.firebaseapp.com",
+	databaseURL: "https://vue-lol-default-rtdb.firebaseio.com",
 	projectId: "vue-lol",
 	storageBucket: "vue-lol.appspot.com",
 	messagingSenderId: "256172203978",

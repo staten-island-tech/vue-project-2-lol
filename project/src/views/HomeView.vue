@@ -1,47 +1,57 @@
 <template>
   <div class="home">
-    <h1 class="intro">Welcome to Better.GG!</h1>
-    <h2 class="intro_sub">YOUR HUB TO IMPROVE YOUR LEAGUE PLAY</h2>
+    <video
+      class="home-display"
+      autoplay
+      loop
+      muted
+      playsinline
+      src="./displays/animated-season-2015.webm"
+    />
+    <atropos class="my-atropos">
+      <img
+        src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png"
+      />
+    </atropos>
   </div>
+  <kinesis-container event="scroll">
+    <kinesis-element tag="img" :strength="100" type="translate" axis="x" />
+  </kinesis-container>
 </template>
-
 <script>
-// @ is an alias to /src
-import { useStore } from "vuex";
+import Atropos from "atropos/vue";
 
 export default {
-  name: "HomeView",
-  setup() {
-    const store = useStore();
-
-    console.log(store.state.user);
-    return { store };
+  components: {
+    Atropos,
   },
+  setup() {},
 };
 </script>
-<style>
-@import url(../root.css);
-.home{
-  background: var(--Background-light
-  );
-}
-.intro {
-  display: block;
+
+<style scoped>
+.home {
+  height: 500vw;
   width: 100vw;
-  font-size: 15rem;
-  text-align: center;
-  font-weight: 900;
-  margin-bottom: 3rem;
-  color: var(--header);
-  -webkit-text-stroke: 0.3rem var(--supporting-text);
 }
-.intro_sub {
-  display: block;
+
+.my-atropos {
+  position: absolute;
   width: 100vw;
-  font-size: 4rem;
-  text-align: center;
-  font-weight: 900;
-  margin-bottom: 10rem;
-  color: var(--supporting-text);
+  top: 20rem;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-display {
+  top: 0;
+  width: 100%;
+}
+
+.waku {
+  position: absolute;
+  top: 100rem;
 }
 </style>

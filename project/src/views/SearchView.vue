@@ -2,17 +2,17 @@
 	<div class="search">
 		<form @submit.prevent="handleSubmit" class="form" id="form">
 			<h1 class="header">BETTER.GG</h1>
-			<input
-				id="summonerName"
-				type="text"
-				name="summoner"
-				v-model="summoner"
-				placeholder="Enter Summoner Name"
-				spellcheck="false"
-				autocomplete="off"
-				required
-			/>
-			<router-link novalidate to="/history" v-on:click="handleSubmit()" id="enterButton">Search</router-link>
+			<input id="summonerName" type="text" name="summoner" v-model="summoner" placeholder="Enter Summoner Name" spellcheck="false" autocomplete="off" required />
+			<button
+				novalidate
+				v-on:click="
+					handleSubmit();
+					toHistory();
+				"
+				id="enterButton"
+			>
+				Search
+			</button>
 		</form>
 	</div>
 </template>
@@ -24,7 +24,6 @@ import { useStore } from "vuex";
 export default {
 	setup() {
 		const summoner = ref("");
-
 		const store = useStore();
 
 		const searchName = computed(() => store.state.searchName);
@@ -35,33 +34,17 @@ export default {
 
 		return { handleSubmit, summoner, searchName };
 	},
+	methods: {
+		toHistory: function () {
+			if (this.searchName != undefined) {
+				this.$router.push({ name: "history" });
+			}
+		},
+	},
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@700&display=swap");
-
-html,
-body,
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-size: 62.5%;
-
-	font-family: "Roboto", sans-serif;
-}
-
-:root {
-	--main-bg-color: rgba(249, 251, 255, 01);
-	--search-box-color: #e3e5e9;
-	--error-message-color: #ff5148;
-}
-
-body {
-	background: var(--main-bg-color);
-}
-
+<style scoped>
 .form {
 	display: flex;
 	align-items: center;
@@ -69,7 +52,6 @@ body {
 	row-gap: 4rem;
 	font-size: 10rem;
 	justify-content: center;
-	height: 80vh;
 }
 
 .header {
@@ -85,10 +67,10 @@ body {
 	text-align: center;
 	outline: none;
 	padding: 3.5rem;
-	width: 130rem;
+	width: 100rem;
 	border: none;
 	border-radius: 1rem;
-	background-color: var(--search-box-color);
+	background-color: #e3e5e9;
 	font-weight: 500;
 	color: rgb(58, 58, 58);
 }

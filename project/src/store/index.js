@@ -26,6 +26,7 @@ const store = createStore({
     ChampList: [],
     searchValue: "",
     userChampName: "",
+    dbChamps: [],
   },
   mutations: {
     updateSummoner(state, name) {
@@ -45,10 +46,19 @@ const store = createStore({
     createChamp(state) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
-        champName: state.userChampName,
+        champName: state.userChampName + "LOL",
       });
       console.log("You ran function");
     },
+    readUserChamps(state) {
+      const db = getDatabase();
+      const userChamps = ref(db, "userChamps/");
+      onValue(userChamps, (data) => {
+        console.log(data);
+      });
+      console.log(state.dbChamps);
+    },
+
     writeUserData(state) {
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);

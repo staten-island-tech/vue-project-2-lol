@@ -19,9 +19,11 @@
 
         </form>
         
+        <div class="dbChamps">
 
+        </div>
 
-        <button class="filterB" @click="createChampion">Test</button>
+         
         <div class="filter">
 
             <button class="filterB" @click="filterNone" >All</button>
@@ -85,7 +87,7 @@ import ChampCard from "../components/ChampCard.vue"
             createChampion: function(){
               
                 this.store.commit("createChamp")
-                this.userChampName = " ";
+                this.store.commit("readUserChamps")
             },
              
              

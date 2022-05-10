@@ -2,11 +2,25 @@
     <div class="page">
 
       
-        <form action="" class="searchForm">
+        <form @submit.prevent="onSubmit" action="" class="searchForm">
             <input placeholder="Search Bar" type="text" class="searchBar" @input="updateSearchValue">
 
-            <a href="https://www.youtube.com/watch?v=ek-672uRnhQ"><img src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png" alt="LOL Icon"></a>
+            <button
+                @click="dyiChamp" >
+                <img src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png" alt="">
+            </button>
         </form>
+        
+        <form  @submit.prevent="onSubmit" class="searchForm"> 
+            <input type="text" placeholder="Champion Name" @input="updateChampName" v-model="userChampName" >
+            
+            <button @click="createChampion" >Submit to DB</button>
+
+
+        </form>
+        
+
+
         <button class="filterB" @click="createChampion">Test</button>
         <div class="filter">
 
@@ -41,11 +55,11 @@ import ChampCard from "../components/ChampCard.vue"
         setup(){
             const store = useStore();
             const DataList = store.state.ChampList
-        
-         
+            const champCreate = false
+
             return{
            
-                store,DataList,
+                store,DataList, champCreate,  userChampName: ""
                   
             }
             
@@ -63,11 +77,18 @@ import ChampCard from "../components/ChampCard.vue"
                  
              
             },
+            updateChampName( name){
+                this.store.commit("updateChampName", name.target.value)
+                 
+            },
 
             createChampion: function(){
-                this.store.commit("updateChampName", "Yasuo")
+              
                 this.store.commit("createChamp")
+                this.userChampName = " ";
             },
+             
+             
 
             filterNone: function(){
                 this.DataList = this.store.state.ChampList
@@ -152,6 +173,7 @@ import ChampCard from "../components/ChampCard.vue"
                 }
                 
             },
+            
             
          
 

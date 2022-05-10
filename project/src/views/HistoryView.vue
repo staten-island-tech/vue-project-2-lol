@@ -175,7 +175,7 @@ export default {
     const apiMatches = store.dispatch("getData");
     console.log(found.value);
 
-    store.state.numberOfMatches = 1;
+    store.state.numberOfMatches = 5;
 
     return {
       icon,
@@ -236,7 +236,13 @@ export default {
     },
     writeData() {
       this.store.commit("readUserData");
-      this.store.commit("writeUserData");
+      if (this.isActive) {
+        this.store.commit("writeUserData");
+      } else if (!this.isActive) {
+        console.log("ok");
+        this.store.commit("deleteUserData");
+      }
+
       this.store.commit("readUserData");
     },
     toggleButton() {

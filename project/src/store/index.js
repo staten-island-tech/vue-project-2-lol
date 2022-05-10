@@ -70,6 +70,24 @@ const store = createStore({
         }
       });
     },
+    deleteUserData(state) {
+      const db = getDatabase();
+      const userRef = ref(db, "users/" + state.user.uid);
+      onValue(userRef, (accounts) => {
+        const data = accounts.val().accounts;
+        state.accounts = data;
+        console.log(data);
+        if (data != null) {
+          if (data.includes(state.summonerName)) {
+            set(ref(db, "users/" + state.user.uid), {
+              accounts: data.filter(function (el) {
+                return el != state.summonerName;
+              }),
+            });
+          }
+        }
+      });
+    },
     readUserData(state) {
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);

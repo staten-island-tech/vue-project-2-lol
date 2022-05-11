@@ -54,7 +54,10 @@ const store = createStore({
       const db = getDatabase();
       const userChamps = ref(db, "userChamps/");
       onValue(userChamps, (data) => {
-        console.log(data);
+        const champ = data.val();
+        for (const champion in champ) {
+          state.dbChamps.push(champion.champName);
+        }
       });
       console.log(state.dbChamps);
     },

@@ -14,7 +14,9 @@
       />
     </atropos>
     <div class="website-info">
-    <h2 data-aos="flip-up">WHAT CAN YOU DO?</h2>
+    <h2 data-aos="flip-up"
+    data-aos-duration="800"
+    class="info-intro">WHAT CAN YOU DO?</h2>
     <p></p>      
     </div>
     <kinesis-container event="scroll">
@@ -40,6 +42,9 @@ export default {
 .website-info{
   font-size: 10vw;
 }
+.info-intro{
+  
+}
 .home {
   height: 500vw;
   width: 100vw;
@@ -59,6 +64,7 @@ export default {
 .home-display {
   top: 0;
   width: 100%;
+  filter:blur(5px);
 }
 
 .waku {

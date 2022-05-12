@@ -168,7 +168,7 @@ export default {
     const puuid = computed(() => store.state.puuid);
     const found = computed(() => store.state.accountInDatabase);
     const iconURL = () =>
-      `http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${icon.value}.png`;
+      `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${icon.value}.jpg?image=q_auto&image=q_auto,f_webp,w_auto&v=1652335123873`;
     let metaData = null;
 
     const readData = store.commit("readUserData");
@@ -236,11 +236,11 @@ export default {
     },
     writeData() {
       this.store.commit("readUserData");
-      if (this.isActive) {
-        this.store.commit("writeUserData");
-      } else if (!this.isActive) {
-        console.log("ok");
+      if (this.isActive === false) {
+        console.log(this.isActive);
         this.store.commit("deleteUserData");
+      } else if (this.isActive) {
+        this.store.commit("writeUserData");
       }
 
       this.store.commit("readUserData");

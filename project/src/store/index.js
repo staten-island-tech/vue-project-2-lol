@@ -66,10 +66,14 @@ const store = createStore({
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {
-        const data = accounts.val().accounts;
-        state.accounts = data;
-        console.log(data);
-        if (data === null) {
+        const data = accounts.val();
+        if (!data) {
+          state.accounts = [];
+        } else if (data) {
+          const acc = data.accounts;
+          state.accounts = acc;
+        }
+        if (data.length === 0) {
           set(ref(db, "users/" + state.user.uid), {
             accounts: [state.summonerName],
           });
@@ -87,11 +91,20 @@ const store = createStore({
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {
-        const data = accounts.val().accounts;
-        state.accounts = data;
-        console.log(data);
-        if (data != null) {
+        const data = accounts.val();
+        if (!data) {
+          state.accounts = [];
+        } else if (data) {
+          const acc = data.accounts;
+          state.accounts = acc;
+        }
+        if (data != []) {
           if (data.includes(state.summonerName)) {
+            console.log(
+              data.filter(function (el) {
+                return el != state.summonerName;
+              })
+            );
             set(ref(db, "users/" + state.user.uid), {
               accounts: data.filter(function (el) {
                 return el != state.summonerName;
@@ -105,8 +118,13 @@ const store = createStore({
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {
-        const data = accounts.val().accounts;
-        state.accounts = data;
+        const data = accounts.val();
+        if (!data) {
+          state.accounts = [];
+        } else if (data) {
+          const acc = data.accounts;
+          state.accounts = acc;
+        }
       });
     },
     searchedChamp(state, inputValue) {

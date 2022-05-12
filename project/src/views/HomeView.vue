@@ -39,11 +39,20 @@ export default {
 </script>
 
 <style scoped>
+@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
 .website-info{
-  font-size: 10vw;
+  font-family: "BeaufortforLOL-Bold";
+    background: #1f2833;
+    height: 100rem;
 }
 .info-intro{
-  
+  display: flex;
+  font-size: 8rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+ width: 110rem;
+  color: #c5c6c7;
 }
 .home {
   height: 500vw;

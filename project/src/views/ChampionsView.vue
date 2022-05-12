@@ -13,14 +13,18 @@
         
         <form  @submit.prevent="onSubmit" class="searchForm"> 
             <input type="text" placeholder="Champion Name" @input="updateChampName" v-model="userChampName" >
-            
+            <input type="text" placeholder="champion ability 1" v-model="ability1" >
+            <input type="text" placeholder="champion ability 2" v-model="ability2" >
             <button @click="createChampion" >Submit to DB</button>
 
 
         </form>
         
         <div class="dbChamps">
-
+            <div v-for="champion in this.store.state.dbChamps" :key="champion.champName" class="usered">
+                {{champion.champName}}  
+                {{champion.champData}}
+            </div>
         </div>
 
          
@@ -61,7 +65,7 @@ import ChampCard from "../components/ChampCard.vue"
 
             return{
            
-                store,DataList, champCreate,  userChampName: ""
+                store,DataList, champCreate,  userChampName: "", ability1:"", ability2:"",
                   
             }
             
@@ -79,14 +83,14 @@ import ChampCard from "../components/ChampCard.vue"
                  
              
             },
-            updateChampName( name){
-                this.store.commit("updateChampName", name.target.value)
+            updateChampName(  ){
+                this.store.commit("updateChampName", this.userChampName)
                  
             },
 
             createChampion: function(){
               
-                this.store.commit("createChamp")
+                this.store.commit("createChamp", this.ability1, this.ability2)
                 this.store.commit("readUserChamps")
             },
              
@@ -201,7 +205,9 @@ import ChampCard from "../components/ChampCard.vue"
         font-family: "BeaufortforLOL-Bold";
     }
   
-     
+    .dbChamps{
+        font-size: 4rem;
+    }
     .container{
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;

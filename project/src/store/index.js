@@ -43,10 +43,13 @@ const store = createStore({
     updateChampName(state, name) {
       state.userChampName = name;
     },
-    createChamp(state) {
+    createChamp(state, abil1, abil2) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
-        champName: state.userChampName + "LOL",
+        champName: state.userChampName,
+        champData: "hello",
+        abil1: abil1,
+        abil2: abil2,
       });
       console.log("You ran function");
     },
@@ -55,8 +58,9 @@ const store = createStore({
       const userChamps = ref(db, "userChamps/");
       onValue(userChamps, (data) => {
         const champ = data.val();
-        for (const champion in champ) {
-          state.dbChamps.push(champion.champName);
+        state.dbChamps = [];
+        for (const cd in champ) {
+          state.dbChamps.push(champ[cd]);
         }
       });
       console.log(state.dbChamps);

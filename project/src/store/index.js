@@ -85,12 +85,12 @@ const store = createStore({
           const acc = data.accounts;
           state.accounts = acc;
         }
-        if (data.length === 0) {
+        if (state.accounts.length === 0) {
           set(ref(db, "users/" + state.user.uid), {
             accounts: [state.summonerName],
           });
         } else {
-          if (!data.includes(state.summonerName)) {
+          if (!state.accounts.includes(state.summonerName)) {
             data.push(state.summonerName);
             set(ref(db, "users/" + state.user.uid), {
               accounts: data,
@@ -110,15 +110,15 @@ const store = createStore({
           const acc = data.accounts;
           state.accounts = acc;
         }
-        if (data != []) {
-          if (data.includes(state.summonerName)) {
+        if (state.accounts.length != 0) {
+          if (state.accounts.includes(state.summonerName)) {
             console.log(
-              data.filter(function (el) {
+              state.accounts.filter(function (el) {
                 return el != state.summonerName;
               })
             );
             set(ref(db, "users/" + state.user.uid), {
-              accounts: data.filter(function (el) {
+              accounts: state.accounts.filter(function (el) {
                 return el != state.summonerName;
               }),
             });

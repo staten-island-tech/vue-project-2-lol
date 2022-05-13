@@ -1,12 +1,14 @@
 <template>
     <div>
-        <h2>This is test</h2>
+        <create-champ/>
  
     </div>
 </template>
 
 <script>
+import createChamp from '../components/createChamp.vue'
     export default {
+  components: { createChamp },
       
     }
 </script>

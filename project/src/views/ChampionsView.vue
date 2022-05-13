@@ -10,22 +10,9 @@
                 <img src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png" alt="">
             </button>
         </form>
+       
         
-        <form  @submit.prevent="onSubmit" class="searchForm"> 
-            <input type="text" placeholder="Champion Name" @input="updateChampName" v-model="userChampName" >
-            <input type="text" placeholder="champion ability 1" v-model="ability1" >
-            <input type="text" placeholder="champion ability 2" v-model="ability2" >
-            <button @click="createChampion" >Submit to DB</button>
-
-
-        </form>
-        
-        <div class="dbChamps">
-            <div v-for="champion in this.store.state.dbChamps" :key="champion.champName" class="usered">
-                {{champion.champName}}  
-                {{champion.champData}}
-            </div>
-        </div>
+       
 
          
         <div class="filter">
@@ -65,7 +52,7 @@ import ChampCard from "../components/ChampCard.vue"
 
             return{
            
-                store,DataList, champCreate,  userChampName: "", ability1:"", ability2:"",
+                store,DataList, champCreate,    
                   
             }
             
@@ -83,16 +70,7 @@ import ChampCard from "../components/ChampCard.vue"
                  
              
             },
-            updateChampName(  ){
-                this.store.commit("updateChampName", this.userChampName)
-                 
-            },
-
-            createChampion: function(){
-              
-                this.store.commit("createChamp", this.ability1, this.ability2)
-                this.store.commit("readUserChamps")
-            },
+            
              
              
 

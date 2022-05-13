@@ -13,7 +13,8 @@ export default {
 	setup(){
 		const store = useStore(); 
 		const getChamps = store.dispatch("getChamps")
-		return{store, getChamps}
+		const getDB = store.commit("readUserChamps")
+		return{store, getChamps, getDB}
 	},
 	components: { NavbarComp },
 };

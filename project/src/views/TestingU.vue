@@ -1,7 +1,7 @@
 <template>
     <div>
         <create-champ/>
- 
+        
     </div>
 </template>
 

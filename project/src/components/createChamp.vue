@@ -6,6 +6,8 @@
            <div>
                <input type="text" id="title" placeholder="Champion Title" v-model="champTitle">
            </div>
+            <input type="image" placeholder="Champion Image" >
+
           <div class="abilities">
               <input id="abil" type="text" placeholder="Ability" v-model="abil1"  >
             <button @click="addAbility" class="plus"><img  src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-svg-png-icon-download-1.png" alt=""></button>
@@ -16,7 +18,9 @@
         </form>
 
         <div class="abilList">
-            {{returnDB}}
+           <div v-for="champion in this.store.state.dbChamps" :key="champion.champName">
+               <user-champ :name="champion.champName" :title="champion.title" :abilitylist="champion.abil1" />
+           </div>
         </div>
 
         
@@ -27,6 +31,7 @@
 
 <script>
 import {useStore } from "vuex";
+import userChamp from '../components/userChamp.vue'
     export default {
         setup(){
             const store = useStore();
@@ -34,8 +39,12 @@ import {useStore } from "vuex";
             return {store, abil1:"", userChampName:"",champTitle:"", abilities}
         },
         
-
+        components:{
+            userChamp
+        },
        methods:{
+         
+
          addAbility: function(){
              this.abilities.push(this.abil1);
              this.abil1 = "";
@@ -56,7 +65,8 @@ import {useStore } from "vuex";
            returnDB: function(){
                return this.store.state.dbChamps;
            }
-       } 
+       },
+    
     }
     
 </script>

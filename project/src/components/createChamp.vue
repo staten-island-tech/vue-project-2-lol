@@ -1,9 +1,11 @@
 <template>
     <div>
       
-        <form  @submit.prevent="onSubmit" > 
+        <form id="form" @submit.prevent="onSubmit" > 
             <div> <input id="name+" type="text" placeholder="Champion Name"   v-model="userChampName" ></div>
-           
+           <div>
+               <input type="text" id="title" placeholder="Champion Title" v-model="champTitle">
+           </div>
           <div class="abilities">
               <input id="abil" type="text" placeholder="Ability" v-model="abil1"  >
             <button @click="addAbility" class="plus"><img  src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-svg-png-icon-download-1.png" alt=""></button>
@@ -13,14 +15,11 @@
 
         </form>
 
-     
+        <div class="abilList">
+            {{returnDB}}
+        </div>
 
-       <div class="userMade">
-           <h2 v-for="made in this.store.state.dbChamps" :key="made.champName">
-               Name: {{made.champName}},
-               Abilities: {{made.abil1}}
-           </h2>
-       </div>
+        
    
       
     </div>
@@ -32,24 +31,31 @@ import {useStore } from "vuex";
         setup(){
             const store = useStore();
             const abilities = []
-            return {store, abil1:"", userChampName:"", abilities}
+            return {store, abil1:"", userChampName:"",champTitle:"", abilities}
         },
         
 
        methods:{
          addAbility: function(){
-             this.abilities = this.abilities.concat(this.abil1);
+             this.abilities.push(this.abil1);
              this.abil1 = "";
              document.getElementById("abil").value = "";
-
+            console.log(this.abilities)
          },
          createChampion: function(){
              this.store.commit("updateChampName", this.userChampName)
              this.store.commit("updateAbil1", this.abilities)
+             this.store.commit("updateTitle", this.champTitle)
              this.store.commit("createChamp")
-
-             document.getElementById("name+").value = "";
+             this.store.commit("readUserChamps")
+            document.getElementById("form").reset();
+            console.log(this.store.state.dbChamps)
          }
+       },
+       computed: {
+           returnDB: function(){
+               return this.store.state.dbChamps;
+           }
        } 
     }
     
@@ -93,5 +99,9 @@ img{
     text-align: center;
     vertical-align: middle;
    
+}
+.abilList{
+    font-size: 3rem;
+    text-align: center;
 }
 </style>

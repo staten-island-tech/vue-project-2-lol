@@ -28,6 +28,7 @@ const store = createStore({
     userChampName: "",
     dbChamps: [],
     abilities: "",
+    champTitle: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -47,11 +48,15 @@ const store = createStore({
     updateAbil1(state, name) {
       state.abilities = name;
     },
+    updateTitle(state, title) {
+      state.champTitle = title;
+    },
     createChamp(state) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
         champName: state.userChampName,
         abil1: state.abilities,
+        title: state.champTitle,
       });
       state.abilities = [];
 
@@ -66,7 +71,6 @@ const store = createStore({
         for (const cd in champ) {
           state.dbChamps.push(champ[cd]);
         }
-        console.log(state.dbChamps);
       });
     },
 

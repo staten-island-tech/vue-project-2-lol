@@ -21,9 +21,14 @@
 
 <style scoped>
     .card{
-        height: 80rem;
-        width: 65rem;
+        height: 35rem;
+        width: 25rem;
         font-size: 2rem;
+        text-align: center;
+        border: 1px solid red;
         background-color: lightblue;
+        margin: 2rem 2rem 2rem 2rem;
+     
+ 
     }
 </style>

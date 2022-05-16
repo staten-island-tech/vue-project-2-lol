@@ -6,7 +6,7 @@
            <div>
                <input type="text" id="title" placeholder="Champion Title" v-model="champTitle">
            </div>
-            <input type="image" placeholder="Champion Image" >
+            <input type="file" placeholder="Champion Image" >
 
           <div class="abilities">
               <input id="abil" type="text" placeholder="Ability" v-model="abil1"  >
@@ -17,11 +17,7 @@
 
         </form>
 
-        <div class="abilList">
-           <div v-for="champion in this.store.state.dbChamps" :key="champion.champName">
-               <user-champ :name="champion.champName" :title="champion.title" :abilitylist="champion.abil1" />
-           </div>
-        </div>
+       
 
         
    
@@ -31,7 +27,7 @@
 
 <script>
 import {useStore } from "vuex";
-import userChamp from '../components/userChamp.vue'
+// import userChamp from '../components/userChamp.vue'
     export default {
         setup(){
             const store = useStore();
@@ -39,9 +35,7 @@ import userChamp from '../components/userChamp.vue'
             return {store, abil1:"", userChampName:"",champTitle:"", abilities}
         },
         
-        components:{
-            userChamp
-        },
+ 
        methods:{
          
 
@@ -61,11 +55,11 @@ import userChamp from '../components/userChamp.vue'
             console.log(this.store.state.dbChamps)
          }
        },
-       computed: {
-           returnDB: function(){
-               return this.store.state.dbChamps;
-           }
-       },
+    //    computed: {
+    //        returnDB: function(){
+    //            return this.store.state.dbChamps;
+    //        }
+    //    },
     
     }
     
@@ -110,8 +104,5 @@ img{
     vertical-align: middle;
    
 }
-.abilList{
-    font-size: 3rem;
-    text-align: center;
-}
+
 </style>

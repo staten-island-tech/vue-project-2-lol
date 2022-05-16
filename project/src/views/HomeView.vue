@@ -16,8 +16,18 @@
     <div class="website-info">
     <h2 data-aos="flip-up"
     data-aos-duration="800"
-    class="info-intro">WHAT CAN YOU DO?</h2>
-    <p></p>      
+    class="info-intro">ON OUR WEBSITE YOU CAN...</h2>
+    <div class="funct">
+      <div class="info-box">
+         <h3>Research Champs</h3>
+      </div>
+      <div class="info-box">
+          <h3>Scount Your Opponents</h3>
+      </div>
+      <div class="info-box">
+         <h3>Save Your Favorite Players</h3>
+      </div>
+    </div>      
     </div>
     <kinesis-container event="scroll">
     <kinesis-element tag="img" :strength="100" type="translate" axis="x" />
@@ -53,13 +63,25 @@ export default {
   margin: auto;
  width: 110rem;
   color: #c5c6c7;
+  font-family: "BeaufortforLOL-Bold";
 }
 .home {
   height: 500vw;
   width: 100vw;
   overflow: hidden;
 }
-
+.funct{
+   color: #c5c6c7;
+   display:flex; 
+   justify-content: center;
+   align-items: center;
+   column-gap: 10rem;
+   margin: 5rem;
+}
+.info-box{
+  font-size: 6rem;
+  
+}
 .my-atropos {
   position: absolute;
   width: 100vw;

@@ -58,7 +58,6 @@ const store = createStore({
         abil1: state.abilities,
         title: state.champTitle,
       });
-      state.abilities = [];
 
       console.log("You ran function");
     },

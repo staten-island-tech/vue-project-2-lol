@@ -8,7 +8,7 @@
       playsinline
       src="./displays/animated-season-2015.webm"
     />
-    <atropos class="my-atropos">
+    <atropos id="my-atropos">
       <img
         src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png"
       />
@@ -77,6 +77,7 @@ h3, h2{
   height: 500vw;
   width: 100vw;
   overflow: hidden;
+  position: relative;
 }
 .funct{
   font-family: "BeaufortforLOL-Bold";
@@ -93,7 +94,7 @@ h3, h2{
   width: 50%;
   box-sizing: border-box;
 }
-.my-atropos {
+#my-atropos {
   position: absolute;
   width: 100vw;
   top: 20rem;

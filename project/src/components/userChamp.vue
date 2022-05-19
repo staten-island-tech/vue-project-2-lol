@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="card">
-            <img class="image" :src=imageurl alt="">
             <h2 class="name"> {{title}}  {{name}}</h2>
             <ul v-for="ability in abilitylist" :key="ability" >
                 {{ability}}
@@ -13,11 +12,9 @@
 <script>
     export default {
         props:{
-            imageurl: String,
             name: String,
             abilitylist: Array,
             title: String,
-
         }
     }
 </script>
@@ -32,12 +29,6 @@
         background-color: lightblue;
         margin: 2rem 2rem 2rem 2rem;
      
- 
-    }
-    .image{
-        margin-top: 2rem;
-        height: 15rem;
-        width: 15rem;
  
     }
 </style>

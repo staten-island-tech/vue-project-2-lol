@@ -19,13 +19,16 @@
     class="info-intro">ON OUR WEBSITE YOU CAN...</h2>
     <div class="funct">
       <div class="info-box">
-         <h3>Research Champs</h3>
+         <h3 class='subhead'>Research Champs</h3>
+         <p>Get all the stats and abilities for your favorite league champs</p>
       </div>
       <div class="info-box">
-          <h3>Scount Your Opponents</h3>
+          <h3 class="subhead">Scout Your Opponents</h3>
+          <p>Get a headstart on the competition by looking at your opponents profiles</p>
       </div>
       <div class="info-box">
-         <h3>Save Your Favorite Players</h3>
+         <h3 class="subhead">Save Your Favorite Players</h3>
+         <p>Like a player? Save their profile to your account to be able to check them at a moments notice</p>
       </div>
     </div>      
     </div>
@@ -48,8 +51,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+html, body *{
+  font-family: "BeaufortforLOL-Bold";
+}
+h3, h2{
+  color:#66fcf1;
+}
 .website-info{
   font-family: "BeaufortforLOL-Bold";
     background: #1f2833;
@@ -62,7 +71,6 @@ export default {
   justify-content: center;
   margin: auto;
  width: 110rem;
-  color: #c5c6c7;
   font-family: "BeaufortforLOL-Bold";
 }
 .home {
@@ -71,6 +79,7 @@ export default {
   overflow: hidden;
 }
 .funct{
+  font-family: "BeaufortforLOL-Bold";
    color: #c5c6c7;
    display:flex; 
    justify-content: center;
@@ -79,8 +88,10 @@ export default {
    margin: 5rem;
 }
 .info-box{
+  font-family: "BeaufortforLOL-Bold";
   font-size: 6rem;
-  
+  width: 50%;
+  box-sizing: border-box;
 }
 .my-atropos {
   position: absolute;

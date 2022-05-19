@@ -29,7 +29,6 @@ const store = createStore({
     dbChamps: [],
     abilities: "",
     champTitle: "",
-    imageurl: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -52,16 +51,12 @@ const store = createStore({
     updateTitle(state, title) {
       state.champTitle = title;
     },
-    updateIMG(state, imageurl) {
-      state.imageurl = imageurl;
-    },
     createChamp(state) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
         champName: state.userChampName,
         abil1: state.abilities,
         title: state.champTitle,
-        imageurl: state.imageurl,
       });
 
       console.log("You ran function");

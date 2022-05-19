@@ -4,9 +4,7 @@
 
 
             <div class="leftForm">
-                <input id="imageurl" type="text" class="image" v-model="imageurl"  >
- 
-
+                <input type="file" class="image" placeholder="Select Image"  >
             </div>
             <div class="rightForm">
                 <div class="sameLine">
@@ -24,20 +22,30 @@
                   <button @click="createChampion" >Submit to DB</button>
         </form>
 
+
+
+
+
+
+
+
+
+       
+
+        
+   
+      
     </div>
 </template>
 
 <script>
 import {useStore } from "vuex";
-
 // import userChamp from '../components/userChamp.vue'
     export default {
         setup(){
             const store = useStore();
             const abilities = []
-
-            
-            return {store, abil1:"", userChampName:"",champTitle:"", abilities, imageurl:"",}
+            return {store, abil1:"", userChampName:"",champTitle:"", abilities}
         },
         
  
@@ -55,11 +63,9 @@ import {useStore } from "vuex";
              this.store.commit("updateChampName", this.userChampName)
              this.store.commit("updateAbil1", this.abilities)
              this.store.commit("updateTitle", this.champTitle)
-             this.store.commit("updateIMG", this.imageurl)
              this.store.commit("createChamp")
               
              this.store.commit("readUserChamps")
-             console.log(this.imageurl)
             document.getElementById("form").reset();
             this.abilities = [];
             console.log(this.store.state.dbChamps)

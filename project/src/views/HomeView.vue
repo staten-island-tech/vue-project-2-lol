@@ -61,7 +61,6 @@ h3, h2{
 }
 .website-info{
   font-family: "BeaufortforLOL-Bold";
-    background: #1f2833;
     height: 100rem;
 }
 .info-intro{
@@ -70,14 +69,18 @@ h3, h2{
   align-items: center;
   justify-content: center;
   margin: auto;
- width: 110rem;
+  margin-top: 2rem;
+  width: 110rem;
   font-family: "BeaufortforLOL-Bold";
+  background: #1f2833;
+  border: #45a29e 3px solid;
 }
 .home {
   height: 500vw;
   width: 100vw;
   overflow: hidden;
   position: relative;
+  background: #0b0c10;
 }
 .funct{
   font-family: "BeaufortforLOL-Bold";
@@ -87,12 +90,20 @@ h3, h2{
    align-items: center;
    column-gap: 10rem;
    margin: 5rem;
+
 }
 .info-box{
   font-family: "BeaufortforLOL-Bold";
   font-size: 6rem;
   width: 50%;
   box-sizing: border-box;
+  border: #45a29e 5px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #1f2833;
 }
 #my-atropos {
   position: absolute;

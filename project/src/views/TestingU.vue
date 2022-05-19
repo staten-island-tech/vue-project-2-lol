@@ -1,11 +1,12 @@
 <template>
     <div>
-        <create-champ/>
 
+        <create-champ/>
+ 
 
          <div class="abilList">
            <div v-for="champion in this.store.state.dbChamps" :key="champion.champName">
-               <user-champ :name="champion.champName" :title="champion.title" :abilitylist="champion.abil1" />
+               <user-champ :name="champion.champName" :title="champion.title" :abilitylist="champion.abil1" :imageurl="champion.imageurl" />
            </div>
         </div>
  
@@ -14,6 +15,7 @@
 
 <script>
 import createChamp from '../components/createChamp.vue'
+ 
 import UserChamp from '../components/userChamp.vue'
 import {useStore} from "vuex"
     export default {
@@ -25,7 +27,7 @@ import {useStore} from "vuex"
         },
         
         
-  components: { createChamp, UserChamp },
+  components: { createChamp, UserChamp,  },
       
     }
 </script>

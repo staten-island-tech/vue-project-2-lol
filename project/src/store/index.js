@@ -27,8 +27,9 @@ const store = createStore({
     searchValue: "",
     userChampName: "",
     dbChamps: [],
-    abilities: "",
+    description: "",
     champTitle: "",
+    imageURL: "",
   },
   mutations: {
     updateSummoner(state, name) {
@@ -42,21 +43,20 @@ const store = createStore({
     setAuthIsReady(state, payload) {
       state.authIsReady = payload;
     },
-    updateChampName(state, name) {
-      state.userChampName = name;
+    updateChamp(state, payload) {
+      state.userChampName = payload["name"];
+      state.champTitle = payload["title"];
+      state.description = payload["description"];
+      state.imageURL = payload["image"];
     },
-    updateAbil1(state, name) {
-      state.abilities = name;
-    },
-    updateTitle(state, title) {
-      state.champTitle = title;
-    },
+
     createChamp(state) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
         champName: state.userChampName,
-        abil1: state.abilities,
+        description: state.description,
         title: state.champTitle,
+        imageURL: state.imageURL,
       });
 
       console.log("You ran function");

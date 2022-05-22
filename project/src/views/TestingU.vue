@@ -5,7 +5,7 @@
 
          <div class="abilList">
            <div v-for="champion in this.store.state.dbChamps" :key="champion.champName">
-               <user-champ :name="champion.champName" :title="champion.title" :abilitylist="champion.abil1" />
+               <user-champ  :imageURL="champion.imageURL"  :name="champion.champName" :title="champion.title" :description="champion.description" />
            </div>
         </div>
  
@@ -41,6 +41,7 @@ import {useStore} from "vuex"
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    color: black;
   
 }
 </style>

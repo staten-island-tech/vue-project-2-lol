@@ -14,7 +14,7 @@
 				class="favorite-button"
 			>
 				<span v-if="found" :class="[isActive ? 'found-disabled-empty' : 'found-active']">&#9734;</span>
-				<span @click="deleteData()" v-if="found" :class="[isActive ? 'found-active' : 'found-disabled']">&#9733;</span>
+				<span v-if="found" :class="[isActive ? 'found-active' : 'found-disabled']">&#9733;</span>
 				<span v-if="!found" :class="[isActive ? 'nfound-active' : 'nfound-disabled']">&#9734;</span
 				><span v-if="!found" :class="[isActive ? 'nfound-disabled-full' : 'nfound-active']">&#9733;</span>
 			</button>
@@ -174,10 +174,6 @@ export default {
 		writeData() {
 			this.store.commit("readUserData");
 			this.store.commit("writeUserData");
-			this.store.commit("readUserData");
-		},
-		deleteData() {
-			this.store.commit("deleteUserData");
 			this.store.commit("readUserData");
 		},
 		toggleButton() {

@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import { auth } from "../firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, remove } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const store = createStore({
 	state: {
@@ -59,11 +59,6 @@ const store = createStore({
 				const data = accounts.val().accounts;
 				state.accounts = data;
 			});
-		},
-		deleteUserData(state) {
-			const db = getDatabase().getInstance;
-			const userRef = ref(db, "users/" + state.user.uid + "/accounts" + state.summonerName);
-			remove(userRef);
 		},
 	},
 	actions: {

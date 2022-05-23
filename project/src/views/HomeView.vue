@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<video class="home-display" autoplay loop muted playsinline src="./displays/animated-season-2015.webm" />
+		<video class="home-display" autoplay loop muted playsinline src="./displays/5.webm" />
 		<atropos class="my-atropos">
 			<img src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png" />
 		</atropos>
@@ -14,6 +14,13 @@ export default {
 		Atropos,
 	},
 	setup() {},
+	methods: {
+		randomNumGen() {
+			const num = Math.floor(Math.random() * 9);
+			const url = "./displays/" + num + ".webm";
+			return url;
+		},
+	},
 };
 </script>
 

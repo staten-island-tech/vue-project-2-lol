@@ -16,20 +16,27 @@
     <div class="website-info">
     <h2 data-aos="flip-up"
     data-aos-duration="800"
+    data-aos-delay="300"
     class="info-intro">ON OUR WEBSITE YOU CAN...</h2>
     <div class="funct">
-      <div class="info-box">
+      <div class="info-box" data-aos="fade-right" data-aos-delay="400">
+        <img class="image" src="../home/book-and-pen.png" alt="book and pen" >
          <h3 class='subhead'>Research Champs</h3>
          <p>Get all the stats and abilities for your favorite league champs</p>
       </div>
-      <div class="info-box">
+    <div class ="filler"></div>
+    <div class ="filler"></div>
+      <div class="info-box" data-aos="fade-left" data-aos-delay="400">
+          <img class="image" src="../home/binoculars.png" alt="binoculars" >
           <h3 class="subhead">Scout Your Opponents</h3>
           <p>Get a headstart on the competition by looking at your opponents profiles</p>
       </div>
-      <div class="info-box">
+      <div class="info-box" data-aos="fade-right" data-aos-delay="400">
+         <img class="image" src="../home/star.png" alt="star" >
          <h3 class="subhead">Save Your Favorite Players</h3>
          <p>Like a player? Save their profile to your account to be able to check them at a moments notice</p>
       </div>
+      <div class ="filler"></div>
     </div>      
     </div>
     <kinesis-container event="scroll">
@@ -58,6 +65,11 @@ html, body *{
 }
 h3, h2{
   color:#66fcf1;
+}
+.image{
+  width:25%;
+  height: auto;
+  filter: invert(95%) sepia(91%) saturate(615%) hue-rotate(94deg) brightness(99%) contrast(100%);
 }
 .website-info{
   font-family: "BeaufortforLOL-Bold";
@@ -90,12 +102,19 @@ h3, h2{
    align-items: center;
    column-gap: 10rem;
    margin: 5rem;
-
+   flex-wrap: wrap;
+  
+   }
+.filler{
+  width:50%;
+  height: 320px;
+  filter: invert(56%) sepia(55%) saturate(383%) hue-rotate(128deg) brightness(90%) contrast(89%);
 }
 .info-box{
   font-family: "BeaufortforLOL-Bold";
   font-size: 6rem;
-  width: 50%;
+  width: 25%;
+  height: 320px;
   box-sizing: border-box;
   border: #45a29e 5px solid;
   display: flex;
@@ -104,6 +123,7 @@ h3, h2{
   justify-content: center;
   text-align: center;
   background: #1f2833;
+  margin-top: 5rem;
 }
 #my-atropos {
   position: absolute;

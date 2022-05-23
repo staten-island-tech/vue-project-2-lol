@@ -107,14 +107,14 @@ h3, h2{
    }
 .filler{
   width:50%;
-  height: 320px;
+  height: 350px;
   filter: invert(56%) sepia(55%) saturate(383%) hue-rotate(128deg) brightness(90%) contrast(89%);
 }
 .info-box{
   font-family: "BeaufortforLOL-Bold";
   font-size: 6rem;
   width: 25%;
-  height: 320px;
+  height: 350px;
   box-sizing: border-box;
   border: #45a29e 5px solid;
   display: flex;

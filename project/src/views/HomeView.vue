@@ -64,12 +64,12 @@ html, body *{
   font-family: "BeaufortforLOL-Bold";
 }
 h3, h2{
-  color:#66fcf1;
+  color:#D7C178;
 }
 .image{
   width:25%;
   height: auto;
-  filter: invert(95%) sepia(91%) saturate(615%) hue-rotate(94deg) brightness(99%) contrast(100%);
+  filter: invert(83%) sepia(25%) saturate(637%) hue-rotate(4deg) brightness(93%) contrast(84%);
 }
 .website-info{
   font-family: "BeaufortforLOL-Bold";

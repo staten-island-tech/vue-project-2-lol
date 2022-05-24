@@ -82,6 +82,7 @@ const store = createStore({
           state.accounts = [];
         } else if (data) {
           const acc = data.accounts;
+          console.log(acc);
           state.accounts = acc;
         }
         if (state.accounts.length === 0) {
@@ -89,10 +90,13 @@ const store = createStore({
             accounts: [state.summonerName],
           });
         } else {
+          console.log(state.accounts);
           if (!state.accounts.includes(state.summonerName)) {
-            data.push(state.summonerName);
+            const acc = data.accounts;
+            state.accounts = acc;
+            acc.push(state.summonerName);
             set(ref(db, "users/" + state.user.uid), {
-              accounts: data,
+              accounts: acc,
             });
           }
         }
@@ -126,14 +130,17 @@ const store = createStore({
       });
     },
     readUserData(state) {
+      console.log("read");
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
       onValue(userRef, (accounts) => {
         const data = accounts.val();
+        console.log(data);
         if (!data) {
           state.accounts = [];
         } else if (data) {
           const acc = data.accounts;
+          console.log(acc);
           state.accounts = acc;
         }
       });
@@ -181,6 +188,7 @@ const store = createStore({
     },
     logAccountData(store) {
       store.state.accountData = [];
+      console.log(store.state.accounts);
       store.state.accounts.forEach(function (account) {
         async function storeData() {
           try {

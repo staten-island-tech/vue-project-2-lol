@@ -6,13 +6,11 @@
       loop
       muted
       playsinline
-      src="./displays/2.webm"
-      alt="video"
+      src="./displays/animated-season-2015.webm"
     />
     <atropos id="my-atropos">
       <img
         src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png"
-        alt="League Logo"
       />
     </atropos>
     <div class="website-info">

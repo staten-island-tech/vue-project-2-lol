@@ -35,13 +35,13 @@ import {useStore} from "vuex"
         font-size: 2rem;
     }
     .abilList{
-    font-size: 3rem;
-    margin: auto;
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    color: black;
-  
-}
+        display: flex;
+        width: 90%;
+        flex-wrap: wrap;
+     
+        justify-content: space-around;
+
+        margin: auto;
+    }   
+    
 </style>

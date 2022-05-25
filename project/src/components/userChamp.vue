@@ -29,32 +29,31 @@
 
 <style scoped>
     .card{
-        width: 35rem;
-        height: 25rem;
-        font-size: 2rem;
-        text-align: center;
-        border: 1px solid red;
-        background-color: lightblue;
-        margin: 2rem 2rem 2rem 2rem;
-        color:black;
-        padding-top: 2rem;
         display: flex;
-  
-        
-      
-     
- 
-    }
-    img{
-        height: 100%;
-        width: 100%;
-    }
-    
-    .left{
-        width: 30%;
+        width: 90rem;
+        background-color: lightcoral;
+        border: 1px solid black;
+        height: 40rem;
 
     }
-    .right{
-        width: 70%;
+    img{
+        width: 100%;
+    height: 100%; 
+    object-fit: contain;
+
     }
+    .left{
+        width: 70%;
+        object-fit:scale-down;
+        
+    }
+    .right{
+        width: 30%;
+        font-size: 3rem;
+    }
+    .name{
+        font-size: 4rem;
+    }
+    
+    
 </style>

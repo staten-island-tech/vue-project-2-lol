@@ -1,25 +1,27 @@
 <template>
-	<div class="user">
-		<button
-			v-for="{ icon, level, name } in accountData"
-			:key="name"
-			v-on:click="
-				handleSubmit(name);
-				toHistory();
-			"
-			class="user-button"
-		>
-			<div>
-				<div>{{ name }}</div>
-				<div class="account-icon">
-					<img :src="`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${icon}.png`" />
-				</div>
-				<div class="account-level">
-					<span>Level {{ level }}</span>
-				</div>
-			</div>
-		</button>
-	</div>
+  <div class="user">
+    <button
+      v-for="{ icon, level, name } in accountData"
+      :key="name"
+      v-on:click="
+        handleSubmit(name);
+        toHistory();
+      "
+      class="user-button"
+    >
+      <div>
+        <div>{{ name }}</div>
+        <div class="account-icon">
+          <img
+            :src="`https://opgg-static.akamaized.net/images/profile_icons/profileIcon${icon}.jpg?image=q_auto&image=q_auto,f_webp,w_auto&v=1652335123873`"
+          />
+        </div>
+        <div class="account-level">
+          <span>Level {{ level }}</span>
+        </div>
+      </div>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -27,54 +29,54 @@ import { toRaw } from "vue";
 import { useStore } from "vuex";
 
 export default {
-	setup() {
-		const store = useStore();
-		
-		const accountData = toRaw(store.state.accountData);
-		store.dispatch("logAccountData");
-		console.log(accountData);
+  setup() {
+    const store = useStore();
 
-		const handleSubmit = async name => {
-			store.commit("updateSummoner", name);
-		};
+    const accountData = toRaw(store.state.accountData);
+    store.dispatch("logAccountData");
+    console.log(accountData);
 
-		return {
-			store,
-			accountData,
-			handleSubmit,
-		};
-	},
-	methods: {
-		toHistory: function () {
-			this.$router.push({ name: "history" });
-		},
-	},
+    const handleSubmit = async (name) => {
+      store.commit("updateSummoner", name);
+    };
+
+    return {
+      store,
+      accountData,
+      handleSubmit,
+    };
+  },
+  methods: {
+    toHistory: function () {
+      this.$router.push({ name: "history" });
+    },
+  },
 };
 </script>
 
 <style scoped>
 .user {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: center;
-	margin: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5rem;
 }
 
 .user-button {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 22rem;
-	height: 22rem;
-	margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 22rem;
+  height: 22rem;
+  margin: 2rem;
 }
 
 img {
-	width: 15rem;
-	height: 15rem;
-	border-radius: 10rem;
-	margin: 1rem;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 10rem;
+  margin: 1rem;
 }
 </style>

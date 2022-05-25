@@ -223,4 +223,9 @@ button {
   margin: 0;
   padding: 0;
 }
+@media (max-width: 420px){
+  .splashImg{
+    width: 100vw;
+  }
+}
 </style>

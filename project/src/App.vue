@@ -34,4 +34,7 @@ body,
 	font-size: 62.5%;
 	font-family: "Roboto", sans-serif;
 }
+@media (max-width: 420px){
+	
+}
 </style>

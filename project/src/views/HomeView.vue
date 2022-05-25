@@ -6,10 +6,10 @@
       loop
       muted
       playsinline
-      src="./displays/animated-season-2015.webm"
+      src="./displays/2.webm"
     />
     <atropos id="my-atropos">
-      <img
+      <img class="logo"
         src="https://www.leagueoflegends.com/static/logo-1200-589b3ef693ce8a750fa4b4704f1e61f2.png"
       />
     </atropos>
@@ -39,9 +39,6 @@
       <div class ="filler"></div>
     </div>      
     </div>
-    <kinesis-container event="scroll">
-    <kinesis-element tag="img" :strength="100" type="translate" axis="x" />
-  </kinesis-container>
   </div>
 </template>
 
@@ -144,5 +141,56 @@ h3, h2{
 .waku {
   position: absolute;
   top: 100rem;
+}
+@media (max-width: 420px){
+  .logo{
+    width: 300px;
+  }
+  #my-atropos{
+    top: 20rem;
+  }
+ video{
+   height: 550px;
+   object-fit: fill;
+ }
+  .info-intro{
+    font-size: 3rem;
+    width: 40rem;
+  }
+  .info-box{
+    width: 100%;
+    height: 45rem;
+  }
+  .filler{
+    width: 0%;
+    height: 0%;
+  }
+}
+@media (max-width: 1100px){
+   .logo{
+    width: 80rem;
+  }
+  .funct{
+    margin: 0rem;
+  }
+  .info-intro{
+    width: 100rem;
+    font-size: 6rem;
+    margin: 5rem;
+  }
+  video{
+    width: 80rem;
+    object-fit: fill;
+  }
+   #my-atropos{
+   top: 15rem;
+  }
+  .info-box{
+    width:50%;
+  }
+  .filler{
+    width: 0%;
+    height: 0%;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<div class="search">
 		<form @submit.prevent="handleSubmit" class="form" id="form">
-			<h1 class="header">BETTER.GG</h1>
+			<h1 class="heading">BETTER.GG</h1>
 			<input id="summonerName" type="text" name="summoner" v-model="summoner" placeholder="Enter Summoner Name" spellcheck="false" autocomplete="off" required />
 			<button
 				novalidate
@@ -54,7 +54,7 @@ export default {
 	justify-content: center;
 }
 
-.header {
+.heading {
 	display: block;
 	width: 100vw;
 	font-size: 15rem;
@@ -136,5 +136,22 @@ export default {
 	text-align: center;
 	font-weight: 400;
 	color: #74767c;
+}
+@media (max-width: 420px) {
+  .heading {
+    font-size: 5rem;
+  }
+  #summonerName {
+	margin-left:-10%;
+    font-size: 3rem;
+	width: 100vw;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .form {
+    margin-left: 8%;
+  }
 }
 </style>

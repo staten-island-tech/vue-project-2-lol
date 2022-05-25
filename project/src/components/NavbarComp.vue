@@ -54,6 +54,7 @@ export default {
   align-items: center;
   padding: 3rem;
   justify-content: space-around;
+  width: 100%;
 }
 
 nav a {
@@ -90,5 +91,14 @@ nav a.router-link-exact-active {
 
 .logout:hover {
   color: #ffd700;
+}
+@media (max-width: 420px){
+  nav a{
+    padding: 0rem;
+    font-size: 1.5rem;
+  }
+  .navbar{
+    padding: 4rem;
+  }
 }
 </style>

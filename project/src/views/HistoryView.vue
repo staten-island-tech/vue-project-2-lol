@@ -171,7 +171,7 @@ export default {
       `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${icon.value}.jpg?image=q_auto&image=q_auto,f_webp,w_auto&v=1652335123873`;
     let metaData = null;
 
-    const readData = store.commit("readUserData");
+    //const readData = store.commit("readUserData");
     const apiMatches = store.dispatch("getData");
     console.log(found.value);
 
@@ -179,7 +179,6 @@ export default {
 
     return {
       icon,
-      readData,
       found,
       name,
       summonerData,
@@ -512,5 +511,62 @@ img.profile {
 
 .timeSpentDead {
   float: right;
+}
+
+@media (max-width: 420px) {
+  body {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .matchHistory-data {
+    font-size: -10%;
+    width: 100vw;
+  }
+  .matchHistoryDataSetMid {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .summonerInfo {
+    margin-left: 20rem;
+    width: 100vw;
+  }
+  img.profile {
+    margin: 1rem;
+    width: 10rem;
+  }
+  .profile {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 1250px) {
+  body {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .matchHistory-data {
+    font-size: -10%;
+    width: 100vw;
+  }
+  .matchHistoryDataSetMid {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .summonerInfo {
+    margin-left: 30%;
+    width: 100vw;
+  }
+  img.profile {
+    margin: 1rem;
+    width: 10rem;
+  }
+  .profile {
+    font-size: 3rem;
+  }
 }
 </style>

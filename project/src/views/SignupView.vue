@@ -101,4 +101,14 @@ form {
 	transform: scale(0.95);
 	transition-duration: 0.1s;
 }
+@media(max-width: 420px){
+	.form{
+		width:100vw;
+		padding: 0rem;
+	}
+	.email,
+.password{
+	width:95vw;
+}
+}
 </style>

@@ -231,4 +231,20 @@ export default {
   border-top: 0.5rem blue solid;
   border-bottom: 0.5rem blue solid;
 }
+@media (max-width: 420px){
+  .thediv{
+    width:100%;
+  }
+  .container{
+    width: 80%;
+  }
+}
+@media (max-width: 1100px){
+  .thediv{
+    width:50%;
+  }
+  .container{
+    width: 60%;
+  }
+}
 </style>

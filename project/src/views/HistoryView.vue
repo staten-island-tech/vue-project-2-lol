@@ -171,7 +171,7 @@ export default {
       `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${icon.value}.jpg?image=q_auto&image=q_auto,f_webp,w_auto&v=1652335123873`;
     let metaData = null;
 
-    const readData = store.commit("readUserData");
+    
     const apiMatches = store.dispatch("getData");
     console.log(found.value);
 
@@ -179,7 +179,6 @@ export default {
 
     return {
       icon,
-      readData,
       found,
       name,
       summonerData,

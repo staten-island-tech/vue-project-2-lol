@@ -82,7 +82,7 @@ export default {
   },
   computed: {
     getSplash: function () {
-      return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`;
+      return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.Results.id}_0.jpg`;
     },
   },
   methods: {
@@ -98,7 +98,7 @@ export default {
 
   async mounted() {
     await fetch(
-      `http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/${this.$route.params.name}.json`
+      `https://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/${this.$route.params.name}.json`
     )
       .then((res) => res.json())
       .then((data) => (this.Results = data.data));

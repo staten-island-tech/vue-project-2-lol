@@ -36,6 +36,7 @@ export default {
 
     const readUsers = () => {
       store.commit("readUserData");
+      store.commit("updateStar");
     };
 
     return {
@@ -92,12 +93,12 @@ nav a.router-link-exact-active {
 .logout:hover {
   color: #ffd700;
 }
-@media (max-width: 420px){
-  nav a{
+@media (max-width: 420px) {
+  nav a {
     padding: 0rem;
     font-size: 1.5rem;
   }
-  .navbar{
+  .navbar {
     padding: 4rem;
   }
 }

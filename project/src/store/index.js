@@ -30,6 +30,7 @@ const store = createStore({
     description: "",
     champTitle: "",
     imageURL: "",
+    found: false,
   },
   mutations: {
     updateSummoner(state, name) {
@@ -49,7 +50,9 @@ const store = createStore({
       state.description = payload["description"];
       state.imageURL = payload["image"];
     },
-
+    foundUpdate(state) {
+      state.found = !state.found;
+    },
     createChamp(state) {
       const db = getDatabase();
       set(ref(db, "userChamps/" + state.userChampName), {
@@ -57,7 +60,7 @@ const store = createStore({
         description: state.description,
         title: state.champTitle,
         imageURL: state.imageURL,
-        author: state.user.uid
+        author: state.user.uid,
       });
 
       console.log("You ran function");
@@ -73,7 +76,15 @@ const store = createStore({
         }
       });
     },
-
+    updateStar(state) {
+      if (state.found != state.accountInDatabase) {
+        if (state.found) {
+          this.commit("writeUserData");
+        } else {
+          this.commit("deleteUserData");
+        }
+      }
+    },
     writeUserData(state) {
       const db = getDatabase();
       const userRef = ref(db, "users/" + state.user.uid);
@@ -231,6 +242,7 @@ const store = createStore({
           store.state.summonerName = name;
           console.log(store.state.summonerName);
           store.state.accountInDatabase = false;
+          store.state.found = false;
 
           const accounts = store.state.accounts;
           console.log(accounts);
@@ -239,6 +251,7 @@ const store = createStore({
             if (accounts[i] === name) {
               console.log("found");
               store.state.accountInDatabase = true;
+              store.state.found = true;
             }
           }
 

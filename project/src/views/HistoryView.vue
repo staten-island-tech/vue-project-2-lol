@@ -245,6 +245,7 @@ export default {
       this.store.commit("readUserData");
     },
     toggleButton() {
+      this.store.commit("foundUpdate");
       this.isActive = !this.isActive;
     },
   },

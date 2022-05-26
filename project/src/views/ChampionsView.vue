@@ -8,12 +8,7 @@
         @input="updateSearchValue"
       />
 
-      <button @click="dyiChamp">
-        <img
-          src="https://freepngimg.com/download/league_of_legends/85646-and-league-legends-riot-icons-of-computer.png"
-          alt=""
-        />
-      </button>
+     
     </form>
 
     <div class="filter">

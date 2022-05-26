@@ -214,7 +214,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: grey;
+ 
 }
 .passive {
   font-size: 2rem;

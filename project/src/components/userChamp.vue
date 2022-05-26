@@ -12,6 +12,7 @@
                 <h2>{{description}}</h2>
 
             </div>
+            
         </div>
     </div>
 </template>
@@ -23,6 +24,7 @@
             name: String,
             description: String,
             title: String,
+            
         }
     }
 </script>
@@ -33,18 +35,23 @@
         width: 90rem;
         background-color: lightcoral;
         border: 1px solid black;
-        height: 40rem;
+        height: 50rem;
+        border-radius: 8px;
+        margin-top: 5rem;
 
     }
     img{
         width: 100%;
     height: 100%; 
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 8px;
+    
 
     }
     .left{
-        width: 70%;
+        width: 65%;
         object-fit:scale-down;
+        border-radius: 8px;
         
     }
     .right{

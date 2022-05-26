@@ -57,6 +57,7 @@ const store = createStore({
         description: state.description,
         title: state.champTitle,
         imageURL: state.imageURL,
+        author: state.user.uid
       });
 
       console.log("You ran function");

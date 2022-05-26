@@ -42,6 +42,7 @@ import {useStore} from "vuex"
         justify-content: space-around;
 
         margin: auto;
+        padding-bottom: 4rem;
     }   
     
 </style>

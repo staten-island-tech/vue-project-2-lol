@@ -21,6 +21,7 @@
                 <div class="Description">
                     <textarea id="textarea" cols="30" rows="10" maxlength="400" placeholder="Description (400 Char Max)" v-model="description"  ></textarea>
                 </div>
+               
             
                 <button class="submit" @click="createChampion">Submit</button>
             </div>
@@ -40,13 +41,21 @@ import {useStore } from "vuex";
             const store = useStore();
             const abilities = []
             const imageURL = null
-            return {store, description:"", userChampName:"",champTitle:"", abilities, imageURL}
+            const error = ""
+            return {store, description:"", userChampName:"",champTitle:"", abilities, imageURL, error}
         },
         
  
        methods:{
            createChampion(){
-               this.store.commit("updateChamp", {name: this.userChampName, title:this.champTitle ,description:this.description, image: this.imageURL})
+               if(this.userChampName.trim().length < 1){
+                
+                   alert("Enter Valid Name")
+                   this.$refs.form.reset();
+                   this.imageURL = null;
+                   return 0
+               }
+               this.store.commit("updateChamp", {name: this.userChampName, title:this.champTitle ,description:this.description, image: this.imageURL, })
                
             this.store.commit("createChamp")
             this.$refs.form.reset();
@@ -61,7 +70,8 @@ import {useStore } from "vuex";
                 const files = event.target.files
                 let filename = files[0].name
                 if(filename.lastIndexOf('.') <= 0){
-                    return alert("Please Add Valid Image")
+                     alert("Please Add Valid Image")
+                     return 0
                 }
                 const fileReader = new FileReader()
                 fileReader.addEventListener("load", () => {
@@ -95,6 +105,7 @@ import {useStore } from "vuex";
         //     console.log(this.store.state.dbChamps)
         //  }
        },
+     
   
     }
     

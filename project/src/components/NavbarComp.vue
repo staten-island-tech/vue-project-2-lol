@@ -6,7 +6,7 @@
           <router-link to="/">Home</router-link> |
           <router-link to="/search">Search</router-link>
           <router-link to="/Champions">Champions</router-link>
-          <router-link to="/Create">Create</router-link>
+          <router-link v-if="user" to="/Create">Create</router-link>
         </div>
         <div v-if="user" class="right">
           <router-link @click="readUsers" to="user">User</router-link> |

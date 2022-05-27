@@ -1,6 +1,6 @@
 <template>
     <div>
-        <create-champ/>
+        <create-champ class="create"/>
 
 
          <div class="abilList">
@@ -44,5 +44,5 @@ import {useStore} from "vuex"
         margin: auto;
         padding-bottom: 4rem;
     }   
-    
+  
 </style>

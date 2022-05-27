@@ -60,6 +60,40 @@
     }
     .name{
         font-size: 4rem;
+    }  
+
+      
+    
+
+    @media (max-width: 1000px){
+        .card{
+            width: 60rem;
+            height: 33rem;
+   
+        }
+        .name{
+            font-size: 2.5rem;
+
+        }
+        h2{
+            font-size: 1.5rem;
+        }
+
+    }
+    @media (max-width: 650px){
+        .card{
+            width: 37rem;
+            height: 20rem;
+           
+        }
+        .name{
+            font-size: 1.5rem;
+
+        }
+        h2{
+            font-size: 1rem;
+        }
+
     }
     
     

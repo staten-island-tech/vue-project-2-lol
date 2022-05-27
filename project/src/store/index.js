@@ -190,7 +190,7 @@ const store = createStore({
       async function getChar() {
         try {
           const Characters = await fetch(
-            "http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json"
+            "https://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json"
           ).then((res) => res.json());
           console.log(Characters.data);
           for (const Champ in Characters.data) {

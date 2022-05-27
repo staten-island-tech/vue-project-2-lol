@@ -4,26 +4,26 @@
             <h2>
                 Create Your Champion
             </h2>
-            <button class="submit" @click="asdf">asdf</button>
+
             <div class="container">
                 <div class="image">
-                    <button class="submit" @click="pickFile" >Upload Image</button>
+                    <button class="submit input" @click="pickFile" >Upload Image</button>
                    
-                    <input style="display:none" type="file" ref="image" accept="image/*" @change="onFilePicked" >
+                    <input class="input" style="display:none" type="file" ref="image" accept="image/*" @change="onFilePicked" >
                 </div>
               
                 <div class="Name">
-                    <input type="text" placeholder="Champion Name"  v-model="userChampName"   >
+                    <input class="input" type="text" placeholder="Champion Name"  v-model="userChampName"   >
                 </div>
                 <div class="Title">
-                    <input type="text" placeholder="Champion Title"  v-model="champTitle"   >
+                    <input  class="input" type="text" placeholder="Champion Title"  v-model="champTitle"   >
                 </div>
                 <div class="Description">
-                    <textarea id="textarea" cols="30" rows="10" maxlength="400" placeholder="Description (400 Char Max)" v-model="description"  ></textarea>
+                    <textarea class="input" id="textarea" cols="30" rows="10" maxlength="400" placeholder="Description (400 Char Max)" v-model="description"  ></textarea>
                 </div>
                
             
-                <button class="submit" @click="createChampion">Submit</button>
+                <button class="submit input" @click="createChampion">Submit</button>
             </div>
 
            
@@ -79,9 +79,8 @@ import {useStore } from "vuex";
                 })
                 fileReader.readAsDataURL(files[0])
            },
-           asdf: function(){
-               console.log(this.imageURL)
-           }
+          
+        
 
 
          
@@ -187,5 +186,38 @@ import {useStore } from "vuex";
      font-size: 3rem;
      border-radius: 20px;
  }
+   
+    @media (max-width: 1100px){
+        h2{
+            font-size: 7rem;
+        }
+        .container{
 
+            width: 90%;
+        }
+
+    }
+    @media (max-width: 650px){
+       
+        .input{
+            font-size: 2.5rem;
+        }
+    }
+    @media (max-width: 450px){
+       
+        .input{
+            font-size: 2rem;
+        }
+        h2{
+            font-size: 5rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            
+        }
+        .container{
+            height: 60rem;
+        }
+  
+    }
+    
 </style>

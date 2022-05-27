@@ -8,8 +8,8 @@
       <button
         v-if="user"
         @click="
-          toggleButton();
-          writeData();
+          toggleButton()
+          // writeData();
         "
         class="favorite-button"
       >
@@ -233,7 +233,7 @@ export default {
     championName() {
       return `https://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${this.metaData.championName}.png`;
     },
-    writeData() {
+    /*     writeData() {
       this.store.commit("readUserData");
       if (this.isActive === false) {
         console.log(this.isActive);
@@ -243,7 +243,7 @@ export default {
       }
 
       this.store.commit("readUserData");
-    },
+    }, */
     toggleButton() {
       this.store.commit("foundUpdate");
       this.isActive = !this.isActive;

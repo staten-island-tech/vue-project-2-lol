@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue, remove } from "firebase/database";
 
 const store = createStore({
   state: {
@@ -64,6 +64,10 @@ const store = createStore({
       });
 
       console.log("You ran function");
+    },
+    deleteChamp(state, payload) {
+      const db = getDatabase();
+      remove(ref(db, "userChamps/" + payload));
     },
     readUserChamps(state) {
       const db = getDatabase();

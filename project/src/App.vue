@@ -7,14 +7,14 @@
 
 <script>
 import NavbarComp from "./components/NavbarComp.vue";
-import {useStore } from "vuex";
+import { useStore } from "vuex";
 
 export default {
-	setup(){
-		const store = useStore(); 
-		const getChamps = store.dispatch("getChamps")
-		const getDB = store.commit("readUserChamps")
-		return{store, getChamps, getDB}
+	setup() {
+		const store = useStore();
+		const getChamps = store.dispatch("getChamps");
+		const getDB = store.commit("readUserChamps");
+		return { store, getChamps, getDB };
 	},
 	components: { NavbarComp },
 };
@@ -34,7 +34,6 @@ body,
 	font-size: 62.5%;
 	font-family: "Roboto", sans-serif;
 }
-@media (max-width: 420px){
-	
+@media (max-width: 420px) {
 }
 </style>

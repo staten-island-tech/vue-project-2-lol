@@ -138,20 +138,19 @@ export default {
 	color: #74767c;
 }
 @media (max-width: 420px) {
-  .heading {
-    font-size: 5rem;
-  }
-  #summonerName {
-	margin-left:-10%;
-    font-size: 3rem;
-	width: 100vw;
-  }
-
+	.heading {
+		font-size: 5rem;
+	}
+	#summonerName {
+		margin-left: -10%;
+		font-size: 3rem;
+		width: 100vw;
+	}
 }
 
 @media (max-width: 1100px) {
-  .form {
-    margin-left: 8%;
-  }
+	.form {
+		margin-left: 8%;
+	}
 }
 </style>

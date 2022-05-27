@@ -91,6 +91,11 @@ h2 {
 	margin: 5rem;
 	flex-wrap: wrap;
 }
+
+img {
+	pointer-events: none;
+}
+
 .filler {
 	width: 50%;
 	height: 350px;

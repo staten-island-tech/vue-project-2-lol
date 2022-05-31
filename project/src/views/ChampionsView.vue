@@ -143,7 +143,7 @@ export default {
 </script>
 
 <style scoped>
-@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+@import url(https://db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
 * {
   border: 0;
   box-sizing: border-box;

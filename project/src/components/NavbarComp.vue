@@ -12,8 +12,8 @@
         <router-link class="link" v-if="!user" to="/login">Log In</router-link>
         
 
-        <div class="dropdown">
-          <button>Options</button>
+        <div class="dropdown link " >
+          <button class="options" >Options</button>
           <ul>
             <li><button v-if="user" class="logout link" @click="handleClick">Logout</button></li>
             <li><router-link class="link" to="/search">Search</router-link></li>
@@ -95,20 +95,23 @@ body,
 
 .navbar {
   width: 100%;
-  background-color: lightcoral;
+  background-color: black;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 10em;
-  height: 5rem;
-
+  height: 7rem;
+  border-radius: 0px 0px 5px 5px;
   align-items: center;
 }
-
+.options{
+  color: gold;
+}
 .dropdown ul {
   position: absolute;
-  z-index: 2;
+
+  z-index: 3;
   background-color: white;
   width: 20rem;
   height: 20rem;
@@ -130,6 +133,7 @@ body,
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+ 
 }
 
 button {
@@ -148,7 +152,26 @@ button {
 }
 .link {
   text-decoration: none;
-  color: black;
+  color: gold;
   font-size: 3rem;
+}
+@media(max-width: 1250px){
+  .dropdown ul{
+      right: 0px;
+  }
+}
+@media (max-width: 1000px){
+  .link{
+    font-size: 2rem;
+  }
+  .dropdown ul{
+    width: 18rem;
+    height: 18rem;
+  }
+}
+@media (max-width: 600px){
+  .link{
+    font-size: 1rem;
+  }
 }
 </style>

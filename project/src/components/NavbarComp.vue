@@ -10,11 +10,12 @@
           >Sign Up</router-link
         >
         <router-link class="link" v-if="!user" to="/login">Log In</router-link>
-        <button v-if="user" class="logout" @click="handleClick">Logout</button>
+        
 
         <div class="dropdown">
           <button>Options</button>
           <ul>
+            <li><button v-if="user" class="logout link" @click="handleClick">Logout</button></li>
             <li><router-link class="link" to="/search">Search</router-link></li>
 
             <li>

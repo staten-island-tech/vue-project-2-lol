@@ -69,10 +69,11 @@ h2 {
 	justify-content: center;
 	margin: auto;
 	margin-top: 2rem;
-	width: 110rem;
+	width: 115rem;
 	font-family: "BeaufortforLOL-Bold";
 	background: #1f2833;
 	border: #45a29e 3px solid;
+	padding: .5rem;
 }
 .home {
 	height: 500vw;
@@ -133,9 +134,37 @@ img {
 	position: absolute;
 	top: 100rem;
 }
+@media (max-width: 1100px) {
+	.logo {
+		width: 80rem;
+	}
+	.funct {
+		margin: 0rem;
+	}
+	.info-intro {
+		width: 100rem;
+		font-size: 6rem;
+	}
+	video {
+		width: 80rem;
+		object-fit: fill;
+	}
+	#my-atropos {
+		top: 15rem;
+	}
+	.info-box {
+		width: 95vw;
+		height: auto;
+	}
+	.filler {
+		width: 0%;
+		height: 0%;
+	}
+}
 @media (max-width: 420px) {
 	.logo {
-		width: 300px;
+		width: 100%;
+		margin: 0%;
 	}
 	#my-atropos {
 		top: 20rem;
@@ -149,35 +178,8 @@ img {
 		width: 40rem;
 	}
 	.info-box {
-		width: 100%;
+		width: 100vw;
 		height: 45rem;
-	}
-	.filler {
-		width: 0%;
-		height: 0%;
-	}
-}
-@media (max-width: 1100px) {
-	.logo {
-		width: 80rem;
-	}
-	.funct {
-		margin: 0rem;
-	}
-	.info-intro {
-		width: 100rem;
-		font-size: 6rem;
-		margin: 5rem;
-	}
-	video {
-		width: 80rem;
-		object-fit: fill;
-	}
-	#my-atropos {
-		top: 15rem;
-	}
-	.info-box {
-		width: 50%;
 	}
 	.filler {
 		width: 0%;

@@ -2,6 +2,33 @@
   <nav>
     <template v-if="authIsReady">
       <div class="navbar">
+       
+
+      
+        <div class="link" v-if="user" > Logged in as {{user.email}}</div>
+
+        <router-link class="link" v-if="!user" to="/signup">Sign Up</router-link>
+        <router-link class="link" v-if="!user" to="/login">Log In</router-link>
+        <button v-if="user" class="logout" @click="handleClick">Logout</button>
+
+        <div class="dropdown">
+          <button >Options</button>
+          <ul>
+            <li><router-link   class="link" to="/search">Search</router-link></li>
+
+            <li><router-link class="link" to="/Champions">Champions</router-link></li>
+            
+            <li v-if="user"><router-link  class="link" to="user">User</router-link></li>
+            
+            <li v-if="user"><router-link class="link" to="/Create ">Create</router-link></li>
+          </ul>
+        </div>
+
+      </div> 
+
+
+
+      <!-- <div class="navbar">
         <div class="left">
           <router-link to="/">Home</router-link> |
           <router-link to="/search">Search</router-link>
@@ -17,7 +44,7 @@
           <router-link to="/signup">Sign Up</router-link> |
           <router-link to="/login">Login</router-link>
         </div>
-      </div>
+      </div> -->
     </template>
   </nav>
 </template>
@@ -49,57 +76,78 @@ export default {
 };
 </script>
 <style scoped>
-.navbar {
-  background-color: black;
-  display: flex;
-  align-items: center;
-  padding: 3rem;
-  justify-content: space-around;
+html, body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family: "Roboto", sans-serif;
+}
+ 
+.navbar{
+   
   width: 100%;
+  background-color: lightcoral;
+   
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10em;
+  height: 5rem;
+  
+  
+ 
+  align-items: center;
+  
+
 }
 
-nav a {
-  padding: 3rem;
-  font-weight: bold;
-  color: #fff;
-  font-size: 2rem;
-  transition: 500ms;
-  text-decoration-color: transparent;
+
+ .dropdown ul{
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center ;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+  transform: translateY(-10px);
+  border-radius: 5px;
 }
-nav a:hover {
-  color: #ffd700;
+.dropdown li{
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 
-nav a.router-link-exact-active {
-  color: #ffd700;
-}
-
-.loggedinas {
-  color: white;
-  font-size: 2rem;
-  padding: 0rem 3rem;
-  font-weight: bold;
-}
-.logout {
-  font-weight: bold;
-  color: #fff;
-  font-size: 2rem;
-  background-color: transparent;
+button{
   border: none;
-  transition: 500ms;
-  padding-left: 3rem;
+  background-color: transparent;
+  font-size: 3rem;
 }
-
-.logout:hover {
-  color: #ffd700;
+.dropdown li:hover{
+  background-color: lightyellow;
 }
-@media (max-width: 420px) {
-  nav a {
-    padding: 0rem;
-    font-size: 1.5rem;
-  }
-  .navbar {
-    padding: 4rem;
-  }
+.dropdown button:focus + ul{
+  opacity:  1;
+  pointer-events: all;
+  transform: translateY(0px
+  );
+}
+.link{
+  text-decoration: none;
+  color: black;
+  font-size: 3rem;
+  
 }
 </style>

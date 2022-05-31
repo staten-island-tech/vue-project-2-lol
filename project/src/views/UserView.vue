@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="page">
 		<div class="user">
 			<button
 				v-for="{ icon, level, name } in accountData"
@@ -88,10 +88,11 @@ export default {
 .user {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: space-around;
 	align-items: center;
 	margin: 5rem;
 }
+
 .text {
 	font-size: 7rem;
 	text-align: center;
@@ -108,11 +109,15 @@ export default {
 	font-size: 7rem;
 }
 
+
 img {
 	width: 30rem;
 	height: 30rem;
 	border-radius: 20rem;
 	margin: 1rem;
+}
+.page{
+	margin-bottom: 5rem;
 }
 .cards {
 	display: flex;
@@ -121,4 +126,16 @@ img {
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
+@media (max-width: 1000px){
+	.user-button{
+		width: 25rem;
+		height: 25rem;
+	}
+	img{
+		width: 10rem;
+		height: 10rem;
+		
+	}
+}
+
 </style>

@@ -37,7 +37,7 @@
         </div>
         <div v-if="user" class="right">
           <router-link @click="readUsers" to="user">User</router-link> |
-          <span class="loggedinas">Logged in as {{ user.email }}</span> |
+          <!--           <span class="loggedinas">Logged in as {{ user.email }}</span> | -->
           <button class="logout" @click="handleClick">Logout</button>
         </div>
         <div v-if="!user" class="right">

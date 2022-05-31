@@ -19,7 +19,6 @@ export default {
 	setup() {
 		const email = ref("");
 		const password = ref("");
-
 		const store = useStore();
 		const router = useRouter();
 		const error = ref(null);

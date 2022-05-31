@@ -109,14 +109,13 @@ export default {
 	font-size: 7rem;
 }
 
-
 img {
 	width: 30rem;
 	height: 30rem;
 	border-radius: 20rem;
 	margin: 1rem;
 }
-.page{
+.page {
 	margin-bottom: 5rem;
 }
 .cards {
@@ -126,16 +125,14 @@ img {
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
-@media (max-width: 1000px){
-	.user-button{
+@media (max-width: 1000px) {
+	.user-button {
 		width: 25rem;
 		height: 25rem;
 	}
-	img{
+	img {
 		width: 10rem;
 		height: 10rem;
-		
 	}
 }
-
 </style>

@@ -7,15 +7,12 @@
 				<img class="splashImg" :src="getSplash" alt="" />
 			</div>
 		</div>
-
 		<div class="buttons">
 			<button class="abilBTN" @click="toggleAbil">Abilities</button>
 			<button class="loreBTN" @click="toggleLore">Lore</button>
 		</div>
-
 		<div v-if="this.Ability == true" class="abilities">
 			<PassiveDiv class="PassiveDiv" :ablName="this.Passive.name" :ablDes="this.Passive.description" :ablID="this.PassIMG" />
-
 			<div class="body1" v-for="spell in this.Spells" :key="spell.id">
 				<SpellDiv :ablName="spell.name" :ablDes="spell.description" :ablID="spell.id" />
 			</div>
@@ -23,7 +20,6 @@
 		<div v-if="this.Lore == true" class="font2">
 			{{ this.Results.lore }}
 		</div>
-
 		<div v-if="this.Lore == true" class="tipsContain">
 			<div class="container">
 				<div class="tipsLeft">

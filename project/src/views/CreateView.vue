@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<create-champ class="create" />
-
 		<div class="abilList">
 			<div v-for="champion in this.store.state.dbChamps" :key="champion.champName">
 				<user-champ :imageURL="champion.imageURL" :name="champion.champName" :title="champion.title" :description="champion.description" />
@@ -21,7 +20,6 @@ export default {
 			store,
 		};
 	},
-
 	components: { createChamp, UserChamp },
 };
 </script>

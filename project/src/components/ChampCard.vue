@@ -32,6 +32,7 @@ export default {
   background-color: transparent;
   height: 425px;
   width: 100%;
+  height: 100%;
   clip-path: inset(10% 10% 10% 10%);
 
   border-top: 5px transparent solid;

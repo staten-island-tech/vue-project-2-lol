@@ -93,4 +93,47 @@ button:hover {
   color: #fff;
   background-color: red;
 }
+ @media (max-width: 1000px){
+        .card{
+            width: 60rem;
+            height: 33rem;
+   
+        }
+        .name{
+            font-size: 2.5rem;
+
+        }
+        h2{
+            font-size: 1.5rem;
+        }
+        button{
+          min-width: 80px;
+          height: 20px;
+          font-size: 10px;
+          padding: 20px 20px 27px;
+        }
+
+    }
+    @media (max-width: 650px){
+        .card{
+            width: 37rem;
+            height: 20rem;
+           
+        }
+        .name{
+            font-size: 1.5rem;
+
+        }
+        h2{
+            font-size: 1rem;
+        }
+        button{
+          min-width: 60px;
+          height: 15px;
+          font-size: 8px;
+          padding: 10px 10px 15px;
+        }
+
+    }
+    
 </style>

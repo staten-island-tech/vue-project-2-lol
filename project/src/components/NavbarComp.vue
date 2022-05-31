@@ -20,7 +20,7 @@
             
             <li v-if="user"><router-link  class="link" to="user">User</router-link></li>
             
-            <li v-if="user"><router-link class="link" to="/Create ">Create</router-link></li>
+            <li v-if="user"><router-link class="link" to="/Create">Create</router-link></li>
           </ul>
         </div>
 
@@ -137,6 +137,7 @@ button{
 }
 .dropdown li:hover{
   background-color: lightyellow;
+  pointer-events: all;
 }
 .dropdown button:focus + ul{
   opacity:  1;

@@ -12,19 +12,19 @@
 				<div class="dropdown link">
 					<button class="options">Options</button>
 					<ul>
-						<li><button v-if="user" class="logout link" @click="handleClick">Logout</button></li>
-						<li><router-link class="link" to="/search">Search</router-link></li>
+						<li><button v-if="user" class="logout link2" @click="handleClick">Logout</button></li>
+						<li><router-link class="link2" to="/search">Search</router-link></li>
 
 						<li>
-							<router-link class="link" to="/Champions">Champions</router-link>
+							<router-link class="link2" to="/Champions">Champions</router-link>
 						</li>
 
 						<li v-if="user">
-							<router-link @click="readUsers" class="link" to="user">User</router-link>
+							<router-link @click="readUsers" class="link2" to="user">User</router-link>
 						</li>
 
 						<li v-if="user">
-							<router-link class="link" to="/Create">Create</router-link>
+							<router-link class="link2" to="/Create">Create</router-link>
 						</li>
 					</ul>
 				</div>
@@ -143,6 +143,11 @@ button {
 	opacity: 1;
 	pointer-events: all;
 	transform: translateY(0px);
+}
+.link2{
+	text-decoration: none;
+	color: black;
+	font-size: 3rem;
 }
 .link {
 	text-decoration: none;

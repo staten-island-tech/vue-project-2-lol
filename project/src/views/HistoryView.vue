@@ -114,7 +114,7 @@ export default {
 		const apiMatches = store.dispatch("getData");
 		console.log(found.value);
 
-		store.state.numberOfMatches = 5;
+		store.state.numberOfMatches = 12;
 
 		return {
 			icon,

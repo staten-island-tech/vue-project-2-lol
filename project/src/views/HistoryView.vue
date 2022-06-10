@@ -1,4 +1,4 @@
-<template>
+<template lang="en">
 	<div class="history">
 		<h1 class="header">Match History</h1>
 		<div class="summonerInfo">

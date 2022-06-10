@@ -1,5 +1,5 @@
-<template>
-	<nav>
+<template lang="en">
+	<nav lang="en">
 		<NavbarComp />
 		<router-view />
 	</nav>
